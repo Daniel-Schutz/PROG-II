@@ -39,11 +39,11 @@ int main()
 
              for(int i=0;i<quant;i++){
              fscanf(arq, "%d %[^0^1^2^3^4^5^6^7^8^9] %d %d %d %d %d", &curso[i].codCurso, curso[i].nomeCurso, &curso[i].pesoRed, &curso[i].pesoMat, &curso[i].pesoLing, &curso[i].pesoHum, &curso[i].pesoNat); //verificar como fazer a leitura do curso
-        
+                }
              for(int i=0;i<quant;i++){
             printf("%d %s %d %d %d %d %d\n", curso[i].codCurso, curso[i].nomeCurso, curso[i].pesoRed, curso[i].pesoMat, curso[i].pesoLing, curso[i].pesoHum, curso[i].pesoNat); 
         }    
-        }
+        
          } else{
             printf("Impossível alocar espaço\n");
          }
@@ -57,4 +57,6 @@ int main()
     printf("\n");    
     return 0;
 }
+
+
 
