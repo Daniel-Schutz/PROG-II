@@ -30,31 +30,34 @@ int main()
     else
     {
         printf("Arquivo foi aberto!\n\n");
-
+        
         fscanf(arq, "%d", &quant);
-
+  
         vaga = (tipoVaga *) malloc(quant * sizeof(tipoVaga));
 
          if (vaga != NULL){
 
              for(int i=0;i<quant;i++){
-             fscanf(arq, "%d %d %d %d %d %d %d %d %d %d %d %d", &vaga[i].codvaga, &vaga[i].AC, &vaga[i].L1, &vaga[i].L3, &vaga[i].L4, &vaga[i].L5, &vaga[i].L7,&vaga[i].L8, &vaga[i].L9, &vaga[i].L11, &vaga[i].L13, &vaga[i].L15); //verificar como fazer a leitura do vaga
-        
+             fscanf(arq, "%d %d %d %d %d %d %d %d %d %d %d %d", &vaga[i].codvaga, &vaga[i].AC, &vaga[i].L1, &vaga[i].L3, &vaga[i].L4, &vaga[i].L5, &vaga[i].L7, &vaga[i].L8, &vaga[i].L9, &vaga[i].L11, &vaga[i].L13, &vaga[i].L15); //verificar como fazer a leitura do vaga
+             }
              for(int i=0;i<quant;i++){
             printf("%d %d %d %d %d %d %d %d %d %d %d %d \n", vaga[i].codvaga, vaga[i].AC, vaga[i].L1, vaga[i].L3, vaga[i].L4, vaga[i].L5, vaga[i].L7, vaga[i].L8, vaga[i].L9, vaga[i].L11, vaga[i].L13, vaga[i].L15); 
-        }    
+        }   
+        free(vaga);
+       
         }
-         } else{
+         else{
             printf("Impossível alocar espaço\n");
          }
 
        
         
-        /*fechamento do arquivo*/
+        /*fechamento do arquivo*/     
         fclose(arq);
         
     }
     printf("\n");    
     return 0;
 }
+
 
