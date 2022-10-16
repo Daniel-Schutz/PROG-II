@@ -64,7 +64,7 @@ int main(){
                 //executar a leitura dos dados de forma correta para cada bloco;
                 int i;
                 for (i=0; i<bloco -> qtd; i++){
-                    fscanf("")
+                    fscanf("");
                 }
             }
         }
