@@ -51,9 +51,12 @@ int main(){
             
             fscanf(dados, "%d %d", bloco->codcurso, bloco->qtd); // a primeira linha tem duas entradas, vou ajeitar ainda
             
-            //alocar memória pra cada bloco
-            bloco = (curso *) malloc (bloco->qtd * syzeof(bloco)); //syzeoff ta com problema, não sei o motivo
-            
+            //alocar memória pra cada bloco              
+            bloco = (curso *) malloc (bloco->qtd * syzeof(bloco -> tuplas)); //aloca dinâmicamente apenas as linhas?
+                                                                            // ou sizeof(bloco)? tive dúvida
+                                                                            // pois na leitura vai ler apenas as linhas
+
+
             //verificar se alocou - caso saiba que vai alocar, pule para o else, pra facilitar leitura
             if (bloco == NULL){
                 printf("Não foi possível alocar na memória");
@@ -64,7 +67,8 @@ int main(){
                 //executar a leitura dos dados de forma correta para cada bloco;
                 int i;
                 for (i=0; i<bloco -> qtd; i++){
-                    fscanf("");
+                    fscanf("%d %s %d/%d/%d %s", &bloco.tuplas[i].codinscricao, bloco.tuplas[i].nomecandidato, &bloco.tuplas[i].dia, &bloco.tuplas[i].mes, &bloco.tuplas[i].ano, bloco.tuplas[i].tipovaga);
+                                                    //não sei se ta correta a leitura;
                 }
             }
         }
