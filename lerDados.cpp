@@ -16,7 +16,7 @@ struct dadoEmLinhas{ //precisaria criar um vetor de registro;
 
 };
 struct curso{
-    int codcurso, qtd;
+    int codcurso[114], qtd;
     dadoEmLinhas *tuplas;
 };
 
@@ -42,19 +42,27 @@ int main(){
     else{//a leitura deste arquivo provavelmente será diferente da forma atual
 
         printf("\n\nO arquivo foi aberto!\n\n");
-
+        
+        int j = 0; //para contagem dos codcurso;
+        //será diferente do usual (for i{for j}), será (for j{for i}) :)
+        //---------------------------------
+        //VOU DEIXAR OS PRINTS COMENTADOS PRA VC TESTAR DPS, ENQUANTO AJEITO O MEU
+        //---------------------------------
         while (feof(dados)==0){ //ler até acabar o arquivo
-            fscanf(dados, "%d %d", &titulo.codcurso, &titulo.qtd); // a primeira linha tem duas entradas, vou ajeitar ainda
-            
-            //alocar memória pra cada bloco              
-            titulo.tuplas = (dadoEmLinhas *) malloc (titulo.qtd * sizeof(dadoEmLinhas)); //aloca dinâmicamente apenas as linhas?
-                                                                            // ou sizeof(bloco)? tive dúvida
-                                                                            // pois na leitura vai ler apenas as linhas
+            fscanf(dados, "%d %d", &titulo.codcurso[j], &titulo.qtd); // a primeira linha tem duas entradas
+
+                //------------------------------------
+                //printf("%d %d\n", titulo.codcurso[j], titulo.qtd);
+                //------------------------------------
+
+            //alocar memória pra cada bloco            
+            titulo.tuplas = (dadoEmLinhas *) malloc (titulo.qtd * sizeof(dadoEmLinhas)); //aloca dinâmicamente as linhas
 
 
-            //verificar se alocou - caso saiba que vai alocar, pule para o else, pra facilitar leitura
+            //verificar se alocou - caso saiba que vai alocar, pule para o else, para facilitar a leitura
             if (titulo.tuplas == NULL){
                 printf("Não foi possível alocar na memória");
+                break;
             }
 
 
@@ -64,6 +72,12 @@ int main(){
                 for (i=0; i < titulo.qtd; i++){
                     fscanf(dados, "%d %[^0^1^2^3^4^5^6^7^8^9] %d/%d/%d %[^\n]", &titulo.tuplas[i].codinscricao, titulo.tuplas[i].nomecandidato, &titulo.tuplas[i].datanasc.dia, &titulo.tuplas[i].datanasc.mes, &titulo.tuplas[i].datanasc.ano, titulo.tuplas[i].tipovaga);
                 }
+
+                //-------------------------------
+                    /*printf("%d %s %d/%d/%d %s\n", titulo.tuplas[i].codinscricao, titulo.tuplas[i].nomecandidato, titulo.tuplas[i].datanasc.dia, titulo.tuplas[i].datanasc.mes, titulo.tuplas[i].datanasc.ano, titulo.tuplas[i].tipovaga);   */
+                //-------------------------------
+
+                j++;
             }
         }
     }
