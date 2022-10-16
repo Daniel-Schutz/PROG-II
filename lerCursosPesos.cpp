@@ -48,7 +48,7 @@ int main()
             printf("Impossível alocar espaço\n");
          }
 
-       
+
         
         /*fechamento do arquivo*/
         fclose(arq);
