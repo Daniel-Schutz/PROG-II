@@ -16,20 +16,13 @@ struct dadoEmLinhas{ //precisaria criar um vetor de registro;
 
 };
 
-struct curso{ //representa o bloco
-
-    int codcurso, qtd;
-    dadoEmLinhas tuplas[70]; //linhas do bloco, limite estipulado
-
-};
-
 
 
 int main(){
     FILE *dados;
     char nome[20]; // nome do arquivo
-    curso *bloco; // não achei nome melhor / refere-se
-
+    dadoEmLinhas *bloco; // não achei nome melhor / refere-se
+    int codcurso, qtd;
     printf("Digite o nome do arquivo: ");
     scanf(" %s", nome);
     
@@ -48,11 +41,10 @@ int main(){
         printf("\n\nO arquivo foi aberto!\n\n");
 
         while (feof(dados)==0){ //ler até acabar o arquivo
-            
-            fscanf(dados, "%d %d", bloco->codcurso, bloco->qtd); // a primeira linha tem duas entradas, vou ajeitar ainda
+            fscanf(dados, "%d %d", &codcurso, &qtd); // a primeira linha tem duas entradas, vou ajeitar ainda
             
             //alocar memória pra cada bloco              
-            bloco = (curso *) malloc (bloco->qtd * syzeof(bloco -> tuplas)); //aloca dinâmicamente apenas as linhas?
+            bloco = (dadoEmLinhas *) malloc (qtd * sizeof(dadoEmLinhas)); //aloca dinâmicamente apenas as linhas?
                                                                             // ou sizeof(bloco)? tive dúvida
                                                                             // pois na leitura vai ler apenas as linhas
 
@@ -66,8 +58,8 @@ int main(){
             else{
                 //executar a leitura dos dados de forma correta para cada bloco;
                 int i;
-                for (i=0; i<bloco -> qtd; i++){
-                    fscanf("%d %s %d/%d/%d %s", &bloco.tuplas[i].codinscricao, bloco.tuplas[i].nomecandidato, &bloco.tuplas[i].dia, &bloco.tuplas[i].mes, &bloco.tuplas[i].ano, bloco.tuplas[i].tipovaga);
+                for (i=0; i < qtd; i++){
+                    fscanf(dados, "%d %s %d/%d/%d %s", &bloco[i].codinscricao, bloco[i].nomecandidato, &bloco[i].datanasc.dia, &bloco[i].datanasc.mes, &bloco[i].datanasc.ano, bloco[i].tipovaga);
                                                     //não sei se ta correta a leitura;
                 }
             }
