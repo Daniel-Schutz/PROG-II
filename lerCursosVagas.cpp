@@ -44,7 +44,7 @@ int main()
             printf("%d %d %d %d %d %d %d %d %d %d %d %d \n", vaga[i].codvaga, vaga[i].AC, vaga[i].L1, vaga[i].L3, vaga[i].L4, vaga[i].L5, vaga[i].L7, vaga[i].L8, vaga[i].L9, vaga[i].L11, vaga[i].L13, vaga[i].L15); 
         }   
         free(vaga);
-       
+        
         }
          else{
             printf("Impossível alocar espaço\n");
