@@ -17,7 +17,6 @@ struct dadoEmLinhas{ //precisaria criar um vetor de registro;
 };
 
 
-
 int main(){
     FILE *dados;
     char nome[20]; // nome do arquivo
@@ -60,7 +59,6 @@ int main(){
                 int i;
                 for (i=0; i < qtd; i++){
                     fscanf(dados, "%d %s %d/%d/%d %s", &bloco[i].codinscricao, bloco[i].nomecandidato, &bloco[i].datanasc.dia, &bloco[i].datanasc.mes, &bloco[i].datanasc.ano, bloco[i].tipovaga);
-                                                    //não sei se ta correta a leitura;
                 }
             }
         }
