@@ -16,7 +16,7 @@ struct dadoEmLinhas{ //precisaria criar um vetor de registro;
 
 };
 struct curso{
-    int codcurso[114], qtd;
+    int codcurso, qtd;
     dadoEmLinhas *tuplas;
 };
 
@@ -25,7 +25,7 @@ struct curso{
 int main(){
     FILE *dados;
     char nome[20]; // nome do arquivo
-    curso titulo;
+    curso *titulo;
     printf("Digite o nome do arquivo: ");
     scanf(" %s", nome);
     
@@ -43,24 +43,20 @@ int main(){
 
         printf("\n\nO arquivo foi aberto!\n\n");
         
-        int j = 0; //para contagem dos codcurso;
-        //será diferente do usual (for i{for j}), será (for j{for i}) :)
-        //---------------------------------
-        //VOU DEIXAR OS PRINTS COMENTADOS PRA VC TESTAR DPS, ENQUANTO AJEITO O MEU
-        //---------------------------------
-        while (feof(dados)==0){ //ler até acabar o arquivo
-            fscanf(dados, "%d %d", &titulo.codcurso[j], &titulo.qtd); // a primeira linha tem duas entradas
+        int quant = 115;//aqui vai pegar o quant do meu codigo
 
-                //------------------------------------
-                //printf("%d %d\n", titulo.codcurso[j], titulo.qtd);
-                //------------------------------------
+        titulo = (curso *) malloc(quant * sizeof(curso));
+
+        for (int i=0;i<quant;i++){ //ler até acabar o arquivo
+
+            fscanf(dados, "%d %d", &titulo[i].codcurso, &titulo[i].qtd); // a primeira linha tem duas entradas
 
             //alocar memória pra cada bloco            
-            titulo.tuplas = (dadoEmLinhas *) malloc (titulo.qtd * sizeof(dadoEmLinhas)); //aloca dinâmicamente as linhas
+            titulo[i].tuplas = (dadoEmLinhas *) malloc (titulo[i].qtd * sizeof(dadoEmLinhas)); //aloca dinâmicamente as linhas
 
 
             //verificar se alocou - caso saiba que vai alocar, pule para o else, para facilitar a leitura
-            if (titulo.tuplas == NULL){
+            if (titulo[i].tuplas == NULL){
                 printf("Não foi possível alocar na memória");
                 break;
             }
@@ -68,17 +64,21 @@ int main(){
 
             else{
                 //executar a leitura dos dados de forma correta para cada bloco;
-                int i;
-                for (i=0; i < titulo.qtd; i++){
-                    fscanf(dados, "%d %[^0^1^2^3^4^5^6^7^8^9] %d/%d/%d %[^\n]", &titulo.tuplas[i].codinscricao, titulo.tuplas[i].nomecandidato, &titulo.tuplas[i].datanasc.dia, &titulo.tuplas[i].datanasc.mes, &titulo.tuplas[i].datanasc.ano, titulo.tuplas[i].tipovaga);
+                int x;
+                for (x=0; x < titulo[i].qtd; x++){
+                    fscanf(dados, "%d %[^0^1^2^3^4^5^6^7^8^9] %d/%d/%d %[^\n]", &titulo[i].tuplas[x].codinscricao, titulo[i].tuplas[x].nomecandidato, &titulo[i].tuplas[x].datanasc.dia, &titulo[i].tuplas[x].datanasc.mes, &titulo[i].tuplas[x].datanasc.ano, titulo[i].tuplas[x].tipovaga);
                 }
 
-                //-------------------------------
-                    /*printf("%d %s %d/%d/%d %s\n", titulo.tuplas[i].codinscricao, titulo.tuplas[i].nomecandidato, titulo.tuplas[i].datanasc.dia, titulo.tuplas[i].datanasc.mes, titulo.tuplas[i].datanasc.ano, titulo.tuplas[i].tipovaga);   */
-                //-------------------------------
 
-                j++;
+                
             }
+        }
+    }
+
+    for (int i=0; i<20;i++){
+        printf("%d %d \n",titulo[i].codcurso, titulo[i].qtd);
+        for(int x=0;x<titulo[i].qtd;x++){
+            printf("%d %s %d/%d/%d %s \n",titulo[i].tuplas[x].codinscricao, titulo[i].tuplas[x].nomecandidato, titulo[i].tuplas[x].datanasc.dia, titulo[i].tuplas[x].datanasc.mes, titulo[i].tuplas[x].datanasc.ano, titulo[i].tuplas[x].tipovaga);
         }
     }
 
