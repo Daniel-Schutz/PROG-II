@@ -4,7 +4,7 @@ struct acertos{
     int insc, v_ling, v_mat, v_nat, v_hum;
     float red;
 };
-int main(){
+int main(){ // parâmetros (int qtd, acertos dadosacertos[], int *soma)
     FILE *arq;
     int qtd; // qtd de alunos
     acertos *contagem; //registro a ser alocado dinâmicamente
@@ -28,10 +28,21 @@ int main(){
         contagem = (acertos*) malloc(qtd*sizeof(acertos)); //alocação
         
         int i;
-
         for (i = 0; i < qtd; i++){
             fscanf(arq, "%d %d %d %d %d %.2f", &contagem[i].insc, &contagem[i].v_ling, &contagem[i].v_mat, &contagem[i].v_nat, &contagem[i].v_hum, &contagem[i].red); //leitura dos dados
-
+            if (i == 0){
+                soma[0] = contagem[i].v_ling;
+                soma[1] = contagem[i].v_mat;
+                soma[2] = contagem[i].v_nat;
+                soma[3] = contagem[i].v_hum;
+                }
+            else{
+                soma[0] = soma[0] + contagem[i].v_ling;
+                soma[1] = soma[1] + contagem[i].v_mat;
+                soma[2] = soma[2] + contagem[i].v_nat;
+                soma[3] = soma[3] + contagem[i].v_hum;
+            }
+            }
             //OPERAÇÕES
             // -----------------------------
             /*Nessa parte de operações, temos que calcular a média dos acertos em determinada área considerando todos os candidatos, para assim calcular o desvio padrão através da formula indicada no documento do trabalho.
