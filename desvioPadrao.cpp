@@ -44,4 +44,6 @@ float desvioPadrao(float media, int quant, acertos dadosacertos[], char nomeArea
             somatorio = somatorio + x*x;
         }
     }
+    desvio = sqrt((somatorio/quant-1)); //uso de math.h , acho q é permitido usar
+    return desvio; //lembrar de guardar em variável respectiva à area de conhecimento quando for implementar na main.
 }
