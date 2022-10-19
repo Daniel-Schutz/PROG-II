@@ -43,7 +43,7 @@ int main(){
 
         printf("\n\nO arquivo foi aberto!\n\n");
         
-        int quant = 115;//aqui vai pegar o quant do meu codigo
+        int quant = 113;//aqui vai pegar o quant do meu codigo
 
         titulo = (curso *) malloc(quant * sizeof(curso));
 
