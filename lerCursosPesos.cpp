@@ -1,4 +1,3 @@
-//Verficar porque esta imprimindo ÔÇô ao invés do hifen -
 #include<stdio.h>  /*FILE, printf, scanf*/
 #include <stdlib.h>  // malloc, calloc
 #define MAX 60 //Qual o máximo que tem q definir??
