@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#define MAX 60
+#define MAX 60 //esse max ta certo? peguei do seu código
 struct tipoCurso{
     char nomeCurso[MAX];    /* nome do curso + bacharel/licenciatura */
     int codCurso, pesoRed, pesoMat, pesoLing, pesoHum, pesoNat;   
