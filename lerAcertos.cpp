@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-struct acertos{
+struct acertos_notas{
     int insc, v_ling, v_mat, v_nat, v_hum;
     float red;
+    float EP[4];
+    float notaFinal;
 };
 int main(){ // parâmetros (int qtd, acertos dadosacertos[], int *soma)
     FILE *arq;
     int qtd; // qtd de alunos
-    acertos *contagem; //registro a ser alocado dinâmicamente
+    acertos_notas *contagem; //registro a ser alocado dinâmicamente
     char nome[20];
     printf("Digite o nome do arquivo: ");
     scanf(" %s", nome); //lendo nome do arquivo
@@ -25,7 +27,7 @@ int main(){ // parâmetros (int qtd, acertos dadosacertos[], int *soma)
         
         fscanf(arq, "%d", &qtd); //guarda a quantidade de alunos;
         
-        contagem = (acertos*) malloc(qtd*sizeof(acertos)); //alocação
+        contagem = (acertos_notas*) malloc(qtd*sizeof(acertos_notas)); //alocação
         
         int i;
         for (i = 0; i < qtd; i++){
