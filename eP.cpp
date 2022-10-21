@@ -1,14 +1,25 @@
 #include <stdio.h>
 #include <string.h>
-
-struct acertos{
+#define MAX 60
+struct tipoCurso{
+    char nomeCurso[MAX];    /* nome do curso + bacharel/licenciatura */
+    int codCurso, pesoRed, pesoMat, pesoLing, pesoHum, pesoNat;   
+};
+struct acertos_notas{
     int insc, v_ling, v_mat, v_nat, v_hum;
     float red;
+    float EP[4];// EP guardado de acordo com a sequencias das áreas discutidas anteriormente
+    float notaFinal;
 };
-struct notas{
-    float EP, notaFinal;
-}; //criei um struct porque parece que vamos precisar guardar essas informações
 
-void eP_NotaFinal(notas relacao[],acertos dadosacertos[], int quant, float media, float desvio){
+void eP_NotaFinal(acertos_notas dadosacertos[],tipoCurso pesos[], int quant, float media[], float desvio[]){
     int i = 0;
+    for (i; i < quant; i++){
+        dadosacertos[i].EP[0] = 500 + 100*((2*dadosacertos[i].v_ling - media[0])/desvio[0]);
+        dadosacertos[i].EP[1] = 500 + 100*((2*dadosacertos[i].v_mat - media[1])/desvio[1]);
+        dadosacertos[i].EP[2] = 500 + 100*((2*dadosacertos[i].v_nat - media[2])/desvio[2]);
+        dadosacertos[i].EP[3] = 500 + 100*((2*dadosacertos[i].v_hum - media[3])/desvio[3]);
+
+        dadosacertos[i].notaFinal = (dadosacertos[i].red * pesos[i].pesoRed + dadosacertos[i].v_hum * pesos[i].pesoHum + dadosacertos[i].v_ling * pesos[i].pesoLing + dadosacertos[i].v_mat * pesos[i].pesoMat + dadosacertos[i].v_nat * pesos[i].pesoNat)/(pesos[i].pesoRed + pesos[i].pesoHum + pesos[i].pesoLing + pesos[i].pesoMat + pesos[i].pesoNat);
+    }
 }
