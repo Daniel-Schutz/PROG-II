@@ -1,6 +1,7 @@
 #include <stdio.h>
 int cont = 0;
 int n;
+int quant; // quantidade total de candidatos
 float media[4];
 float desvio[4];
 int soma[4];
@@ -23,7 +24,7 @@ desvio[1] = desvioPadrao( media[1], quant, dadosacertos, "v_mat");
 desvio[2] = desvioPadrao( media[2], quant, dadosacertos, "v_nat");
 desvio[3] = desvioPadrao( media[3], quant, dadosacertos, "v_hum");
   // calculo EP / NF
-void eP_NotaFinal(acertos_notas dadosacertos[],tipoCurso pesos[], int quant, float media[], float desvio[])
+void eP_NotaFinal( dadosacertos, pesos, quant, media[], desvio[]);
 
   //fiz um contador pra so na primeira que rodar aparecer a opção 0 (leitura) mas deve ter um jeito melhor
 while (n!=5){
