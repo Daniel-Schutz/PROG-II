@@ -2,15 +2,16 @@
 int cont = 0;
 int n;
 int quant; // quantidade total de candidatos
+int quantCursos; // quantidade total de cursos
 float media[4]; // ling / mat / nat / hum
 float desvio[4]; // ling / mat / nat / hum
 int soma[4]; // ling / mat / nat / hum
 
-
+//um das duas funções suas fica de passar essa quantidade de cursos?
 //lerCursosVagas();
 //lerCursosPesos();
-//lerDados(quant);
-//lerAcertos(quant);
+//lerDados(quantCursos);
+//quant = lerAcertos(quant); essa função retorna a quantidade total de candidatos que fizeram a prova
 
   // calculo da media
 media[0] = mediaDaArea(dadosacertos, quant, soma[0]);
