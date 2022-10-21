@@ -20,6 +20,8 @@ void eP_NotaFinal(acertos_notas dadosacertos[],tipoCurso pesos[], int quant, flo
         dadosacertos[i].EP[2] = 500 + 100*((2*dadosacertos[i].v_nat - media[2])/desvio[2]);
         dadosacertos[i].EP[3] = 500 + 100*((2*dadosacertos[i].v_hum - media[3])/desvio[3]);
 
+        // Pro calculo da notaFinal, aqui ainda ta errado, pois precisamos procurar por codcurso pra definir o peso
+        // Vou precisar de ajudar pra entender como ta seu código, aqui a gente precisa fazer junto
         dadosacertos[i].notaFinal = (dadosacertos[i].red * pesos[i].pesoRed + dadosacertos[i].EP[3] * pesos[i].pesoHum + dadosacertos[i].EP[0] * pesos[i].pesoLing + dadosacertos[i].EP[1] * pesos[i].pesoMat + dadosacertos[i].EP[2] * pesos[i].pesoNat)/(pesos[i].pesoRed + pesos[i].pesoHum + pesos[i].pesoLing + pesos[i].pesoMat + pesos[i].pesoNat);
     }
 }
