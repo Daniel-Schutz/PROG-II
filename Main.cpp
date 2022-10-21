@@ -1,8 +1,8 @@
 #include <stdio.h>
 int cont = 0;
 int n;
-float mediaLing, mediaMat, mediaNat, mediaHum;
-float dpLing, dpMat, dpNat, dpHum;
+float media[4];
+float desvio[4];
 int soma[4];
 
 
@@ -12,18 +12,18 @@ int soma[4];
 //lerAcertos(quant);
 
   // calculo da media
-mediaLing = mediaDaArea(dadosacertos, quant, soma[0]);
-mediaMat = mediaDaArea(dadosacertos, quant, soma[1]);
-mediaNat = mediaDaArea(dadosacertos, quant, soma[2]);
-mediaHum = mediaDaArea(dadosacertos, quant, soma[3]);
+media[0] = mediaDaArea(dadosacertos, quant, soma[0]);
+media[1] = mediaDaArea(dadosacertos, quant, soma[1]);
+media[2] = mediaDaArea(dadosacertos, quant, soma[2]);
+media[3] = mediaDaArea(dadosacertos, quant, soma[3]);
 
   // calculo desvio padrao
-dpLing = desvioPadrao( mediaLing, quant, dadosacertos, "v_ling");
-dpMat = desvioPadrao( mediaMat, quant, dadosacertos, "v_mat");
-dpNat = desvioPadrao( mediaNat, quant, dadosacertos, "v_nat");
-dpHum = desvioPadrao( mediaHum, quant, dadosacertos, "v_hum");
+desvio[0] = desvioPadrao( media[0], quant, dadosacertos, "v_ling");
+desvio[1] = desvioPadrao( media[1], quant, dadosacertos, "v_mat");
+desvio[2] = desvioPadrao( media[2], quant, dadosacertos, "v_nat");
+desvio[3] = desvioPadrao( media[3], quant, dadosacertos, "v_hum");
   // calculo EP / NF
-
+void eP_NotaFinal(acertos_notas dadosacertos[],tipoCurso pesos[], int quant, float media[], float desvio[])
 
   //fiz um contador pra so na primeira que rodar aparecer a opção 0 (leitura) mas deve ter um jeito melhor
 while (n!=5){
