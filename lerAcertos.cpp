@@ -6,7 +6,7 @@ struct acertos_notas{
     float EP[4];
     float notaFinal;
 };
-int main(){ // parâmetros (int qtd, acertos dadosacertos[], int *soma)
+void lerAcertos(int qtd, acertos_notas dadosacertos[], int *soma){ // parâmetros (int qtd, acertos_notas dadosacertos[], int *soma)
     FILE *arq;
     int qtd; // qtd de alunos
     acertos_notas *contagem; //registro a ser alocado dinâmicamente
@@ -49,6 +49,5 @@ int main(){ // parâmetros (int qtd, acertos dadosacertos[], int *soma)
             // -----------------------------
             /*Nessa parte de operações, temos que calcular a média dos acertos em determinada área considerando todos os candidatos, para assim calcular o desvio padrão através da formula indicada no documento do trabalho.
             Como aqui será uma função ler, não vai ser adequado realizar as operações aqui, uma vez que não será possível retornar mais de um valor e temos diversas áreas, logo, isso explica a criação da função média, desvio padrao, EP(q condiz com o escore final de cada área) e notaFinal.*/
-        }
-        return 0;
+    }
 }   
