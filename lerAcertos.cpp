@@ -48,8 +48,5 @@ int main(){ // parâmetros (int qtd, acertos dadosacertos[], int *soma)
             /*Nessa parte de operações, temos que calcular a média dos acertos em determinada área considerando todos os candidatos, para assim calcular o desvio padrão através da formula indicada no documento do trabalho.
             Como aqui será uma função ler, não vai ser adequado realizar as operações aqui, uma vez que não será possível retornar mais de um valor e temos diversas áreas, logo, isso explica a criação da função média, desvio padrao, EP(q condiz com o escore final de cada área) e notaFinal.*/
         }
-
-    }
-
-    return 0;
-}
+        return 0;
+}   
