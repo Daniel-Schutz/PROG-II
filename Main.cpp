@@ -2,9 +2,9 @@
 int cont = 0;
 int n;
 int quant; // quantidade total de candidatos
-float media[4];
-float desvio[4];
-int soma[4];
+float media[4]; // ling / mat / nat / hum
+float desvio[4]; // ling / mat / nat / hum
+int soma[4]; // ling / mat / nat / hum
 
 
 //lerCursosVagas();
