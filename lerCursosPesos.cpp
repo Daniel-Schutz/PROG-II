@@ -7,7 +7,7 @@ struct tipoCurso{
     int codCurso, pesoRed, pesoMat, pesoLing, pesoHum, pesoNat;   
 };
 
-int main()
+void lerCursoPesos()
 {
     
     FILE*  arq;         /* variavel para acessar um arquivo */
@@ -53,8 +53,7 @@ int main()
         fclose(arq);
         
     }
-    printf("\n");    
-    return 0;
+    printf("\n");
 }
 
 
