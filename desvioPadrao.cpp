@@ -2,15 +2,17 @@
 #include <string.h>
 #include <math.h>
 
-struct acertos{
+struct acertos_notas{
     int insc, v_ling, v_mat, v_nat, v_hum;
     float red;
+    float EP[4];// EP guardado de acordo com a sequencias das áreas discutidas anteriormente
+    float notaFinal;
 }; //apenas para não dar erro, faremos diferente para disposição de todas as funções
 
 
 //nome area sempre deve corresponder aos nomes começados por v_ no struct, para comparação.
 //media é a média da área de conhecimento(ling,mat,nat,hum).
-float desvioPadrao(float media, int quant, acertos dadosacertos[], char nomeArea[7]){ 
+float desvioPadrao(float media, int quant, acertos_notas dadosacertos[], char nomeArea[7]){ 
     int x = 0;
     int somatorio = 0;
     float desvio; //vai ser a variável a ser retornada, porém deve ser guardada em outra variável na main.
