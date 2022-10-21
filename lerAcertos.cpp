@@ -6,7 +6,7 @@ struct acertos_notas{
     float EP[4];
     float notaFinal;
 };
-void lerAcertos(int qtd, acertos_notas dadosacertos[], int *soma){ // parâmetros (int qtd, acertos_notas dadosacertos[], int *soma)
+int lerAcertos(acertos_notas dadosacertos[], int *soma){ // parâmetros (acertos_notas dadosacertos[], int *soma)
     FILE *arq;
     int qtd; // qtd de alunos
     acertos_notas *contagem; //registro a ser alocado dinâmicamente
@@ -45,6 +45,7 @@ void lerAcertos(int qtd, acertos_notas dadosacertos[], int *soma){ // parâmetro
                 soma[3] = soma[3] + contagem[i].v_hum;
             }
             }
+        return qtd;
             //OPERAÇÕES
             // -----------------------------
             /*Nessa parte de operações, temos que calcular a média dos acertos em determinada área considerando todos os candidatos, para assim calcular o desvio padrão através da formula indicada no documento do trabalho.
