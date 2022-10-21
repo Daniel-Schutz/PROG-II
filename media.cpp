@@ -9,6 +9,6 @@ struct acertos{
 float mediaDaArea(acertos dadosacertos[], int quant, int soma){ //passar valor correspondente a soma da materia no parametro
 
     float media; //variável q será retornada
-    media = soma / quant;
+    media = 2*(soma / quant); // precisa multiplicar por dois para receber o valor correto do EP
     return media;
 } // media implementada, farei outra função apenas para desvio padrão
