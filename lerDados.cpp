@@ -22,7 +22,7 @@ struct curso{
 
 
 
-int main(){
+void lerDados(int quant){ //quantidade total de cursos
     FILE *dados;
     char nome[20]; // nome do arquivo
     curso *titulo;
@@ -81,6 +81,4 @@ int main(){
             printf("%d %s %d/%d/%d %s \n",titulo[i].tuplas[x].codinscricao, titulo[i].tuplas[x].nomecandidato, titulo[i].tuplas[x].datanasc.dia, titulo[i].tuplas[x].datanasc.mes, titulo[i].tuplas[x].datanasc.ano, titulo[i].tuplas[x].tipovaga);
         }
     }
-
-    return 0;
 }
