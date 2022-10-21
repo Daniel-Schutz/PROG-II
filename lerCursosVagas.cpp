@@ -8,7 +8,7 @@ struct tipoVaga{
     int codvaga, AC, L1, L3, L4, L5, L7, L8, L9, L11, L13, L15;   
 };
 
-int main()
+int main() //tenta ver qual vai ser o tipo dessa função, o nome e se ela vai realmente retornar a quantidade de candidatos pra botar na funcoes.h.
 {
     
     FILE*  arq;         /* variavel para acessar um arquivo */
