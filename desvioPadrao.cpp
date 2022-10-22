@@ -12,7 +12,7 @@ struct acertos_notas{
 
 //nome area sempre deve corresponder aos nomes começados por v_ no struct, para comparação.
 //media é a média da área de conhecimento(ling,mat,nat,hum).
-float desvioPadrao(float media, int quant, acertos_notas dadosacertos[], char nomeArea[7]){ 
+float desvioPadrao(float media, int quant, acertos_notas contagem[], char nomeArea[7]){ 
     int x = 0;
     int somatorio = 0;
     float desvio; //vai ser a variável a ser retornada, porém deve ser guardada em outra variável na main.
@@ -23,26 +23,26 @@ float desvioPadrao(float media, int quant, acertos_notas dadosacertos[], char no
         for (i; i < quant; i++){ 
                 //dadosacertos[i] significa acerto individual.
                 //x atualiza para o valor correto em cada chamda do for
-                x = (dadosacertos[i].v_ling - media); //significa a operação básica para o somatório.
+                x = (contagem[i].v_ling - media); //significa a operação básica para o somatório.
                 somatorio = somatorio + x*x;
             }
     }
     else if (!strcmp(nomeArea, "v_mat") == 1){
         for (i; i < quant; i++){
-            x = (dadosacertos[i].v_mat - media);
+            x = (contagem[i].v_mat - media);
             somatorio = somatorio + x*x;
         }
     }
         
     else if (!strcmp(nomeArea, "v_nat") == 1){
         for (i; i < quant; i++){
-            x = (dadosacertos[i].v_nat - media);
+            x = (contagem[i].v_nat - media);
             somatorio = somatorio + x*x;
         }
     }
     else{
         for (i; i < quant; i++){
-            x = (dadosacertos[i].v_hum - media);
+            x = (contagem[i].v_hum - media);
             somatorio = somatorio + x*x;
         }
     }
