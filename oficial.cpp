@@ -204,18 +204,18 @@ scanf("%s",nomeAcertos);
 
   // calculo da media
 
-media[0] = mediaDaArea(contagem, quant, soma[0]);
-media[1] = mediaDaArea(contagem, quant, soma[1]);
-media[2] = mediaDaArea(contagem, quant, soma[2]);
-media[3] = mediaDaArea(contagem, quant, soma[3]);
+media[0] = mediaDaArea(qtdAlunos, soma[0]);
+media[1] = mediaDaArea(qtdAlunos, soma[1]);
+media[2] = mediaDaArea(qtdAlunos, soma[2]);
+media[3] = mediaDaArea(qtdAlunos, soma[3]);
 
   // calculo desvio padrao
-desvio[0] = desvioPadrao( media[0], quant, contagem, "v_ling");
-desvio[1] = desvioPadrao( media[1], quant, contagem, "v_mat");
-desvio[2] = desvioPadrao( media[2], quant, contagem, "v_nat");
-desvio[3] = desvioPadrao( media[3], quant, contagem, "v_hum");
+desvio[0] = desvioPadrao( media[0], qtdAlunos, contagem, "v_ling");
+desvio[1] = desvioPadrao( media[1], qtdAlunos, contagem, "v_mat");
+desvio[2] = desvioPadrao( media[2], qtdAlunos, contagem, "v_nat");
+desvio[3] = desvioPadrao( media[3], qtdAlunos, contagem, "v_hum");
   // calculo EP / NF
-void eP_NotaFinal( contagem, curso, quant, media, desvio);
+void eP_NotaFinal(contagem, curso, qtdAlunos, media, desvio);
  
 
 
