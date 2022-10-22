@@ -5,11 +5,11 @@
 
 
 int main(){
-tipoCurso *curso;
+tipoCurso *curso; //tipocurso
 int cont = 0;
 int opcao;
-int quant; // quantidade total de candidatos
-int quantCursos; // quantidade total de cursos
+int quant; // quantidade total de cursos
+int qtdAlunos; // quantidade total de candidatos
 float media[4]; // ling / mat / nat / hum
 float desvio[4]; // ling / mat / nat / hum
 int soma[4]; // ling / mat / nat / hum
@@ -22,8 +22,7 @@ while (opcao!=0){
   scanf("%d", &opcao);  
   }
 
-//if opcao for 0, entrar na leitura
-//ler e armazenar cursos e pesos  
+if (opcao==0){
 printf("\nEscreva o nome do arquivo dos cursos e pesos:");
 scanf("%s",nomePeso);
  FILE*  arq;         /* variavel para acessar um arquivo */
@@ -110,7 +109,7 @@ tipoVaga *vaga;
 printf("\nEscreva o nome do arquivo dos dados dos inscritos:");
 scanf("%s",nomeDados);
 cursoDados *titulo;
-    
+
     //abertura do arquivo
     arq = fopen(nomeDados,"r");
 
@@ -157,38 +156,17 @@ cursoDados *titulo;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 printf("\nEscreva o nome do arquivo dos acertos dos inscritos:");
 scanf("%s",nomeAcertos);
 //void lerAcertos(nomeAcertos);//passar mais argumentos
 
-int qtd; // qtd de alunos
     acertos_notas *contagem; //registro a ser alocado dinâmicamente
-    char nome[20];
-    printf("Digite o nome do arquivo: ");
-    scanf(" %s", nome); //lendo nome do arquivo
+    
     //
-    fopen(nome,"r"); //abrindo arquivo;
+    arq = fopen(nomeAcertos,"r"); //abrindo arquivo;
     
 
-    if (nome==NULL){
+    if (nomeAcertos==NULL){
         printf("\n\nO arquivo não pode ser aberto\n\n");
     }
 
@@ -196,12 +174,12 @@ int qtd; // qtd de alunos
     else{
         //fazer alocação dinâmica e leitura das entradas
         
-        fscanf(arq, "%d", &qtd); //guarda a quantidade de alunos;
+        fscanf(arq, "%d", &qtdAlunos); //guarda a quantidade de alunos;
         
-        contagem = (acertos_notas*) malloc(qtd*sizeof(acertos_notas)); //alocação
+        contagem = (acertos_notas*) malloc(qtdAlunos*sizeof(acertos_notas)); //alocação
         
         int i;
-        for (i = 0; i < qtd; i++){
+        for (i = 0; i < qtdAlunos; i++){
             fscanf(arq, "%d %d %d %d %d %.2f", &contagem[i].insc, &contagem[i].v_ling, &contagem[i].v_mat, &contagem[i].v_nat, &contagem[i].v_hum, &contagem[i].red); //leitura dos dados
             if (i == 0){
                 soma[0] = contagem[i].v_ling;
@@ -221,39 +199,32 @@ int qtd; // qtd de alunos
             /*Nessa parte de operações, temos que calcular a média dos acertos em determinada área considerando todos os candidatos, para assim calcular o desvio padrão através da formula indicada no documento do trabalho.
             Como aqui será uma função ler, não vai ser adequado realizar as operações aqui, uma vez que não será possível retornar mais de um valor e temos diversas áreas, logo, isso explica a criação da função média, desvio padrao, EP(q condiz com o escore final de cada área) e notaFinal.*/
     }
-
-while(opcao!=5){
-       printf("1 - Gerar arquivo de saída .txt\n");
-       printf("2 - Pesquisar candidatos .txt\n");
-       printf("3 - Gerar arquivo dos candidatos não aprovados\n");
-       printf("4 - Alterar nota de redação dos candidatos que entraram com recurso\n");
-       printf("5 - Encerrar programa\n");
-       printf("Digite a opção desejada:");
-       scanf("%d", &opcao);     
+    fclose(arq);
 }
-    
-
-    //um das duas funções suas fica de passar essa quantidade de cursos?
-//lerCursosVagas();
-//lerCursosPesos();
-//lerDados(quantCursos);
-//quant = lerAcertos(quant); essa função retorna a quantidade total de candidatos que fizeram a prova
 
   // calculo da media
-/*
-media[0] = mediaDaArea(dadosacertos, quant, soma[0]);
-media[1] = mediaDaArea(dadosacertos, quant, soma[1]);
-media[2] = mediaDaArea(dadosacertos, quant, soma[2]);
-media[3] = mediaDaArea(dadosacertos, quant, soma[3]);
+
+media[0] = mediaDaArea(contagem, quant, soma[0]);
+media[1] = mediaDaArea(contagem, quant, soma[1]);
+media[2] = mediaDaArea(contagem, quant, soma[2]);
+media[3] = mediaDaArea(contagem, quant, soma[3]);
 
   // calculo desvio padrao
-desvio[0] = desvioPadrao( media[0], quant, dadosacertos, "v_ling");
-desvio[1] = desvioPadrao( media[1], quant, dadosacertos, "v_mat");
-desvio[2] = desvioPadrao( media[2], quant, dadosacertos, "v_nat");
-desvio[3] = desvioPadrao( media[3], quant, dadosacertos, "v_hum");
+desvio[0] = desvioPadrao( media[0], quant, contagem, "v_ling");
+desvio[1] = desvioPadrao( media[1], quant, contagem, "v_mat");
+desvio[2] = desvioPadrao( media[2], quant, contagem, "v_nat");
+desvio[3] = desvioPadrao( media[3], quant, contagem, "v_hum");
   // calculo EP / NF
-void eP_NotaFinal( dadosacertos, pesos, quant, media[], desvio[]);
-  */     
+void eP_NotaFinal( contagem, curso, quant, media, desvio);
+ 
+
+
+
+while(opcao!=5){
+       menu();
+       printf("Digite a opção desejada:");
+       scanf("%d", &opcao);     
+} 
 
 
 
