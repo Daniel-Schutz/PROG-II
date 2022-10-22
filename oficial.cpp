@@ -200,22 +200,20 @@ scanf("%s",nomeAcertos);
             Como aqui será uma função ler, não vai ser adequado realizar as operações aqui, uma vez que não será possível retornar mais de um valor e temos diversas áreas, logo, isso explica a criação da função média, desvio padrao, EP(q condiz com o escore final de cada área) e notaFinal.*/
     }
     fclose(arq);
-}
-
   // calculo da media
+    media[0] = mediaDaArea(qtdAlunos, soma[0]);
+    media[1] = mediaDaArea(qtdAlunos, soma[1]);
+    media[2] = mediaDaArea(qtdAlunos, soma[2]);
+    media[3] = mediaDaArea(qtdAlunos, soma[3]);
 
-media[0] = mediaDaArea(qtdAlunos, soma[0]);
-media[1] = mediaDaArea(qtdAlunos, soma[1]);
-media[2] = mediaDaArea(qtdAlunos, soma[2]);
-media[3] = mediaDaArea(qtdAlunos, soma[3]);
-
-  // calculo desvio padrao
-desvio[0] = desvioPadrao( media[0], qtdAlunos, contagem, "v_ling");
-desvio[1] = desvioPadrao( media[1], qtdAlunos, contagem, "v_mat");
-desvio[2] = desvioPadrao( media[2], qtdAlunos, contagem, "v_nat");
-desvio[3] = desvioPadrao( media[3], qtdAlunos, contagem, "v_hum");
-  // calculo EP / NF
-void eP_NotaFinal(contagem, curso, qtdAlunos, media, desvio);
+    // calculo desvio padrao
+    desvio[0] = desvioPadrao( media[0], qtdAlunos, contagem, "v_ling");
+    desvio[1] = desvioPadrao( media[1], qtdAlunos, contagem, "v_mat");
+    desvio[2] = desvioPadrao( media[2], qtdAlunos, contagem, "v_nat");
+    desvio[3] = desvioPadrao( media[3], qtdAlunos, contagem, "v_hum");
+    // calculo EP / NF
+    eP_NotaFinal(contagem, curso, qtdAlunos, media, desvio);
+}
  
 
 
