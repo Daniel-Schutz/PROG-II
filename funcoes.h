@@ -39,19 +39,11 @@ struct acertos_notas{
     float notaFinal;
 };
 
-// colocar o nome das funções
-void lerCursoPesos(tipoCurso curso[]);
 
-//função referente a CursosVagas aqui
+float mediaDaArea(int quant, int soma);
 
-void lerDados(int quant); //falta definir qual função ira retornar o valor de quantCursos pra essa
+float desvioPadrao(float media, int quant, acertos_notas contagem[], char nomeArea[7]);
 
-int lerAcertos(acertos_notas dadosacertos[], int *soma); //retorna a qtd de pessoas que fizeram a prova
-
-float mediaDaArea(acertos_notas dadosacertos[], int quant, int soma);
-
-float desvioPadrao(float media, int quant, acertos_notas dadosacertos[], char nomeArea[7]);
-
-void eP_NotaFinal(acertos_notas dadosacertos[],tipoCurso pesos[], int quant, float media[], float desvio[]);
+void eP_NotaFinal(acertos_notas contagem[],tipoCurso pesos[], int quant, float media[], float desvio[]);
 
 void menu();
