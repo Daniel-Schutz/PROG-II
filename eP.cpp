@@ -5,6 +5,25 @@ struct tipoCurso{
     char nomeCurso[MAX];    /* nome do curso + bacharel/licenciatura */
     int codCurso, pesoRed, pesoMat, pesoLing, pesoHum, pesoNat;   
 };
+struct data{
+
+    int dia, mes, ano;
+
+};
+
+struct dadoEmLinhas{ //precisaria criar um vetor de registro;
+
+    int codinscricao; // referente ao participante;
+    char nomecandidato[MAX]; 
+    data datanasc; // será utilizado para calcular o caso de empate;
+    char tipovaga[5]; // no arquivo em questão aparece com letras e números, como no exemplo dado na DescriçãoTrabalho;
+
+};
+
+struct cursoDados{
+    int codcurso, qtd;
+    dadoEmLinhas *tuplas;
+};
 struct acertos_notas{
     int insc, v_ling, v_mat, v_nat, v_hum;
     float red;
