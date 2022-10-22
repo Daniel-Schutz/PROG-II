@@ -8,7 +8,7 @@ struct acertos_notas{
 }; //Botei aqui por enquanto so pra ter a base direito e pra não dar erro
 
 //dadosacertos deve ser um vetor
-float mediaDaArea(acertos_notas dadosacertos[], int quant, int soma){ //passar valor correspondente a soma da materia no parametro
+float mediaDaArea(int quant, int soma){ //passar valor correspondente a soma da materia no parametro
 
     float media; //variável q será retornada
     media = 2*(soma / quant); // precisa multiplicar por dois para receber o valor correto do EP
