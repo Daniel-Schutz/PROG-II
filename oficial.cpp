@@ -9,12 +9,6 @@ struct tipoCurso{
     int codCurso, pesoRed, pesoMat, pesoLing, pesoHum, pesoNat;   
 };
 
-struct curso{
-    int codcurso, qtd;
-    dadoEmLinhas *tuplas;
-};
-
-
 struct tipoVaga{
     int codvaga, AC, L1, L3, L4, L5, L7, L8, L9, L11, L13, L15;   
 };
@@ -33,7 +27,18 @@ struct dadoEmLinhas{ //precisaria criar um vetor de registro;
     char tipovaga[5]; // no arquivo em questão aparece com letras e números, como no exemplo dado na DescriçãoTrabalho;
 
 };
+struct curso{
+    int codcurso, qtd;
+    dadoEmLinhas *tuplas;
+};
 
+
+struct acertos_notas{
+    int insc, v_ling, v_mat, v_nat, v_hum;
+    float red;
+    float EP[4];
+    float notaFinal;
+};
 
 
 
