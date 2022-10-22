@@ -4,46 +4,6 @@
 #define MAX 60 //definir um valor
 
 
-struct tipoCurso{
-    char nomeCurso[MAX];    /* nome do curso + bacharel/licenciatura */
-    int codCurso, pesoRed, pesoMat, pesoLing, pesoHum, pesoNat;   
-};
-
-struct tipoVaga{
-    int codvaga, AC, L1, L3, L4, L5, L7, L8, L9, L11, L13, L15;   
-};
-
-struct data{
-
-    int dia, mes, ano;
-
-};
-
-struct dadoEmLinhas{ //precisaria criar um vetor de registro;
-
-    int codinscricao; // referente ao participante;
-    char nomecandidato[MAX]; 
-    data datanasc; // será utilizado para calcular o caso de empate;
-    char tipovaga[5]; // no arquivo em questão aparece com letras e números, como no exemplo dado na DescriçãoTrabalho;
-
-};
-struct curso{
-    int codcurso, qtd;
-    dadoEmLinhas *tuplas;
-};
-
-
-struct acertos_notas{
-    int insc, v_ling, v_mat, v_nat, v_hum;
-    float red;
-    float EP[4];
-    float notaFinal;
-};
-
-
-
-
-
 int main(){
 tipoCurso *curso;
 int cont = 0;
@@ -149,7 +109,7 @@ tipoVaga *vaga;
 //ler e armazenar os dados dos inscritos
 printf("\nEscreva o nome do arquivo dos dados dos inscritos:");
 scanf("%s",nomeDados);
-curso *titulo;
+cursoDados *titulo;
     
     //abertura do arquivo
     arq = fopen(nomeDados,"r");
@@ -163,7 +123,7 @@ curso *titulo;
     else{     
         
 
-        titulo = (curso *) malloc(quant * sizeof(curso));
+        titulo = (cursoDados *) malloc(quant * sizeof(cursoDados));
 
         for (int i=0;i<quant;i++){ //ler até acabar o arquivo
 
@@ -187,9 +147,10 @@ curso *titulo;
                     fscanf(arq, "%d %[^0^1^2^3^4^5^6^7^8^9] %d/%d/%d %[^\n]", &titulo[i].tuplas[x].codinscricao, titulo[i].tuplas[x].nomecandidato, &titulo[i].tuplas[x].datanasc.dia, &titulo[i].tuplas[x].datanasc.mes, &titulo[i].tuplas[x].datanasc.ano, titulo[i].tuplas[x].tipovaga);
                 }
 
-
+            
                 
             }
+            fclose(arq);
         }
     }
 
@@ -217,6 +178,49 @@ curso *titulo;
 printf("\nEscreva o nome do arquivo dos acertos dos inscritos:");
 scanf("%s",nomeAcertos);
 //void lerAcertos(nomeAcertos);//passar mais argumentos
+
+int qtd; // qtd de alunos
+    acertos_notas *contagem; //registro a ser alocado dinâmicamente
+    char nome[20];
+    printf("Digite o nome do arquivo: ");
+    scanf(" %s", nome); //lendo nome do arquivo
+    //
+    fopen(nome,"r"); //abrindo arquivo;
+    
+
+    if (nome==NULL){
+        printf("\n\nO arquivo não pode ser aberto\n\n");
+    }
+
+
+    else{
+        //fazer alocação dinâmica e leitura das entradas
+        
+        fscanf(arq, "%d", &qtd); //guarda a quantidade de alunos;
+        
+        contagem = (acertos_notas*) malloc(qtd*sizeof(acertos_notas)); //alocação
+        
+        int i;
+        for (i = 0; i < qtd; i++){
+            fscanf(arq, "%d %d %d %d %d %.2f", &contagem[i].insc, &contagem[i].v_ling, &contagem[i].v_mat, &contagem[i].v_nat, &contagem[i].v_hum, &contagem[i].red); //leitura dos dados
+            if (i == 0){
+                soma[0] = contagem[i].v_ling;
+                soma[1] = contagem[i].v_mat;
+                soma[2] = contagem[i].v_nat;
+                soma[3] = contagem[i].v_hum;
+                }
+            else{
+                soma[0] = soma[0] + contagem[i].v_ling;
+                soma[1] = soma[1] + contagem[i].v_mat;
+                soma[2] = soma[2] + contagem[i].v_nat;
+                soma[3] = soma[3] + contagem[i].v_hum;
+            }
+        }
+            //OPERAÇÕES
+            // -----------------------------
+            /*Nessa parte de operações, temos que calcular a média dos acertos em determinada área considerando todos os candidatos, para assim calcular o desvio padrão através da formula indicada no documento do trabalho.
+            Como aqui será uma função ler, não vai ser adequado realizar as operações aqui, uma vez que não será possível retornar mais de um valor e temos diversas áreas, logo, isso explica a criação da função média, desvio padrao, EP(q condiz com o escore final de cada área) e notaFinal.*/
+    }
 
 while(opcao!=5){
        printf("1 - Gerar arquivo de saída .txt\n");
