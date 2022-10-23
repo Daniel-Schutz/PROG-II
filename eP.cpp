@@ -50,7 +50,7 @@ void eP_NotaFinal(acertos_notas contagem[],cursoDados dadosNec[], tipoCurso peso
     for (i; i < qtdCursos; i++){ //percorre todos os cursos, logo, todas as tuplas de cada curso
         for (j=0; j < qtdCursos; j++){ //acha os pesos correspondentes para cada curso 'i'
             aux = 0;
-            if (dadosNec[i].codcurso == pesos[j].codCurso){ //indice j para acessar pesos e i para Notafinal
+            if (dadosNec[i].codcurso == pesos[j].codCurso){ //indice j para acessar pesos
                 
                 while (aux < dadosNec[i].qtd){ //só permite a leitura até achar o correspondete a cada tupla
                     for (k=0; k < quant; k++){ //para percorrer todos os inscritos
@@ -64,7 +64,7 @@ void eP_NotaFinal(acertos_notas contagem[],cursoDados dadosNec[], tipoCurso peso
                         }
                     }
                 }
-                j = qtdCursos - 1; //para sair do segundo for na proxima chamada, uma vez que o curso é único
+                j = qtdCursos; //para sair do segundo for na proxima chamada, uma vez que o curso é único
             }
         }
     }
