@@ -44,6 +44,6 @@ float mediaDaArea(int quant, int soma);
 
 float desvioPadrao(float media, int quant, acertos_notas *contagem, char nomeArea[7]);
 
-void eP_NotaFinal(acertos_notas *contagem,tipoCurso *pesos, int quant, float media[], float desvio[]);
+void eP_NotaFinal(acertos_notas contagem[],cursoDados dadosNec[], tipoCurso pesos[], int quant, int qtdCursos, float media[], float desvio[]);
 
 void menu();
