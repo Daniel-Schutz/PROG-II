@@ -31,7 +31,7 @@ struct acertos_notas{
     float notaFinal;
 };
 
-void eP_NotaFinal(acertos_notas contagem[],tipoCurso pesos[], int quant, float media[], float desvio[]){
+void eP_NotaFinal(acertos_notas contagem[],cursoDados dadosNec[], tipoCurso pesos[], int quant, int qtdCursos, float media[], float desvio[]){//quant = quantidade de candidatos
     int i = 0;
     for (i; i < quant; i++){
         contagem[i].EP[0] = 500 + 100*((2*contagem[i].v_ling - media[0])/desvio[0]);
@@ -43,4 +43,32 @@ void eP_NotaFinal(acertos_notas contagem[],tipoCurso pesos[], int quant, float m
         // Vou precisar de ajudar pra entender como ta seu código, aqui a gente precisa fazer junto
         contagem[i].notaFinal = (contagem[i].red * pesos[i].pesoRed + contagem[i].EP[3] * pesos[i].pesoHum + contagem[i].EP[0] * pesos[i].pesoLing + contagem[i].EP[1] * pesos[i].pesoMat + contagem[i].EP[2] * pesos[i].pesoNat)/(pesos[i].pesoRed + pesos[i].pesoHum + pesos[i].pesoLing + pesos[i].pesoMat + pesos[i].pesoNat);
     }
+    i = 0;
+    int aux;
+    int j;
+    int k;
+    for (i; i < qtdCursos; i++){ //percorre todos os cursos, logo, todas as tuplas de cada curso
+        for (j=0; j < qtdCursos; j++){ //acha os pesos correspondentes para cada curso 'i'
+            aux = 0;
+            if (dadosNec[i].codcurso == pesos[j].codCurso){ //indice j para acessar pesos e i para Notafinal
+                
+                while (aux < dadosNec[i].qtd){ //só permite a leitura até achar o correspondete a cada tupla
+                    for (k=0; k < quant; k++){ //para percorrer todos os inscritos
+                            if (dadosNec[i].tuplas[aux].codinscricao == contagem[k].insc){ //achou o inscrito
+                            
+                            //calculo da notaFinal --- add diretamente ao Struct Acerto_notas na posição correspondente
+                            contagem[k].notaFinal = (contagem[k].red * pesos[j].pesoRed + contagem[k].EP[3] * pesos[j].pesoHum + contagem[k].EP[0] * pesos[j].pesoLing + contagem[k].EP[1] * pesos[j].pesoMat + contagem[k].EP[2] * pesos[j].pesoNat)/(pesos[j].pesoRed + pesos[j].pesoHum + pesos[j].pesoLing + pesos[j].pesoMat + pesos[j].pesoNat);
+                            
+                            
+                            aux++;//pula pra próxima tupla a ser comparada
+                        }
+                    }
+                }
+                j = qtdCursos - 1; //para sair do segundo for na proxima chamada, uma vez que o curso é único
+            }
+        }
+    }
+
+
+
 }
