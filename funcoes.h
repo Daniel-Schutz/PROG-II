@@ -2,7 +2,7 @@
 
 //structs
 
-struct tipoCurso{
+struct tipoCurso{ //vamos ordenar por cod curso ---- planejo colocar esse struct dentro de outro Struct junto a cursoDados para evitar o retrabalho
     char nomeCurso[MAX];    /* nome do curso + bacharel/licenciatura */
     int codCurso, pesoRed, pesoMat, pesoLing, pesoHum, pesoNat;   
 };
@@ -22,7 +22,7 @@ struct dadoEmLinhas{ //precisaria criar um vetor de registro;
 
 };
 
-struct cursoDados{
+struct cursoDados{ //vamos ordenar por codcurso
     int codcurso, qtd;
     dadoEmLinhas *tuplas;
 };
@@ -47,3 +47,9 @@ float desvioPadrao(float media, int quant, acertos_notas *contagem, char nomeAre
 void eP_NotaFinal(acertos_notas contagem[],cursoDados dadosNec[], tipoCurso pesos[], int quant, int qtdCursos, float media[], float desvio[]);
 
 void menu();
+
+void troca();
+
+void intercala();
+
+int mergesort();

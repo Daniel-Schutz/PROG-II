@@ -123,33 +123,37 @@ cursoDados *titulo;
         
 
         titulo = (cursoDados *) malloc(quant * sizeof(cursoDados));
+        if (titulo == NULL){
+            printf("Não foi possível alocar na memória");
+        }
+        else{
+            for (int i=0;i<quant;i++){ //ler até acabar o arquivo
 
-        for (int i=0;i<quant;i++){ //ler até acabar o arquivo
+                fscanf(arq, "%d %d", &titulo[i].codcurso, &titulo[i].qtd); // a primeira linha tem duas entradas
 
-            fscanf(arq, "%d %d", &titulo[i].codcurso, &titulo[i].qtd); // a primeira linha tem duas entradas
-
-            //alocar memória pra cada bloco            
-            titulo[i].tuplas = (dadoEmLinhas *) malloc (titulo[i].qtd * sizeof(dadoEmLinhas)); //aloca dinâmicamente as linhas
-
-
-            //verificar se alocou
-            if (titulo[i].tuplas == NULL){
-                printf("Não foi possível alocar na memória");
-                break;
-            }
+                //alocar memória pra cada bloco            
+                titulo[i].tuplas = (dadoEmLinhas *) malloc (titulo[i].qtd * sizeof(dadoEmLinhas)); //aloca dinâmicamente as linhas
 
 
-            else{
-                //executar a leitura dos dados de forma correta para cada bloco;
-                int x;
-                for (x=0; x < titulo[i].qtd; x++){
-                    fscanf(arq, "%d %[^0^1^2^3^4^5^6^7^8^9] %d/%d/%d %[^\n]", &titulo[i].tuplas[x].codinscricao, titulo[i].tuplas[x].nomecandidato, &titulo[i].tuplas[x].datanasc.dia, &titulo[i].tuplas[x].datanasc.mes, &titulo[i].tuplas[x].datanasc.ano, titulo[i].tuplas[x].tipovaga);
+                //verificar se alocou
+                if (titulo[i].tuplas == NULL){
+                    printf("Não foi possível alocar na memória");
+                    break;
                 }
 
-            
+
+                else{
+                    //executar a leitura dos dados de forma correta para cada bloco;
+                    int x;
+                    for (x=0; x < titulo[i].qtd; x++){
+                        fscanf(arq, "%d %[^0^1^2^3^4^5^6^7^8^9] %d/%d/%d %[^\n]", &titulo[i].tuplas[x].codinscricao, titulo[i].tuplas[x].nomecandidato, &titulo[i].tuplas[x].datanasc.dia, &titulo[i].tuplas[x].datanasc.mes, &titulo[i].tuplas[x].datanasc.ano, titulo[i].tuplas[x].tipovaga);
+                    }
+
                 
+                    
+                }
+                fclose(arq);
             }
-            fclose(arq);
         }
     }
 
