@@ -87,7 +87,23 @@ tipoVaga *vaga;
 
              for(int i=0;i<quant;i++){
              fscanf(arq, "%d %d %d %d %d %d %d %d %d %d %d %d", &vaga[i].codvaga, &vaga[i].AC, &vaga[i].L1, &vaga[i].L3, &vaga[i].L4, &vaga[i].L5, &vaga[i].L7, &vaga[i].L8, &vaga[i].L9, &vaga[i].L11, &vaga[i].L13, &vaga[i].L15); //verificar como fazer a leitura do vaga
+            
+             int indiceTipoCurso; 
+             indiceTipoCurso = busca_binariaTipoCurso(quant, curso, vaga[i].codvaga);
+             curso[indiceTipoCurso].AC = vaga[i].AC;
+             curso[indiceTipoCurso].L1 = vaga[i].L1;
+             curso[indiceTipoCurso].L3 = vaga[i].L3;
+             curso[indiceTipoCurso].L4 = vaga[i].L4;
+             curso[indiceTipoCurso].L5 = vaga[i].L5;
+             curso[indiceTipoCurso].L7 = vaga[i].L7;
+             curso[indiceTipoCurso].L8 = vaga[i].L8;
+             curso[indiceTipoCurso].L9 = vaga[i].L9;
+             curso[indiceTipoCurso].L11 = vaga[i].L11;
+             curso[indiceTipoCurso].L13 = vaga[i].L13;
+             curso[indiceTipoCurso].L15 = vaga[i].L15; 
+
              }}
+
             
          else{
             printf("Impossível alocar espaço\n");
@@ -99,23 +115,6 @@ tipoVaga *vaga;
         fclose(arq);
         
     }
-
-    mergesortTipoVaga(0,quant,vaga);
-
-    for(int i=0;i<quant;i++){
-        curso[i].AC = vaga[i].AC;
-        curso[i].L1 = vaga[i].L1;
-        curso[i].L3 = vaga[i].L3;
-        curso[i].L4 = vaga[i].L4;
-        curso[i].L5 = vaga[i].L5;
-        curso[i].L7 = vaga[i].L7;
-        curso[i].L8 = vaga[i].L8;
-        curso[i].L9 = vaga[i].L9;
-        curso[i].L11 = vaga[i].L11;
-        curso[i].L13 = vaga[i].L13;
-        curso[i].L15 = vaga[i].L15;
-    }
-
     free(vaga);
 
 
@@ -148,6 +147,8 @@ cursoDados *titulo;
             for (int i=0;i<quant;i++){ //ler até acabar o arquivo
 
                 fscanf(arq, "%d %d", &titulo[i].codcurso, &titulo[i].qtd); // a primeira linha tem duas entradas
+                //buscar indice no struct principal
+                int indiceTipoCurso_ = busca_binariaTipoCurso(quant, curso, titulo[i].codcurso)
 
                 //alocar memória pra cada bloco            
                 titulo[i].tuplas = (dadoEmLinhas *) malloc (titulo[i].qtd * sizeof(dadoEmLinhas)); //aloca dinâmicamente as linhas
