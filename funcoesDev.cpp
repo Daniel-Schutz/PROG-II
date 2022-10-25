@@ -53,39 +53,18 @@ void mergesortTipoCurso(int p, int r, tipoCurso *v){
   }
 }
 
-void intercalaTipoVaga(int p, int q, int r, tipoVaga *v){
-  int i, j, k;
-  tipoVaga *w;
-  w = (tipoVaga *) malloc(r * sizeof(tipoVaga));
-
-  i = p; j = q; k = 0; 
-  while(i < q && j < r) {
-    if(v[i].codvaga < v[j].codvaga){
-      w[k] = v[i]; i++;
-    }
-    else{
-      w[k] = v[j]; j++;
-    }
-    k++;
-  }
-  while(i < q){
-    w[k] = v[i]; i++; k++;
-    }
-  while(j < r){
-    w[k] = v[j]; j++; k++;  
-  }
-  for(i = p; i < r; i++) {
-    v[i] = w[i - p];
-  }
-  free(w);
+int busca_binariaTipoCurso(int n, tipoCurso *v, int x)
+{
+int esq, dir, meio;
+esq = -1;
+dir = n;
+while (esq < dir - 1) {
+  meio = (esq + dir) / 2;
+  if (v[meio].codCurso < x)
+    esq = meio;
+  else
+    dir = meio;
+}
+return dir;
 }
 
-void mergesortTipoVaga(int p, int r, tipoVaga *v){
-  int q;
-  if(p < r - 1){
-    q = (p + r) / 2;
-    mergesortTipoVaga(p, q, v);
-    mergesortTipoVaga(q, r, v);
-    intercalaTipoVaga(p, q, r, v);
-  }
-}
