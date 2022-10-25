@@ -240,7 +240,7 @@ scanf("%s",nomeAcertos);
     desvio[2] = desvioPadrao( media[2], qtdAlunos, contagem, "v_nat");
     desvio[3] = desvioPadrao( media[3], qtdAlunos, contagem, "v_hum");
     // calculo EP / NF
-    eP_NotaFinal(contagem,titulo[], curso[], qtdAlunos, quant, media, desvio); //estarão guardados em acertos_Notas
+    eP_NotaFinal(contagem, curso, qtdAlunos, quant, media, desvio); //estarão guardados em acertos_Notas
 }
  
 
