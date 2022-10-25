@@ -4,7 +4,8 @@
 
 struct tipoCurso{ //vamos ordenar por cod curso ---- planejo colocar esse struct dentro de outro Struct junto a cursoDados para evitar o retrabalho
     char nomeCurso[MAX];    /* nome do curso + bacharel/licenciatura */
-    int codCurso, pesoRed, pesoMat, pesoLing, pesoHum, pesoNat;   
+    int codCurso, pesoRed, pesoMat, pesoLing, pesoHum, pesoNat;
+    int AC, L1, L3, L4, L5, L7, L8, L9, L11, L13, L15;   
 };
 
 struct data{
@@ -48,8 +49,10 @@ void eP_NotaFinal(acertos_notas contagem[],cursoDados dadosNec[], tipoCurso peso
 
 void menu();
 
-void troca();
+void intercalaTipoCurso(int p, int q, int r, tipoCurso *v);
 
-void intercala();
+void mergesortTipoCurso(int p, int r, tipoCurso *v);
 
-int mergesort();
+void intercalaTipoVaga(int p, int q, int r, tipoVaga *v);
+
+void mergesortTipoVaga(int p, int r, tipoVaga *v);
