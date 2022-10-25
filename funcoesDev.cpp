@@ -97,6 +97,7 @@ float desvioPadrao(float media, int quant, acertos_notas contagem[], char nomeAr
 
 void eP_NotaFinal(acertos_notas contagem[], tipoCurso curso[], int quant, int qtdCursos, float media[], float desvio[]){//quant = quantidade de candidatos
     int i = 0;
+    int indicecurso;
     for (i; i < quant; i++){
         contagem[i].EP[0] = 500 + 100*((2*contagem[i].v_ling - media[0])/desvio[0]);
         contagem[i].EP[1] = 500 + 100*((2*contagem[i].v_mat - media[1])/desvio[1]);
@@ -105,6 +106,8 @@ void eP_NotaFinal(acertos_notas contagem[], tipoCurso curso[], int quant, int qt
 
         // Pro calculo da notaFinal, aqui ainda ta errado, pois precisamos procurar por codcurso pra definir o peso
         // Vou precisar de ajudar pra entender como ta seu código, aqui a gente precisa fazer junto
+        //indicecurso = busca_binariaTipoCursoInsc(qtdCursos,curso,contagem[i].insc);
+
         contagem[i].notaFinal = (contagem[i].red * curso[i].pesoRed + contagem[i].EP[3] * curso[i].pesoHum + contagem[i].EP[0] * curso[i].pesoLing + contagem[i].EP[1] * curso[i].pesoMat + contagem[i].EP[2] * curso[i].pesoNat)/(curso[i].pesoRed + curso[i].pesoHum + curso[i].pesoLing + curso[i].pesoMat + curso[i].pesoNat);
     }
 }
