@@ -148,14 +148,16 @@ cursoDados *titulo;
 
                 fscanf(arq, "%d %d", &titulo[i].codcurso, &titulo[i].qtd); // a primeira linha tem duas entradas
                 //buscar indice no struct principal
-                int indiceTipoCurso_ = busca_binariaTipoCurso(quant, curso, titulo[i].codcurso)
+                int indiceTipoCurso_ = busca_binariaTipoCurso(quant, curso, titulo[i].codcurso);
+                //não precisa atribuir o codcurso pois ele já é o mesmo no indiceTipoCurso_
+                curso[indiceTipoCurso_].qtd = titulo[i].qtd; //alocar diretamente no Struct Principal
 
                 //alocar memória pra cada bloco            
-                titulo[i].tuplas = (dadoEmLinhas *) malloc (titulo[i].qtd * sizeof(dadoEmLinhas)); //aloca dinâmicamente as linhas
+                curso[indiceTipoCurso_].tuplas = (dadoEmLinhas *) malloc (curso[indiceTipoCurso_].qtd * sizeof(dadoEmLinhas)); //aloca dinâmicamente as linhas diretamente no tipoCurso
 
 
                 //verificar se alocou
-                if (titulo[i].tuplas == NULL){
+                if (curso[indiceTipoCurso_].tuplas == NULL){
                     printf("Não foi possível alocar na memória");
                     break;
                 }
@@ -164,8 +166,8 @@ cursoDados *titulo;
                 else{
                     //executar a leitura dos dados de forma correta para cada bloco;
                     int x;
-                    for (x=0; x < titulo[i].qtd; x++){
-                        fscanf(arq, "%d %[^0^1^2^3^4^5^6^7^8^9] %d/%d/%d %[^\n]", &titulo[i].tuplas[x].codinscricao, titulo[i].tuplas[x].nomecandidato, &titulo[i].tuplas[x].datanasc.dia, &titulo[i].tuplas[x].datanasc.mes, &titulo[i].tuplas[x].datanasc.ano, titulo[i].tuplas[x].tipovaga);
+                    for (x=0; x < curso[indiceTipoCurso_].qtd; x++){
+                        fscanf(arq, "%d %[^0^1^2^3^4^5^6^7^8^9] %d/%d/%d %[^\n]", &curso[indiceTipoCurso_].tuplas[x].codinscricao, curso[indiceTipoCurso_].tuplas[x].nomecandidato, &curso[indiceTipoCurso_].tuplas[x].datanasc.dia, &curso[indiceTipoCurso_].tuplas[x].datanasc.mes, &curso[indiceTipoCurso_].tuplas[x].datanasc.ano, curso[indiceTipoCurso_].tuplas[x].tipovaga);
                     }
 
                 
@@ -173,6 +175,7 @@ cursoDados *titulo;
                 }
                 fclose(arq);
             }
+            free(titulo);
         }
     }
 
