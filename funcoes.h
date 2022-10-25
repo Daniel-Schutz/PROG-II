@@ -1,15 +1,6 @@
 #define MAX 60
 
-//structs
-
-struct tipoCurso{ //vamos ordenar por cod curso ---- planejo colocar esse struct dentro de outro Struct junto a cursoDados para evitar o retrabalho
-    char nomeCurso[MAX];    /* nome do curso + bacharel/licenciatura */
-    int codCurso, pesoRed, pesoMat, pesoLing, pesoHum, pesoNat;
-    int AC, L1, L3, L4, L5, L7, L8, L9, L11, L13, L15;   
-    int qtd;
-    dadoEmLinhas *tuplas;//melhor por diretamente aqui
-};
-
+//Structs Auxiliares
 struct data{
 
     int dia, mes, ano;
@@ -33,6 +24,16 @@ struct tipoVaga{
     int codvaga, AC, L1, L3, L4, L5, L7, L8, L9, L11, L13, L15;   
 };
 
+//-----------------------------STRUCTS-------------------------------//
+
+struct tipoCurso{ //vamos ordenar por cod curso ---- planejo colocar esse struct dentro de outro Struct junto a cursoDados para evitar o retrabalho
+    char nomeCurso[MAX];    /* nome do curso + bacharel/licenciatura */
+    int codCurso, pesoRed, pesoMat, pesoLing, pesoHum, pesoNat;
+    int AC, L1, L3, L4, L5, L7, L8, L9, L11, L13, L15;   
+    int qtd;
+    dadoEmLinhas *tuplas;//melhor por diretamente aqui
+};
+
 struct acertos_notas{
 
     int insc, v_ling, v_mat, v_nat, v_hum;
@@ -41,21 +42,17 @@ struct acertos_notas{
     float notaFinal;
 };
 
-
-float mediaDaArea(int quant, int soma);
-
-float desvioPadrao(float media, int quant, acertos_notas *contagem, char nomeArea[7]);
-
-void eP_NotaFinal(acertos_notas contagem[],cursoDados dadosNec[], tipoCurso pesos[], int quant, int qtdCursos, float media[], float desvio[]);
-
+//-----------------------------FUNÇÕES-------------------------------//
 void menu();
 
 void intercalaTipoCurso(int p, int q, int r, tipoCurso *v);
 
 void mergesortTipoCurso(int p, int r, tipoCurso *v);
 
-void intercalaTipoVaga(int p, int q, int r, tipoVaga *v);
-
-void mergesortTipoVaga(int p, int r, tipoVaga *v);
-
 int busca_binariaTipoCurso(int n, tipoCurso *v, int x);
+
+float mediaDaArea(int quant, int soma);
+
+float desvioPadrao(float media, int quant, acertos_notas *contagem, char nomeArea[7]);
+
+void eP_NotaFinal(acertos_notas contagem[], tipoCurso curso[], int quant, int qtdCursos, float media[], float desvio[])
