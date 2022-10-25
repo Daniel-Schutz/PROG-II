@@ -56,3 +56,5 @@ void mergesortTipoCurso(int p, int r, tipoCurso *v);
 void intercalaTipoVaga(int p, int q, int r, tipoVaga *v);
 
 void mergesortTipoVaga(int p, int r, tipoVaga *v);
+
+int busca_binariaTipoCurso(int n, tipoCurso *v, int x);
