@@ -6,6 +6,8 @@ struct tipoCurso{ //vamos ordenar por cod curso ---- planejo colocar esse struct
     char nomeCurso[MAX];    /* nome do curso + bacharel/licenciatura */
     int codCurso, pesoRed, pesoMat, pesoLing, pesoHum, pesoNat;
     int AC, L1, L3, L4, L5, L7, L8, L9, L11, L13, L15;   
+    int qtd;
+    dadoEmLinhas *tuplas;//melhor por diretamente aqui
 };
 
 struct data{
@@ -14,7 +16,7 @@ struct data{
 
 };
 
-struct dadoEmLinhas{ //precisaria criar um vetor de registro;
+struct dadoEmLinhas{ 
 
     int codinscricao; // referente ao participante;
     char nomecandidato[MAX]; 
@@ -25,7 +27,6 @@ struct dadoEmLinhas{ //precisaria criar um vetor de registro;
 
 struct cursoDados{ //vamos ordenar por codcurso
     int codcurso, qtd;
-    dadoEmLinhas *tuplas;
 };
 
 struct tipoVaga{
