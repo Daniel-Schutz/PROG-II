@@ -59,6 +59,8 @@ scanf("%s",nomePeso);
         
     }
 
+    mergesortTipoCurso(0,quant,curso);
+
 
 
 
@@ -97,8 +99,24 @@ tipoVaga *vaga;
         fclose(arq);
         
     }
-   
 
+    mergesortTipoVaga(0,quant,vaga);
+
+    for(int i=0;i<quant;i++){
+        curso[i].AC = vaga[i].AC;
+        curso[i].L1 = vaga[i].L1;
+        curso[i].L3 = vaga[i].L3;
+        curso[i].L4 = vaga[i].L4;
+        curso[i].L5 = vaga[i].L5;
+        curso[i].L7 = vaga[i].L7;
+        curso[i].L8 = vaga[i].L8;
+        curso[i].L9 = vaga[i].L9;
+        curso[i].L11 = vaga[i].L11;
+        curso[i].L13 = vaga[i].L13;
+        curso[i].L15 = vaga[i].L15;
+    }
+
+    free(vaga);
 
 
 
@@ -156,6 +174,8 @@ cursoDados *titulo;
             }
         }
     }
+
+
 
 
 
@@ -234,13 +254,6 @@ while(opcao!=5){
     
 return 0;
 }  
-  
-
-
-
-
-
-
 
 
 
