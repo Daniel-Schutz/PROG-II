@@ -246,11 +246,29 @@ scanf("%s",nomeAcertos);
 
 
 
-while(opcao!=5){
+do{
+    
        menu();
        printf("Digite a opção desejada:");
-       scanf("%d", &opcao);     
-} 
+       scanf("%d", &opcao);
+
+        if (opcao==1){
+
+        }
+
+        else if (opcao == 2){
+
+        }
+
+        else if (opcao == 3){
+
+        }
+
+        else{
+
+        }
+
+}while(opcao!=5)
 
 
 
