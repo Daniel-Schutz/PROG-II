@@ -125,3 +125,11 @@ void eP_NotaFinal(acertos_notas contagem[], tipoCurso curso[], int quant, int qt
         }
     }
 }
+
+void troca(){ //utilizar em verifica empate entre outras ocasiões
+
+}
+
+void verificaEmpate(){ //verificar casos de empate e realizar a troca ordenando a lista dos candidatos em cada (Curso[j].tuplas[Curso.qtd])
+
+}
