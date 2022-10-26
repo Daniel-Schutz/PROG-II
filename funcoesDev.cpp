@@ -98,16 +98,30 @@ float desvioPadrao(float media, int quant, acertos_notas contagem[], char nomeAr
 void eP_NotaFinal(acertos_notas contagem[], tipoCurso curso[], int quant, int qtdCursos, float media[], float desvio[]){//quant = quantidade de candidatos
     int i = 0;
     int indicecurso;
+    int aux;
+    int j;
     for (i; i < quant; i++){
         contagem[i].EP[0] = 500 + 100*((2*contagem[i].v_ling - media[0])/desvio[0]);
         contagem[i].EP[1] = 500 + 100*((2*contagem[i].v_mat - media[1])/desvio[1]);
         contagem[i].EP[2] = 500 + 100*((2*contagem[i].v_nat - media[2])/desvio[2]);
         contagem[i].EP[3] = 500 + 100*((2*contagem[i].v_hum - media[3])/desvio[3]);
 
-        // Pro calculo da notaFinal, aqui ainda ta errado, pois precisamos procurar por codcurso pra definir o peso
-        // Vou precisar de ajudar pra entender como ta seu código, aqui a gente precisa fazer junto
-        //indicecurso = busca_binariaTipoCursoInsc(qtdCursos,curso,contagem[i].insc);
-
-        contagem[i].notaFinal = (contagem[i].red * curso[i].pesoRed + contagem[i].EP[3] * curso[i].pesoHum + contagem[i].EP[0] * curso[i].pesoLing + contagem[i].EP[1] * curso[i].pesoMat + contagem[i].EP[2] * curso[i].pesoNat)/(curso[i].pesoRed + curso[i].pesoHum + curso[i].pesoLing + curso[i].pesoMat + curso[i].pesoNat);
+        //temos que realizar uma busca sequencial no struct Curso.tuplas[aux=Curso.qtd] para localizar o codInsc do candidato e assim aferir sua nota Final
+        j = 0; //sempre zera para percorrer tudo novamente
+        while (j<qtdCursos){ 
+          aux = 0;//zera para percorrer as tuplas de forma correta a cada Curso[j].tuplas
+          while (aux < curso[j].qtd){
+              
+              if (curso[j].tuplas[aux].codinscricao == contagem[i].insc){
+                  
+                contagem[i].notaFinal = (contagem[i].red * curso[j].pesoRed + contagem[i].EP[3] * curso[j].pesoHum + contagem[i].EP[0] * curso[j].pesoLing + contagem[i].EP[1] * curso[j].pesoMat + contagem[i].EP[2] * curso[j].pesoNat)/(curso[j].pesoRed + curso[j].pesoHum + curso[j].pesoLing + curso[j].pesoMat + curso[j].pesoNat);
+                aux = curso[j].qtd; //para finalizar a estrutura de repetição
+                j = qtdCursos; //para finalizar a outra estrutura de repetição
+                //impede a percorrimento desnecessário
+              }
+              aux++;
+          }
+          j++;
+        }
     }
 }
