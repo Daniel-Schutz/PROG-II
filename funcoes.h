@@ -30,7 +30,7 @@ struct tipoCurso{ //vamos ordenar por cod curso ---- planejo colocar esse struct
     char nomeCurso[MAX];    /* nome do curso + bacharel/licenciatura */
     int codCurso, pesoRed, pesoMat, pesoLing, pesoHum, pesoNat;
     int AC, L1, L3, L4, L5, L7, L8, L9, L11, L13, L15;   
-    int qtd;
+    int qtd; // quantidade de linhas para cada bloco de tuplas(dados dos candidatos)
     dadoEmLinhas *tuplas;//melhor por diretamente aqui
 };
 
