@@ -61,4 +61,4 @@ void buscaImprimeCandidato(int numerodecursos, tipoCurso curso[], int codinscr);
 
 void troca(tipoCurso curso[], int indiceTroca, int indiceA_Trocar);
 
-void verificaEmpate(),
+void verificaEmpate();
