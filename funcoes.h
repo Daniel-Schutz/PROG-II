@@ -59,6 +59,6 @@ void eP_NotaFinal(acertos_notas contagem[], tipoCurso curso[], int quant, int qt
 
 void buscaImprimeCandidato(int numerodecursos, tipoCurso curso[], int codinscr);
 
-void troca();
+void troca(tipoCurso curso[], int indiceTroca, int indiceA_Trocar);
 
 void verificaEmpate(),
