@@ -57,6 +57,8 @@ float desvioPadrao(float media, int quant, acertos_notas *contagem, char nomeAre
 
 void eP_NotaFinal(acertos_notas contagem[], tipoCurso curso[], int quant, int qtdCursos, float media[], float desvio[]);
 
+void buscaImprimeCandidato(int numerodecursos, tipoCurso curso[], int codinscr);
+
 void troca();
 
 void verificaEmpate(),
