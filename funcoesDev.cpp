@@ -126,6 +126,22 @@ void eP_NotaFinal(acertos_notas contagem[], tipoCurso curso[], int quant, int qt
     }
 }
 
+void buscaImprimeCandidato(int numerodecursos, tipoCurso curso[], int codinscr){
+    int i, aux;
+    i = 0;
+    while (i < numerodecursos){
+      aux = 0;
+      while (aux < curso[i].qtd){ //refere-se a quantidade de tuplas no vetor
+        if (codinscr == curso[i].tuplas[aux].codinscricao){
+          printf("%d %s    %d/%d/%d %d %s", curso[i].tuplas[aux].codinscricao, curso[i].tuplas[aux].nomecandidato, curso[i].tuplas[aux].datanasc.dia, curso[i].tuplas[aux].datanasc.mes, curso[i].tuplas[aux].datanasc.ano, curso[i].codCurso, curso[i].nomeCurso);
+          break;
+        }
+        aux++;
+      }
+      i++;
+    }
+}
+
 void troca(){ //utilizar em verifica empate entre outras ocasiões
 
 }
