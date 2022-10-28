@@ -142,8 +142,19 @@ void buscaImprimeCandidato(int numerodecursos, tipoCurso curso[], int codinscr){
     }
 }
 
-void troca(){ //utilizar em verifica empate entre outras ocasiões
-
+void troca(tipoCurso curso[], int indiceTroca, int indiceA_Trocar){ //utilizar em verifica empate entre outras ocasiões
+                                  //i               //j
+  tipoCurso *aux; //criar struct tipoCurso auxiliar pra realizar troca
+  aux = (tipocurso*) malloc(1 * sizeof(tipoCurso)); //alocou na memória
+  if (aux == NULL){
+    printf("\nImpossível realizar alocação de memória para registro auxiliar na função troca.\n");
+  }
+  else{
+    //Realizar troca
+    aux = curso[indiceTroca];
+    curso[indiceTroca] = curso[indiceA_Trocar];
+    curso[indiceA_Trocar] = aux;
+  }
 }
 
 void verificaEmpate(){ //verificar casos de empate e realizar a troca ordenando a lista dos candidatos em cada (Curso[j].tuplas[Curso.qtd])
