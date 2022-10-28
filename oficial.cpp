@@ -257,6 +257,20 @@ do{
         }
 
         else if (opcao == 2){
+            int codinscr;
+            printf("\nInforme o número de inscrição do candidato: \n")
+            scanf("%d", &codinscr);
+            if (codinscr == 0)
+            {
+                continue;
+                //para sair e consultar o menu novamente
+            }
+            else
+            {
+                buscaImprimeCandidato( quant, curso, codinscr);
+                // A função do tipo void deve buscar e ja imprimir diretamente as informações requeridas
+            }
+            
 
         }
 
