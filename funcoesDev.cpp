@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <cctype>
 #include "funcoes.h"
 
 // Desenvolver funcoes
@@ -26,10 +25,7 @@ void intercalaTipoCurso(int p, int q, int r, tipoCurso *v){
 
   i = p; j = q; k = 0; 
   while(i < q && j < r) {
-    v[i].nomeCurso[0] = toupper(v[i].nomeCurso[0]);
-    v[j].nomeCurso[0] = toupper(v[j].nomeCurso[0]);
-
-    if(strcmp(v[i].nomeCurso, v[j].nomeCurso) < 0){  
+    if(v[i].codCurso < v[j].codCurso){
       w[k] = v[i]; i++;
     }
     else{
@@ -170,7 +166,7 @@ void buscaImprimeCandidato(int numerodecursos, tipoCurso curso[], int codinscr){
 void troca(tipoCurso curso[], int indiceTroca, int indiceA_Trocar){ //utilizar em verifica empate entre outras ocasiões
                                   //i               //j
   tipoCurso *aux; //criar struct tipoCurso auxiliar pra realizar troca
-  aux = (tipoCurso*) malloc(1 * sizeof(tipoCurso)); //alocou na memória
+  aux = (tipocurso*) malloc(1 * sizeof(tipoCurso)); //alocou na memória
   if (aux == NULL){
     printf("\nImpossível realizar alocação de memória para registro auxiliar na função troca.\n");
   }
