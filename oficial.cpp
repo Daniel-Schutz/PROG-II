@@ -45,7 +45,7 @@ scanf("%s",nomePeso);
          if (curso != NULL){
 
              for(int i=0;i<quant;i++){
-             fscanf(arq, "%d %[^0^1^2^3^4^5^6^7^8^9] %d %d %d %d %d", &curso[i].codCurso, curso[i].nomeCurso, &curso[i].pesoRed, &curso[i].pesoMat, &curso[i].pesoLing, &curso[i].pesoHum, &curso[i].pesoNat); //verificar como fazer a leitura do curso
+             fscanf(arq, "%d %[^0^1^2^3^4^5^6^7^8^9] %d %d %d %d %d", &curso[i].codCurso, curso[i].nomeCurso, &curso[i].pesoRed, &curso[i].pesoMat, &curso[i].pesoLing, &curso[i].pesoHum, &curso[i].pesoNat);
                 }
             
          } else{
@@ -59,7 +59,10 @@ scanf("%s",nomePeso);
         
     }
 
-    mergesortTipoCurso(0,quant,curso);
+    mergesortTipoCurso(0,quant,curso);//ordena por codigo
+    for(int i=0;i<quant;i++){
+             printf("%d %s %d %d %d %d %d\n", curso[i].codCurso, curso[i].nomeCurso, curso[i].pesoRed, curso[i].pesoMat, curso[i].pesoLing, curso[i].pesoHum, curso[i].pesoNat);
+                }
 
 
 
@@ -67,7 +70,6 @@ scanf("%s",nomePeso);
 //ler e armazenar cursos e vagas
 printf("\nEscreva o nome do arquivo dos cursos e vagas:");
 scanf("%s",nomeVaga);
-tipoVaga *vaga;
     
     /*abertura de um arquivo*/
     arq = fopen(nomeVaga, "r");
@@ -80,42 +82,26 @@ tipoVaga *vaga;
     else
     {
         fscanf(arq, "%d", &quant);
-  
-        vaga = (tipoVaga *) malloc(quant * sizeof(tipoVaga));
-
-         if (vaga != NULL){
-
+            int indiceTipoCurso,codVaga;
              for(int i=0;i<quant;i++){
-             fscanf(arq, "%d %d %d %d %d %d %d %d %d %d %d %d", &vaga[i].codvaga, &vaga[i].AC, &vaga[i].L1, &vaga[i].L3, &vaga[i].L4, &vaga[i].L5, &vaga[i].L7, &vaga[i].L8, &vaga[i].L9, &vaga[i].L11, &vaga[i].L13, &vaga[i].L15); //verificar como fazer a leitura do vaga
-            
-             int indiceTipoCurso; 
-             indiceTipoCurso = busca_binariaTipoCurso(quant, curso, vaga[i].codvaga);
-             curso[indiceTipoCurso].AC = vaga[i].AC;
-             curso[indiceTipoCurso].L1 = vaga[i].L1;
-             curso[indiceTipoCurso].L3 = vaga[i].L3;
-             curso[indiceTipoCurso].L4 = vaga[i].L4;
-             curso[indiceTipoCurso].L5 = vaga[i].L5;
-             curso[indiceTipoCurso].L7 = vaga[i].L7;
-             curso[indiceTipoCurso].L8 = vaga[i].L8;
-             curso[indiceTipoCurso].L9 = vaga[i].L9;
-             curso[indiceTipoCurso].L11 = vaga[i].L11;
-             curso[indiceTipoCurso].L13 = vaga[i].L13;
-             curso[indiceTipoCurso].L15 = vaga[i].L15; 
-
-             }}
-
-            
-         else{
-            printf("Impossível alocar espaço\n");
+             fscanf(arq, "%d", &codVaga);  
+             indiceTipoCurso = busca_binariaTipoCurso(quant, curso, codVaga);
+              fscanf(arq, "%d %d %d %d %d %d %d %d %d %d %d", &curso[indiceTipoCurso].AC, &curso[indiceTipoCurso].L1, &curso[indiceTipoCurso].L3, &curso[indiceTipoCurso].L4, &curso[indiceTipoCurso].L5, &curso[indiceTipoCurso].L7,
+              &curso[indiceTipoCurso].L8, &curso[indiceTipoCurso].L9, &curso[indiceTipoCurso].L11, &curso[indiceTipoCurso].L13, &curso[indiceTipoCurso].L15); 
+             
          }
-
        
         
         /*fechamento do arquivo*/     
         fclose(arq);
         
     }
-    free(vaga);
+   
+   for(int indiceTipoCurso=0;indiceTipoCurso<quant;indiceTipoCurso++){
+     printf("%d %d %d %d %d %d %d %d %d %d %d\n", curso[indiceTipoCurso].AC, curso[indiceTipoCurso].L1, curso[indiceTipoCurso].L3, curso[indiceTipoCurso].L4, curso[indiceTipoCurso].L5, curso[indiceTipoCurso].L7,
+              curso[indiceTipoCurso].L8, curso[indiceTipoCurso].L9, curso[indiceTipoCurso].L11, curso[indiceTipoCurso].L13, curso[indiceTipoCurso].L15); 
+             
+   }
 
 
 
@@ -246,7 +232,7 @@ scanf("%s",nomeAcertos);
 
 
 
-do{
+/*do{
     
        menu();
        printf("Digite a opção desejada:");
@@ -284,14 +270,12 @@ do{
 
 }while(opcao!=5)
 
-
+*/
 
 
     
 return 0;
 }  
-
-
 
 
 
