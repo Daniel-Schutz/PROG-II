@@ -163,7 +163,7 @@ void buscaImprimeCandidato(int numerodecursos, tipoCurso curso[], int codinscr){
     }
 }
 
-void troca(tipoCurso curso[], int indiceTroca, int indiceA_Trocar){ //utilizar em verifica empate entre outras ocasiões
+/*void troca(tipoCurso curso[], int indiceTroca, int indiceA_Trocar){ //utilizar em verifica empate entre outras ocasiões
                                   //i               //j
   tipoCurso *aux; //criar struct tipoCurso auxiliar pra realizar troca
   aux = (tipocurso*) malloc(1 * sizeof(tipoCurso)); //alocou na memória
@@ -180,4 +180,4 @@ void troca(tipoCurso curso[], int indiceTroca, int indiceA_Trocar){ //utilizar e
 
 void verificaEmpate(){ //verificar casos de empate e realizar a troca ordenando a lista dos candidatos em cada (Curso[j].tuplas[Curso.qtd])
 
-}
+}*/
