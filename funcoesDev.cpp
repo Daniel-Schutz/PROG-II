@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <cctype>
 #include "funcoes.h"
 
 // Desenvolver funcoes
@@ -25,7 +26,10 @@ void intercalaTipoCurso(int p, int q, int r, tipoCurso *v){
 
   i = p; j = q; k = 0; 
   while(i < q && j < r) {
-    if(v[i].codCurso < v[j].codCurso){
+    v[i].nomeCurso[0] = toupper(v[i].nomeCurso[0]);
+    v[j].nomeCurso[0] = toupper(v[j].nomeCurso[0]);
+
+    if(strcmp(v[i].nomeCurso, v[j].nomeCurso) < 0){  
       w[k] = v[i]; i++;
     }
     else{
@@ -77,19 +81,40 @@ float mediaDaArea(int quant, int soma){ //passar valor correspondente a soma da 
     return media;
 }
 
-float desvioPadrao(float media, int quant, acertos_notas contagem[], char nomeArea[7]){ 
+float desvioPadrao(float media, int quant, acertos_notas contagem[], int num){ 
     int x = 0;
     int somatorio = 0;
     float desvio; //vai ser a variável a ser retornada, porém deve ser guardada em outra variável na main.
     int i = 0;
 
-    //realizar o somatório de (0) até (n-1) e no final calcular o desvio e o retornar.
+   if(num==0){
     for (i; i < quant; i++){ 
             //dadosacertos[i] significa acerto individual.
             //x atualiza para o valor correto em cada chamda do for
-            x = (contagem[i].nomeArea - media); //significa a operação básica para o somatório.
+            x = (contagem[i].v_ling - media); //significa a operação básica para o somatório.
             somatorio = somatorio + x*x;
-        }
+        }}
+    else if(num==1){
+    for (i; i < quant; i++){ 
+            //dadosacertos[i] significa acerto individual.
+            //x atualiza para o valor correto em cada chamda do for
+            x = (contagem[i].v_mat - media); //significa a operação básica para o somatório.
+            somatorio = somatorio + x*x;
+        }}
+     else if(num==2){
+    for (i; i < quant; i++){ 
+            //dadosacertos[i] significa acerto individual.
+            //x atualiza para o valor correto em cada chamda do for
+            x = (contagem[i].v_nat - media); //significa a operação básica para o somatório.
+            somatorio = somatorio + x*x;
+        } }   
+      else {
+    for (i; i < quant; i++){ 
+            //dadosacertos[i] significa acerto individual.
+            //x atualiza para o valor correto em cada chamda do for
+            x = (contagem[i].v_hum - media); //significa a operação básica para o somatório.
+            somatorio = somatorio + x*x;
+        } }             
 
     desvio = sqrt((somatorio/quant-1)); //uso de math.h , acho q é permitido usar
     return 2*desvio; //lembrar de guardar em variável respectiva à area de conhecimento quando for implementar na main.
@@ -145,7 +170,7 @@ void buscaImprimeCandidato(int numerodecursos, tipoCurso curso[], int codinscr){
 void troca(tipoCurso curso[], int indiceTroca, int indiceA_Trocar){ //utilizar em verifica empate entre outras ocasiões
                                   //i               //j
   tipoCurso *aux; //criar struct tipoCurso auxiliar pra realizar troca
-  aux = (tipocurso*) malloc(1 * sizeof(tipoCurso)); //alocou na memória
+  aux = (tipoCurso*) malloc(1 * sizeof(tipoCurso)); //alocou na memória
   if (aux == NULL){
     printf("\nImpossível realizar alocação de memória para registro auxiliar na função troca.\n");
   }
