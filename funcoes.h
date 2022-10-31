@@ -20,9 +20,6 @@ struct cursoDados{ //vamos ordenar por codcurso
     int codcurso, qtd;
 };
 
-struct tipoVaga{
-    int codvaga, AC, L1, L3, L4, L5, L7, L8, L9, L11, L13, L15;   
-};
 
 //-----------------------------STRUCTS-------------------------------//
 
@@ -62,3 +59,4 @@ void buscaImprimeCandidato(int numerodecursos, tipoCurso curso[], int codinscr);
 void troca(tipoCurso curso[], int indiceTroca, int indiceA_Trocar);
 
 void verificaEmpate();
+
