@@ -59,7 +59,7 @@ scanf("%s",nomePeso);
         
     }
 
-    mergesortTipoCurso(0,quant,curso); //ordenar de acordo com a ordem alfabetica dos cursos
+    mergesortTipoCurso(0,quant,curso);
 
 
 
@@ -235,11 +235,10 @@ scanf("%s",nomeAcertos);
     media[3] = mediaDaArea(qtdAlunos, soma[3]);
 
     // calculo desvio padrao
-    //fazendo gambiarra passando o numero do indice
-    desvio[0] = desvioPadrao( media[0], qtdAlunos, contagem, 0);//ling  
-    desvio[1] = desvioPadrao( media[1], qtdAlunos, contagem, 1);// mat
-    desvio[2] = desvioPadrao( media[2], qtdAlunos, contagem, 2);// nat 
-    desvio[3] = desvioPadrao( media[3], qtdAlunos, contagem, 3);// hum
+    desvio[0] = desvioPadrao( media[0], qtdAlunos, contagem, 0);
+    desvio[1] = desvioPadrao( media[1], qtdAlunos, contagem, 1);
+    desvio[2] = desvioPadrao( media[2], qtdAlunos, contagem, 2);
+    desvio[3] = desvioPadrao( media[3], qtdAlunos, contagem, 3);
     // calculo EP / NF
     eP_NotaFinal(contagem, curso, qtdAlunos, quant, media, desvio); //estarão guardados em acertos_Notas
 }
@@ -259,7 +258,7 @@ do{
 
         else if (opcao == 2){
             int codinscr;
-            printf("\nInforme o número de inscrição do candidato: \n");
+            printf("\nInforme o número de inscrição do candidato: \n")
             scanf("%d", &codinscr);
             if (codinscr == 0)
             {
@@ -283,7 +282,7 @@ do{
 
         }
 
-}while(opcao!=5);
+}while(opcao!=5)
 
 
 
@@ -291,9 +290,6 @@ do{
     
 return 0;
 }  
-
-
-
 
 
 
