@@ -77,15 +77,9 @@ float mediaDaArea(float quant, float soma){ //passar valor correspondente a soma
     return media;
 }
 
-<<<<<<< HEAD
 float desvioPadrao(float media, float quant, acertos_notas contagem[], int num){ 
     float x = 0;
     float somatorio = 0;
-=======
-float desvioPadrao(float media, float quant, acertos_notas contagem[], float num){ 
-    int x = 0;
-    int somatorio = 0;
->>>>>>> 648aa04d9889976e67152bff4b1ca9b54a571a73
     float desvio; //vai ser a variável a ser retornada, porém deve ser guardada em outra variável na main.
     int i = 0;
 
@@ -122,7 +116,7 @@ float desvioPadrao(float media, float quant, acertos_notas contagem[], float num
     return 2*desvio; //lembrar de guardar em variável respectiva à area de conhecimento quando for implementar na main.
 }
 
-void eP_NotaFinal(acertos_notas contagem[], tipoCurso curso[], int quant, int qtdCursos, float media[], float desvio[]){//quant = quantidade de candidatos
+void eP_NotaFinal(acertos_notas contagem[], tipoCurso curso[], float quant, float qtdCursos, float media[], float desvio[]){//quant = quantidade de candidatos
     int i = 0;
     int indicecurso;
     int aux;
