@@ -70,14 +70,14 @@ while (esq < dir - 1) {
 return dir;
 }
 
-float mediaDaArea(int quant, int soma){ //passar valor correspondente a soma da materia no parametro
+float mediaDaArea(float quant, float soma){ //passar valor correspondente a soma da materia no parametro
 
     float media; //variável q será retornada
     media = 2*(soma / quant); // precisa multiplicar por dois para receber o valor correto do EP
     return media;
 }
 
-float desvioPadrao(float media, int quant, acertos_notas contagem[], int num){ 
+float desvioPadrao(float media, float quant, acertos_notas contagem[], float num){ 
     int x = 0;
     int somatorio = 0;
     float desvio; //vai ser a variável a ser retornada, porém deve ser guardada em outra variável na main.
