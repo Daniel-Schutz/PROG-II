@@ -191,7 +191,7 @@ scanf("%s",nomeArq);
         contagem = (acertos_notas*) malloc(qtdAlunos*sizeof(acertos_notas)); //alocação
         
         for (int i = 0; i < qtdAlunos; i++){
-            fscanf(arq, "%d %d %d %d %d %f", &contagem[i].insc, &contagem[i].v_ling, &contagem[i].v_mat, &contagem[i].v_nat, &contagem[i].v_hum, &contagem[i].red); //leitura dos dados
+            fscanf(arq, "%d %f %d %d %d %f", &contagem[i].insc, &contagem[i].v_ling, &contagem[i].v_mat, &contagem[i].v_nat, &contagem[i].v_hum, &contagem[i].red); //leitura dos dados
             if (i == 0){
                 soma[0] = contagem[i].v_ling;
                 soma[1] = contagem[i].v_mat;
@@ -208,20 +208,20 @@ scanf("%s",nomeArq);
     }
     fclose(arq);
     /*TESTE*/for (int i = 0; i < qtdAlunos; i++){
-            printf("%d %d %d %d %d %.2f\n", contagem[i].insc, contagem[i].v_ling, contagem[i].v_mat, contagem[i].v_nat, contagem[i].v_hum, contagem[i].red); }
+            printf("%d %.1f %d %d %d %.2f\n", contagem[i].insc, contagem[i].v_ling, contagem[i].v_mat, contagem[i].v_nat, contagem[i].v_hum, contagem[i].red); }
     /*FIM DO TESTE*/
 
-  // calculo da media
-    media[0] = mediaDaArea(qtdAlunos, soma[0]);//media da area Linguagens
-    media[1] = mediaDaArea(qtdAlunos, soma[1]);//media da area matemática
-    media[2] = mediaDaArea(qtdAlunos, soma[2]);//media da area naturezas
-    media[3] = mediaDaArea(qtdAlunos, soma[3]);//media da area humanas
+  // calculo da media multiplicando por 2 para dar o EP correto
+    media[0] = 2* mediaDaArea(qtdAlunos, soma[0]);//media da area Linguagens
+    media[1] = 2* mediaDaArea(qtdAlunos, soma[1]);//media da area matemática
+    media[2] = 2* mediaDaArea(qtdAlunos, soma[2]);//media da area naturezas
+    media[3] = 2* mediaDaArea(qtdAlunos, soma[3]);//media da area humanas
 
-    // calculo desvio padrao
-    desvio[0] = desvioPadrao( media[0], qtdAlunos, contagem, 0);
-    desvio[1] = desvioPadrao( media[1], qtdAlunos, contagem, 1);
-    desvio[2] = desvioPadrao( media[2], qtdAlunos, contagem, 2);
-    desvio[3] = desvioPadrao( media[3], qtdAlunos, contagem, 3);
+    // calculo desvio padrao, divide a media por 2 para passar a media correta e multiplca o DP para dar o EP correto
+    desvio[0] = 2*desvioPadrao( media[0]/2, qtdAlunos, contagem, 0);
+    desvio[1] = 2*desvioPadrao( media[1]/2, qtdAlunos, contagem, 1);
+    desvio[2] = 2*desvioPadrao( media[2]/2, qtdAlunos, contagem, 2);
+    desvio[3] = 2*desvioPadrao( media[3]/2, qtdAlunos, contagem, 3);
     
     printf("a soma das notas de linguagens e %d e qtd de aluno s e %d\n",soma[0],qtdAlunos);
     printf("A media de linguagens e %.2f e o desvio padrao e %.2f",media[0],desvio[0]);
@@ -277,7 +277,5 @@ scanf("%s",nomeArq);
     
 return 0;
 }  
-
-
-    
+ 
     
