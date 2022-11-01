@@ -78,7 +78,7 @@ float mediaDaArea(float quant, float soma){ //passar valor correspondente a soma
 }
 
 float desvioPadrao(float media, int quant, acertos_notas *contagem, int num){ 
-    printf("recebeu a media %f a qtdAulunos %d e o numero %d\n",media,quant,num);
+    printf("recebeu a media %d a qtdAulunos %d e o numero %d\n",media,quant,num);
     float desvio=0; //vai ser a variável a ser retornada, porém deve ser guardada em outra variável na main.
     int i;
 
