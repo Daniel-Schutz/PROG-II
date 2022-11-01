@@ -77,9 +77,9 @@ float mediaDaArea(int quant, int soma){ //passar valor correspondente a soma da 
     return media;
 }
 
-float desvioPadrao(float media, int quant, acertos_notas contagem[], int num){ 
-    int x = 0;
-    int somatorio = 0;
+float desvioPadrao(float media, float quant, acertos_notas contagem[], int num){ 
+    float x = 0;
+    float somatorio = 0;
     float desvio; //vai ser a variável a ser retornada, porém deve ser guardada em outra variável na main.
     int i = 0;
 
