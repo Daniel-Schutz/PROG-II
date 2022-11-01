@@ -73,50 +73,41 @@ return dir;
 float mediaDaArea(float quant, float soma){ //passar valor correspondente a soma da materia no parametro
 
     float media; //variável q será retornada
-    media = 2*(soma / quant); // precisa multiplicar por dois para receber o valor correto do EP
+    media = (soma / quant); 
     return media;
 }
 
-float desvioPadrao(float media, float quant, acertos_notas contagem[], int num){ 
-    float x = 0;
-    float somatorio = 0;
-    float desvio; //vai ser a variável a ser retornada, porém deve ser guardada em outra variável na main.
-    int i = 0;
+float desvioPadrao(float media, int quant, acertos_notas *contagem, int num){ 
+    printf("recebeu a media %f a qtdAulunos %d e o numero %d\n",media,quant,num);
+    float desvio=0; //vai ser a variável a ser retornada, porém deve ser guardada em outra variável na main.
+    int i;
 
    if(num==0){
-    for (i; i < quant; i++){ 
-            //dadosacertos[i] significa acerto individual.
-            //x atualiza para o valor correto em cada chamda do for
-            x = (contagem[i].v_ling - media); //significa a operação básica para o somatório.
-            somatorio = somatorio + x*x;
-        }}
+    for (i = 0; i < quant; i++){ 
+          desvio = desvio + pow(contagem[i].v_ling - media,2);
+        }
+      }
     else if(num==1){
-    for (i; i < quant; i++){ 
-            //dadosacertos[i] significa acerto individual.
-            //x atualiza para o valor correto em cada chamda do for
-            x = (contagem[i].v_mat - media); //significa a operação básica para o somatório.
-            somatorio = somatorio + x*x;
-        }}
+     for (i = 0; i < quant; i++){ 
+          desvio = desvio + pow(contagem[i].v_ling - media,2);
+        }
+      }
      else if(num==2){
-    for (i; i < quant; i++){ 
-            //dadosacertos[i] significa acerto individual.
-            //x atualiza para o valor correto em cada chamda do for
-            x = (contagem[i].v_nat - media); //significa a operação básica para o somatório.
-            somatorio = somatorio + x*x;
-        } }   
-      else {
-    for (i; i < quant; i++){ 
-            //dadosacertos[i] significa acerto individual.
-            //x atualiza para o valor correto em cada chamda do for
-            x = (contagem[i].v_hum - media); //significa a operação básica para o somatório.
-            somatorio = somatorio + x*x;
-        } }             
+     for (i = 0; i < quant; i++){ 
+          desvio = desvio + pow(contagem[i].v_ling - media,2);
+        } 
+      }   
+      else if(num==3) {
+     for (i = 0; i < quant; i++){ 
+          desvio = desvio + pow(contagem[i].v_ling - media,2);
+        }
+      }             
 
-    desvio = sqrt((somatorio/quant-1)); //uso de math.h , acho q é permitido usar
-    return 2*desvio; //lembrar de guardar em variável respectiva à area de conhecimento quando for implementar na main.
+    desvio = sqrt(desvio/(quant-1)); //uso de math.h , acho q é permitido usar
+    return desvio; 
 }
 
-void eP_NotaFinal(acertos_notas contagem[], tipoCurso curso[], float quant, float qtdCursos, float media[], float desvio[]){//quant = quantidade de candidatos
+void eP_NotaFinal(acertos_notas contagem[], tipoCurso curso[], int quant, int qtdCursos, float media[], float desvio[]){//quant = quantidade de candidatos
     int i = 0;
     int indicecurso;
     int aux;
