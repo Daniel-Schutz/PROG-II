@@ -1,6 +1,6 @@
-#define MAX 60
+#define MAX 80
 
-//Structs Auxiliares
+//-----------------------------STRUCTS AUXILIARES-------------------------------//
 struct data{
 
     int dia, mes, ano;
@@ -16,19 +16,15 @@ struct dadoEmLinhas{
 
 };
 
-struct cursoDados{ //vamos ordenar por codcurso
-    int codcurso, qtd;
-};
 
-
-//-----------------------------STRUCTS-------------------------------//
+//-----------------------------STRUCTS PRINCIPAIS-------------------------------//
 
 struct tipoCurso{ 
     char nomeCurso[MAX];    /* nome do curso + bacharel/licenciatura */
     int codCurso, pesoRed, pesoMat, pesoLing, pesoHum, pesoNat;
-    int AC, L1, L3, L4, L5, L7, L8, L9, L11, L13, L15;   
-    int qtd; // quantidade de linhas para cada bloco de tuplas(dados dos candidatos)
-    dadoEmLinhas *tuplas;//melhor por diretamente aqui
+    int AC, L1, L3, L4, L5, L7, L8, L9, L11, L13, L15;//quantidade de vagas para cada tipo  
+    int qtd; // quantidade de inscritos por curso;
+    dadoEmLinhas *tuplas;//dados dos inscritos
 };
 
 struct acertos_notas{
