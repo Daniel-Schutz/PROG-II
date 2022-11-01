@@ -191,7 +191,7 @@ scanf("%s",nomeArq);
         contagem = (acertos_notas*) malloc(qtdAlunos*sizeof(acertos_notas)); //alocação
         
         for (int i = 0; i < qtdAlunos; i++){
-            fscanf(arq, "%d %f %d %d %d %f", &contagem[i].insc, &contagem[i].v_ling, &contagem[i].v_mat, &contagem[i].v_nat, &contagem[i].v_hum, &contagem[i].red); //leitura dos dados
+            fscanf(arq, "%d %d %d %d %d %f", &contagem[i].insc, &contagem[i].v_ling, &contagem[i].v_mat, &contagem[i].v_nat, &contagem[i].v_hum, &contagem[i].red); //leitura dos dados
             if (i == 0){
                 soma[0] = contagem[i].v_ling;
                 soma[1] = contagem[i].v_mat;
@@ -208,7 +208,7 @@ scanf("%s",nomeArq);
     }
     fclose(arq);
     /*TESTE*/for (int i = 0; i < qtdAlunos; i++){
-            printf("%d %.1f %d %d %d %.2f\n", contagem[i].insc, contagem[i].v_ling, contagem[i].v_mat, contagem[i].v_nat, contagem[i].v_hum, contagem[i].red); }
+            printf("%d %d %d %d %d %.2f\n", contagem[i].insc, contagem[i].v_ling, contagem[i].v_mat, contagem[i].v_nat, contagem[i].v_hum, contagem[i].red); }
     /*FIM DO TESTE*/
 
   // calculo da media multiplicando por 2 para dar o EP correto
