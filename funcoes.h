@@ -31,7 +31,7 @@ struct acertos_notas{
 
     int insc, v_ling, v_mat, v_nat, v_hum;
     float red;
-    float EP[4];// EP guardado de acordo com a sequencias das áreas discutidas anteriormente
+    float EP[4];// 0=ling; 1=mat; 2=nat; 3=hum;
     float notaFinal;
 };
 
@@ -44,9 +44,9 @@ void mergesortTipoCurso(int p, int r, tipoCurso *v);
 
 int busca_binariaTipoCurso(int n, tipoCurso *v, int x);
 
-float mediaDaArea(int quant, int soma);
+float mediaDaArea(float quant, float soma);
 
-float desvioPadrao(float media, int quant, acertos_notas *contagem, int num);
+float desvioPadrao(float media, float quant, acertos_notas *contagem, float num);
 
 void eP_NotaFinal(acertos_notas contagem[], tipoCurso curso[], int quant, int qtdCursos, float media[], float desvio[]);
 
@@ -55,4 +55,3 @@ void buscaImprimeCandidato(int numerodecursos, tipoCurso curso[], int codinscr);
 void troca(tipoCurso curso[], int indiceTroca, int indiceA_Trocar);
 
 void verificaEmpate();
-
