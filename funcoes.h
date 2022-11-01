@@ -29,7 +29,7 @@ struct tipoCurso{
 
 struct acertos_notas{
 
-    int insc, v_ling, v_mat, v_nat, v_hum;
+    int insc,v_ling, v_mat, v_nat, v_hum;
     float red;
     float EP[4];// 0=ling; 1=mat; 2=nat; 3=hum;
     float notaFinal;
@@ -46,7 +46,7 @@ int busca_binariaTipoCurso(int n, tipoCurso *v, int x);
 
 float mediaDaArea(float quant, float soma);
 
-float desvioPadrao(float media, float quant, acertos_notas *contagem, float num);
+float desvioPadrao(float media, int quant, acertos_notas *contagem, int num);
 
 void eP_NotaFinal(acertos_notas contagem[], tipoCurso curso[], int quant, int qtdCursos, float media[], float desvio[]);
 
@@ -55,3 +55,5 @@ void buscaImprimeCandidato(int numerodecursos, tipoCurso curso[], int codinscr);
 void troca(tipoCurso curso[], int indiceTroca, int indiceA_Trocar);
 
 void verificaEmpate();
+
+
