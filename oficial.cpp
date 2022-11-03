@@ -255,7 +255,7 @@ scanf("%s",nomeArq);
 
     // calculo EP / NF
     //eP_NotaFinal(contagem, curso, qtdAlunos, quant, media, desvio); //estarão guardados em acertos_Notas
-}
+} //da onde é essa chave??
  
 
 
