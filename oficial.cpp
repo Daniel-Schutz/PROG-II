@@ -1,5 +1,7 @@
 #include <stdio.h>
-#include <stdlib.h>  // malloc, calloc
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
 #include "funcoes.h"
 
 
@@ -108,9 +110,6 @@ scanf("%s",nomeArq);
    }
 
 
-/*-------------------------------------------------------------ATÉ AQUI TÁ CERTO----------------------------------------------------------------------------------------*/
-
-
 //VERIFICAR SE TA CERTO PODER REPETIR O COD CURSO< AI VAI TER QUE CRIAR UM STRUCT AUXILIAR PRA SALVAR NESSES CASOS
 //ler e armazenar os dados dos inscritos
 printf("\nEscreva o nome do arquivo dos dados dos inscritos:");
@@ -131,15 +130,19 @@ scanf("%s",nomeArq);
             for (int i=0;i<quant;i++){ //ler até acabar o arquivo
 
                 fscanf(arq, " %d %d", &codTemporario, &qtdTemporaria); // a primeira linha tem duas entradas
-            
-                curso[i].qtd = qtdTemporaria; //quantidade de inscritos no curso
+
+                int index = busca_binariaTipoCurso(quant,curso,codTemporario);
+
+                if(curso[index].qtd = 0){
+
+                curso[index].qtd = qtdTemporaria; //quantidade de inscritos no curso
 
                 //alocar memória pra cada bloco            
-                curso[i].tuplas = (dadoEmLinhas *) malloc (curso[i].qtd * sizeof(dadoEmLinhas)); //aloca dinâmicamente as linhas diretamente no tipoCurso
+                curso[index].tuplas = (dadoEmLinhas *) malloc (curso[index].qtd * sizeof(dadoEmLinhas)); //aloca dinâmicamente as linhas diretamente no tipoCurso
 
 
                 //verificar se alocou
-                if (curso[i].tuplas == NULL){
+                if (curso[index].tuplas == NULL){
                     printf("Não foi possível alocar na memória");
                     break;
                 }
@@ -147,15 +150,36 @@ scanf("%s",nomeArq);
 
                 else{
                     //executar a leitura dos dados de forma correta para cada bloco;
-                    for (int x=0; x < curso[i].qtd; x++){
-                        fscanf(arq, "%d %[^0^1^2^3^4^5^6^7^8^9] %d/%d/%d %[^\n] ", &curso[i].tuplas[x].codinscricao, curso[i].tuplas[x].nomecandidato, &curso[i].tuplas[x].datanasc.dia, &curso[i].tuplas[x].datanasc.mes, &curso[i].tuplas[x].datanasc.ano, curso[i].tuplas[x].tipovaga);
+                    for (int x=0; x < curso[index].qtd; x++){
+                        fscanf(arq, "%d %[^0^1^2^3^4^5^6^7^8^9] %d/%d/%d %[^\n] ", &curso[index].tuplas[x].codinscricao, curso[index].tuplas[x].nomecandidato, &curso[index].tuplas[x].datanasc.dia, &curso[index].tuplas[x].datanasc.mes, &curso[index].tuplas[x].datanasc.ano, curso[index].tuplas[x].tipovaga);
                     }
                 /*TESTE*/
-                for (int x=0; x < curso[i].qtd; x++){    
-                printf("%d %s %d/%d/%d %s\n",curso[i].tuplas[x].codinscricao, curso[i].tuplas[x].nomecandidato, curso[i].tuplas[x].datanasc.dia, curso[i].tuplas[x].datanasc.mes, curso[i].tuplas[x].datanasc.ano, curso[i].tuplas[x].tipovaga);
+                for (int x=0; x < curso[index].qtd; x++){    
+                printf("%d %s %d/%d/%d %s\n",curso[index].tuplas[x].codinscricao, curso[index].tuplas[x].nomecandidato, curso[index].tuplas[x].datanasc.dia, curso[index].tuplas[x].datanasc.mes, curso[index].tuplas[x].datanasc.ano, curso[index].tuplas[x].tipovaga);
                     }
                 /*FIM DO TESTE*/    
                 }
+
+                } else /*se ja tem quantidade !=0*/{
+
+                    dadoEmLinhas *tuplasAuxiliar;
+                    tuplasAuxiliar = (dadoEmLinhas *) malloc (curso[index].qtd * sizeof(dadoEmLinhas));
+                    for(int x=0;i<curso[index].qtd ;x++){
+                        tuplasAuxiliar[x] = curso[index].tuplas[x];
+                    }
+                    curso[index].qtd = curso[index].qtd + qtdTemporaria;
+                    curso[index].tuplas = (dadoEmLinhas *) malloc (curso[index].qtd * sizeof(dadoEmLinhas)); //aloca dinâmicamente as linhas diretamente no tipoCurso
+                    for(int x=0;x<curso[index].qtd - qtdTemporaria;i++){
+                        curso[index].tuplas[i]=tuplasAuxiliar[i]; 
+                    }
+                    free(tuplasAuxiliar);
+                    for(int x=curso[index].qtd - qtdTemporaria; x<curso[index].qtd;x++){
+                        fscanf(arq, "%d %[^0^1^2^3^4^5^6^7^8^9] %d/%d/%d %[^\n] ", &curso[index].tuplas[x].codinscricao, curso[index].tuplas[x].nomecandidato, &curso[index].tuplas[x].datanasc.dia, &curso[index].tuplas[x].datanasc.mes, &curso[index].tuplas[x].datanasc.ano, curso[index].tuplas[x].tipovaga);
+                    }
+
+
+                }
+                
                 
             
         }
@@ -224,7 +248,10 @@ scanf("%s",nomeArq);
     desvio[3] = 2*desvioPadrao( media[3]/2, qtdAlunos, contagem, 3);
     
     printf("a soma das notas de linguagens e %d e qtd de aluno s e %d\n",soma[0],qtdAlunos);
-    printf("A media de linguagens e %.2f e o desvio padrao e %.2f",media[0],desvio[0]);
+    printf("A media de linguagens e %.2f e o desvio padrao e %.2f\n",media[0],desvio[0]);
+
+    /*-------------------------------------------------------------ATÉ AQUI TÁ CERTO----------------------------------------------------------------------------------------*/
+
 
     // calculo EP / NF
     //eP_NotaFinal(contagem, curso, qtdAlunos, quant, media, desvio); //estarão guardados em acertos_Notas
@@ -233,13 +260,13 @@ scanf("%s",nomeArq);
 
 
 
-/*do{
+do{
     
        menu();
        printf("Digite a opção desejada:");
        scanf("%d", &opcao);
 
-        if (opcao==1){
+        /*if (opcao==1){
 
         }
 
@@ -267,15 +294,17 @@ scanf("%s",nomeArq);
 
         else{
 
-        }
+        }*/
 
-}while(opcao!=5)
+}while(opcao!=5);
 
-*/
 
 
     
 return 0;
 }  
+ 
+    
+
  
     
