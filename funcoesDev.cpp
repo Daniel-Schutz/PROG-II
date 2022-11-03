@@ -89,17 +89,17 @@ float desvioPadrao(float media, int quant, acertos_notas *contagem, int num){
       }
     else if(num==1){
      for (i = 0; i < quant; i++){ 
-          desvio = desvio + pow(contagem[i].v_ling - media,2);
+          desvio = desvio + pow(contagem[i].v_mat- media,2);
         }
       }
      else if(num==2){
      for (i = 0; i < quant; i++){ 
-          desvio = desvio + pow(contagem[i].v_ling - media,2);
+          desvio = desvio + pow(contagem[i].v_nat - media,2);
         } 
       }   
       else if(num==3) {
      for (i = 0; i < quant; i++){ 
-          desvio = desvio + pow(contagem[i].v_ling - media,2);
+          desvio = desvio + pow(contagem[i].v_hum - media,2);
         }
       }             
 
