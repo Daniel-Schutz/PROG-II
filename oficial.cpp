@@ -249,13 +249,11 @@ scanf("%s",nomeArq);
     
     printf("a soma das notas de linguagens e %d e qtd de aluno s e %d\n",soma[0],qtdAlunos);
     printf("A media de linguagens e %.2f e o desvio padrao e %.2f\n",media[0],desvio[0]);
-
-    /*-------------------------------------------------------------ATÉ AQUI TÁ CERTO----------------------------------------------------------------------------------------*/
-
-
+    
     // calculo EP / NF
-    //eP_NotaFinal(contagem, curso, qtdAlunos, quant, media, desvio); //estarão guardados em acertos_Notas
-} //da onde é essa chave??
+    eP_NotaFinal(contagem, curso, qtdAlunos, quant, media, desvio); //estarão guardados em acertos_Notas
+    
+} 
  
 
 
