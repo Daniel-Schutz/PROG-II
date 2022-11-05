@@ -318,6 +318,7 @@ do{
                     i++;
                 }
             }
+            fclose(file);
         }
 
         else{ //Adicionei para caso digite qualquer outro número e ter pelo menos uma explicação do erro
