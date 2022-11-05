@@ -44,6 +44,12 @@ void mergesortTipoCurso(int p, int r, tipoCurso *v);
 
 int busca_binariaTipoCurso(int n, tipoCurso *v, int x);
 
+void intercalaAcertos(int p, int q, int r, acertos_notas *v);
+
+void mergesortAcertos(int p, int r, acertos_notas *v);
+
+int busca_binariaAcertos(int n, acertos_notas *v, int x);
+
 float mediaDaArea(float quant, float soma);
 
 float desvioPadrao(float media, int quant, acertos_notas *contagem, int num);
