@@ -8,6 +8,7 @@
 
 int main(){
 tipoCurso *curso; //tipocurso
+acertos_notas *contagem;
 int opcao;//o~ção que a pessoa irá digitar no menu
 int quant; // quantidade total de cursos
 int qtdAlunos; // quantidade total de candidatos
@@ -194,10 +195,6 @@ scanf("%s",nomeArq);
 
 printf("\nEscreva o nome do arquivo dos acertos dos inscritos:");
 scanf("%s",nomeArq);
-
-
-    acertos_notas *contagem; //registro a ser alocado dinâmicamente
-    
     //
     arq = fopen(nomeArq,"r"); //abrindo arquivo;
     
@@ -264,13 +261,13 @@ do{
        printf("Digite a opção desejada:");
        scanf("%d", &opcao);
 
-        /*if (opcao==1){
+        if (opcao==1){
 
         }
 
         else if (opcao == 2){
             int codinscr;
-            printf("\nInforme o número de inscrição do candidato: \n")
+            printf("\nInforme o número de inscrição do candidato ou digite 0 para retornar ao menu: \n");
             scanf("%d", &codinscr);
             if (codinscr == 0)
             {
@@ -287,12 +284,45 @@ do{
         }
 
         else if (opcao == 3){
-
+            
         }
 
-        else{
+        else if (opcao == 4){ //troquei o else por 4 para minimizar chances de erro caso ponha qualquer outro numero, seria estranho apertar 6 e alterar as notas de red
+            mergesortAcertos(0, qtdAlunos, contagem); //ordena o struct Acerto_notas para ficar mais facil a busca pelo insc
 
-        }*/
+            printf("\nDigite o nome do arquivo que contém as novas notas: \n");
+            scanf("%s", nomeArq);
+            FILE *file;
+            int numalteracoes; //para ler o arquivo
+            float novanota;
+            float notaantiga;
+            int inscricaoalterar;
+            int indicecodinsc; //indice do vetor de registro struct pra alterar
+            file = fopen(nomeArq, "r");
+            if (file == NULL){
+                printf("\n Não foi possível abrir o arquivo das notas de Redação, tente novamente.\n");
+            }
+            else{
+                fscanf(file,"%d", &numalteracoes);
+                int i = 0;
+                while (i < numalteracoes){ //ler todo o arquivo e alterar enquanto lê
+                    fscanf(file, "%d %f %f", &inscricaoalterar, &notaantiga, &novanota ); //leitura
+                    indicecodinsc = busca_binariaAcertos(qtdAlunos, contagem, inscricaoalterar); //busca
+                    // poderia se fazer uma checagem if (notaantiga == contagem[indicecodinsc].red) para dps realizar a troca
+                    // porém, não achei necessário, uma vez que ja temos o indice
+                    contagem[indicecodinsc].red = novanota; //alteração
+
+                    //checar
+                    printf("\n O aluno de %d que tinha a nota %0.f agr tem a nota %0.f", contagem[indicecodinsc].insc, notaantiga, contagem[indicecodinsc].red); //insc referente ao struct pra comparar com o arquivo se está tudo certo, notaantiga pois a alteração ja foi feita então não teria como chamar o struct ponto nota, e por fim o ultimo referente a nota atualizada.
+                    //checado
+                    i++;
+                }
+            }
+        }
+
+        else{ //Adicionei para caso digite qualquer outro número e ter pelo menos uma explicação do erro
+            printf("\n você digitou uma opção inexistente, por favor, tente novamente!\n");
+        }
 
 }while(opcao!=5);
 
