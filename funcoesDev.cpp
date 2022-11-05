@@ -154,6 +154,60 @@ void buscaImprimeCandidato(int numerodecursos, tipoCurso curso[], int codinscr){
     }
 }
 
+void intercalaAcertos(int p, int q, int r, acertos_notas *v){
+  int i, j, k;
+  acertos_notas *w;
+  w = (acertos_notas *) malloc(r * sizeof(acertos_notas));
+
+  i = p; j = q; k = 0; 
+  while(i < q && j < r) {
+    if(v[i].insc < v[j].insc){
+      w[k] = v[i]; i++;
+    }
+    else{
+      w[k] = v[j]; j++;
+    }
+    k++;
+  }
+  while(i < q){
+    w[k] = v[i]; i++; k++;
+    }
+  while(j < r){
+    w[k] = v[j]; j++; k++;  
+  }
+  for(i = p; i < r; i++) {
+    v[i] = w[i - p];
+  }
+  free(w);
+}
+
+void mergesortAcertos(int p, int r, acertos_notas *v){
+  int q;
+  if(p < r - 1){
+    q = (p + r) / 2;
+    mergesortAcertos(p, q, v);
+    mergesortAcertos(q, r, v);
+    intercalaAcertos(p, q, r, v);
+  }
+}
+
+int busca_binariaAcertos(int n, acertos_notas *v, int x)
+{
+int esq, dir, meio;
+esq = -1;
+dir = n;
+while (esq < dir - 1) {
+  meio = (esq + dir) / 2;
+  if (v[meio].insc < x)
+    esq = meio;
+  else
+    dir = meio;
+}
+return dir;
+}
+
+
+
 /*void troca(tipoCurso curso[], int indiceTroca, int indiceA_Trocar){ //utilizar em verifica empate entre outras ocasiões
                                   //i               //j
   tipoCurso *aux; //criar struct tipoCurso auxiliar pra realizar troca
