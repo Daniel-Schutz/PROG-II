@@ -62,4 +62,12 @@ void troca(tipoCurso curso[], int indiceTroca, int indiceA_Trocar);
 
 void verificaEmpate();
 
+void intercalaAlfabetica(int p, int q, int r, tipoCurso *v);
+
+void mergesortAlfabetica(int p, int r, tipoCurso *v);
+
+void mergesortVaga(int p, int r, tipoCurso v);
+
+void intercalaVaga(int p, int q, int r, tipoCurso v);
+
 
