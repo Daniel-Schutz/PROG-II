@@ -175,7 +175,7 @@ scanf("%s",nomeArq);
                     }
                     free(tuplasAuxiliar);
                     for(int x=curso[index].qtd - qtdTemporaria; x<curso[index].qtd;x++){
-                        fscanf(arq, "%d %[^0^1^2^3^4^5^6^7^8^9] %d/%d/%d %[^\n] ", &curso[index].tuplas[x].codinscricao, curso[index].tuplas[x].nomecandidato, &curso[index].tuplas[x].datanasc.dia, &curso[index].tuplas[x].datanasc.mes, &curso[index].tuplas[x].datanasc.ano, curso[index].tuplas[x].tipovaga);
+                        fscanf(arq, "%d %[^0-9] %d/%d/%d %[^\n] ", &curso[index].tuplas[x].codinscricao, curso[index].tuplas[x].nomecandidato, &curso[index].tuplas[x].datanasc.dia, &curso[index].tuplas[x].datanasc.mes, &curso[index].tuplas[x].datanasc.ano, curso[index].tuplas[x].tipovaga);
                     }
 
 
