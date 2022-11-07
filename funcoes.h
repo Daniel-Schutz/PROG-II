@@ -70,4 +70,5 @@ void mergesortVaga(int p, int r, tipoCurso v);
 
 void intercalaVaga(int p, int q, int r, tipoCurso v);
 
+void naoAprovados(int quant, tipoCurso *curso);
 
