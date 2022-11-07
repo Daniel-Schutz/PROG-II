@@ -22,7 +22,7 @@ int qtdTemporaria;//variavel para salvar temporariamente a quantidade de alunos 
 
 
 while (opcao!=0){
-  printf("0 - Carregar os arquivos de entrada\n");
+  printf("\n0 - Carregar os arquivos de entrada\n");
   printf("Digite a opcao desejada:");
   scanf("%d", &opcao);  
   }
@@ -50,7 +50,7 @@ scanf("%s",nomeArq);
          if (curso != NULL){
 
              for(int i=0;i<quant;i++){
-             fscanf(arq, "%d %[^0^1^2^3^4^5^6^7^8^9] %d %d %d %d %d", &curso[i].codCurso, curso[i].nomeCurso, &curso[i].pesoRed, &curso[i].pesoMat, &curso[i].pesoLing, &curso[i].pesoHum, &curso[i].pesoNat);
+             fscanf(arq, "%d %[^0-9] %d %d %d %d %d", &curso[i].codCurso, curso[i].nomeCurso, &curso[i].pesoRed, &curso[i].pesoMat, &curso[i].pesoLing, &curso[i].pesoHum, &curso[i].pesoNat);
                 }
             
          } else{
@@ -65,11 +65,11 @@ scanf("%s",nomeArq);
     }
 
     mergesortTipoCurso(0,quant,curso);//ordena por codigo
-    /*TESTE*/
+    /*TESTE
     for(int i=0;i<quant;i++){
              printf("%d %s %d %d %d %d %d\n", curso[i].codCurso, curso[i].nomeCurso, curso[i].pesoRed, curso[i].pesoMat, curso[i].pesoLing, curso[i].pesoHum, curso[i].pesoNat);
                 }
-    /*FIM DO TESTE*/            
+    FIM DO TESTE*/            
 
 
 
@@ -103,12 +103,12 @@ scanf("%s",nomeArq);
         
     }
    
-   /*TESTE*/
+   /*TESTE
    for(int indiceTipoCurso=0;indiceTipoCurso<quant;indiceTipoCurso++){
      printf("%d %d %d %d %d %d %d %d %d %d %d\n", curso[indiceTipoCurso].AC, curso[indiceTipoCurso].L1, curso[indiceTipoCurso].L3, curso[indiceTipoCurso].L4, curso[indiceTipoCurso].L5, curso[indiceTipoCurso].L7,
-              curso[indiceTipoCurso].L8, curso[indiceTipoCurso].L9, curso[indiceTipoCurso].L11, curso[indiceTipoCurso].L13, curso[indiceTipoCurso].L15); 
-   /*FIM DO TESTE*/          
-   }
+              curso[indiceTipoCurso].L8, curso[indiceTipoCurso].L9, curso[indiceTipoCurso].L11, curso[indiceTipoCurso].L13, curso[indiceTipoCurso].L15);  }
+   FIM DO TESTE*/          
+  
 
 
 //VERIFICAR SE TA CERTO PODER REPETIR O COD CURSO< AI VAI TER QUE CRIAR UM STRUCT AUXILIAR PRA SALVAR NESSES CASOS
@@ -152,13 +152,13 @@ scanf("%s",nomeArq);
                 else{
                     //executar a leitura dos dados de forma correta para cada bloco;
                     for (int x=0; x < curso[index].qtd; x++){
-                        fscanf(arq, "%d %[^0^1^2^3^4^5^6^7^8^9] %d/%d/%d %[^\n] ", &curso[index].tuplas[x].codinscricao, curso[index].tuplas[x].nomecandidato, &curso[index].tuplas[x].datanasc.dia, &curso[index].tuplas[x].datanasc.mes, &curso[index].tuplas[x].datanasc.ano, curso[index].tuplas[x].tipovaga);
+                        fscanf(arq, "%d %[^0-9] %d/%d/%d %[^\n] ", &curso[index].tuplas[x].codinscricao, curso[index].tuplas[x].nomecandidato, &curso[index].tuplas[x].datanasc.dia, &curso[index].tuplas[x].datanasc.mes, &curso[index].tuplas[x].datanasc.ano, curso[index].tuplas[x].tipovaga);
                     }
-                /*TESTE*/
+                /*TESTE
                 for (int x=0; x < curso[index].qtd; x++){    
                 printf("%d %s %d/%d/%d %s\n",curso[index].tuplas[x].codinscricao, curso[index].tuplas[x].nomecandidato, curso[index].tuplas[x].datanasc.dia, curso[index].tuplas[x].datanasc.mes, curso[index].tuplas[x].datanasc.ano, curso[index].tuplas[x].tipovaga);
                     }
-                /*FIM DO TESTE*/    
+                FIM DO TESTE*/    
                 }
 
                 } else /*se ja tem quantidade !=0*/{
@@ -228,11 +228,13 @@ scanf("%s",nomeArq);
         }
     }
     fclose(arq);
-    /*TESTE*/for (int i = 0; i < qtdAlunos; i++){
+    /*TESTEfor (int i = 0; i < qtdAlunos; i++){
             printf("%d %d %d %d %d %.2f\n", contagem[i].insc, contagem[i].v_ling, contagem[i].v_mat, contagem[i].v_nat, contagem[i].v_hum, contagem[i].red); }
-    /*FIM DO TESTE*/
+    FIM DO TESTE*/
+    
+} 
 
-  // calculo da media multiplicando por 2 para dar o EP correto
+ // calculo da media multiplicando por 2 para dar o EP correto
     media[0] = 2* mediaDaArea(qtdAlunos, soma[0]);//media da area Linguagens
     media[1] = 2* mediaDaArea(qtdAlunos, soma[1]);//media da area matemática
     media[2] = 2* mediaDaArea(qtdAlunos, soma[2]);//media da area naturezas
@@ -244,24 +246,42 @@ scanf("%s",nomeArq);
     desvio[2] = 2*desvioPadrao( media[2]/2, qtdAlunos, contagem, 2);
     desvio[3] = 2*desvioPadrao( media[3]/2, qtdAlunos, contagem, 3);
     
+     
     printf("a soma das notas de linguagens e %d e qtd de aluno s e %d\n",soma[0],qtdAlunos);
     printf("A media de linguagens e %.2f e o desvio padrao e %.2f\n",media[0],desvio[0]);
     
     // calculo EP / NF
     eP_NotaFinal(contagem, curso, qtdAlunos, quant, media, desvio); //estarão guardados em acertos_Notas
-    
-} 
- 
+
+    mergesortAlfabetica(0,quant,curso);//para ordenar os cursos por ordem alfabetica
+    printf("\nnome do segundo curso %s\n",curso[1].nomeCurso);
+    for(int i=0;i<curso[1].qtd;i++){
+        printf("nome do aluno %s e tipo de vaga e %s\n",curso[1].tuplas[i].nomecandidato,curso[1].tuplas[i].tipovaga);
+    }
+    for(int i=0;i<quant;i++){
+        mergesortVaga(0,curso[i].qtd,curso[i]);//ordena os candidatos dentro do curso pelo tipo da vaga
+    }
+    printf("\napos ordenar por tipo de vaga\n");
+    printf("\nnome do segundo curso %s\n",curso[1].nomeCurso);
+     for(int i=0;i<curso[1].qtd;i++){
+        printf("nome do aluno %s e tipo de vaga e %s\n",curso[1].tuplas[i].nomecandidato,curso[1].tuplas[i].tipovaga);
+    }
+    /*TESTE
+    printf("\nnome do primeiro curso %s\n",curso[0].nomeCurso);
+    for(int i=0;i<curso[0].qtd;i++){
+        printf("nome do aluno %s e tipo de vaga e %s\n",curso[0].tuplas[i].nomecandidato,curso[0].tuplas[i].tipovaga);
+    }
+    /*FIM DO TESTE*/
 
 
-
-do{
+while(true){
     
        menu();
        printf("Digite a opção desejada:");
        scanf("%d", &opcao);
 
         if (opcao==1){
+            
 
         }
 
@@ -321,19 +341,21 @@ do{
             fclose(file);
         }
 
+        else if (opcao == 5){
+            break;
+        }
+
         else{ //Adicionei para caso digite qualquer outro número e ter pelo menos uma explicação do erro
             printf("\n você digitou uma opção inexistente, por favor, tente novamente!\n");
         }
 
-}while(opcao!=5);
+}
 
 
 
     
 return 0;
 }  
- 
-    
 
  
     
