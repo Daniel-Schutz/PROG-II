@@ -304,8 +304,15 @@ while(true){
         }
 
         else if (opcao == 3){
+            FILE*  arqsaida;    /* variavel para manip arquivo de saida*/ 
+            arqsaida = fopen("saidaNaoAprovados.txt", "a");
+            fprintf(arqsaida, "Não Aprovados\n");
+            naoAprovados(quant,curso);       
             
-        }
+    }
+
+            
+        
 
         else if (opcao == 4){ //troquei o else por 4 para minimizar chances de erro caso ponha qualquer outro numero, seria estranho apertar 6 e alterar as notas de red
             mergesortAcertos(0, qtdAlunos, contagem); //ordena o struct Acerto_notas para ficar mais facil a busca pelo insc
@@ -349,13 +356,11 @@ while(true){
             printf("\n você digitou uma opção inexistente, por favor, tente novamente!\n");
         }
 
+
+
 }
-
-
 
     
 return 0;
-}  
-
- 
+} 
     
