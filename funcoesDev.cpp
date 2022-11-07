@@ -286,6 +286,7 @@ void mergesortVaga(int p, int r, tipoCurso v){
 }
 
 void naoAprovados(int quant, tipoCurso *curso){
+  FILE*  arqsaida;    /* variavel para manip arquivo de saida*/ 
   arqsaida = fopen("saidaNaoAprovados.txt", "a");
   for(int i=0;i<quant;i++){
     fprintf(arqsaida, "%d %s\n",curso[i].codCurso,curso[i].nomeCurso);
