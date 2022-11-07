@@ -3,6 +3,7 @@
 #include <string.h>
 #include <math.h>
 #include "funcoes.h"
+#include <ctype.h>
 
 // Desenvolver funcoes
 void menu(){
@@ -78,7 +79,6 @@ float mediaDaArea(float quant, float soma){ //passar valor correspondente a soma
 }
 
 float desvioPadrao(float media, int quant, acertos_notas *contagem, int num){ 
-    printf("recebeu a media %d a qtdAulunos %d e o numero %d\n",media,quant,num);
     float desvio=0; //vai ser a variável a ser retornada, porém deve ser guardada em outra variável na main.
     int i;
 
@@ -204,6 +204,85 @@ while (esq < dir - 1) {
     dir = meio;
 }
 return dir;
+}
+
+void intercalaAlfabetica(int p, int q, int r, tipoCurso *v){
+  int i, j, k;
+  tipoCurso *w;
+  w = (tipoCurso *) malloc(r * sizeof(tipoCurso));
+
+  i = p; j = q; k = 0; 
+  while(i < q && j < r) {
+    v[i].nomeCurso[0] = toupper(v[i].nomeCurso[0]);
+    v[j].nomeCurso[0] = toupper(v[j].nomeCurso[0]);
+
+    if(strcmp(v[i].nomeCurso, v[j].nomeCurso) < 0){  
+      w[k] = v[i]; i++;
+    }
+    else{
+      w[k] = v[j]; j++;
+    }
+    k++;
+  }
+  while(i < q){
+    w[k] = v[i]; i++; k++;
+    }
+  while(j < r){
+    w[k] = v[j]; j++; k++;  
+  }
+  for(i = p; i < r; i++) {
+    v[i] = w[i - p];
+  }
+  free(w);
+}
+
+void mergesortAlfabetica(int p, int r, tipoCurso *v){
+  int q;
+  if(p < r - 1){
+    q = (p + r) / 2;
+    mergesortAlfabetica(p, q, v);
+    mergesortAlfabetica(q, r, v);
+    intercalaAlfabetica(p, q, r, v);
+  }
+}
+
+void intercalaVaga(int p, int q, int r, tipoCurso v){
+  int i, j, k;
+  dadoEmLinhas *w;
+  w = (dadoEmLinhas *) malloc(r * sizeof(dadoEmLinhas));
+
+  i = p; j = q; k = 0; 
+  while(i < q && j < r) {
+
+
+    if(strcmp(v.tuplas[i].tipovaga, v.tuplas[j].tipovaga) < 0){  
+      w[k] = v.tuplas[i]; i++;
+    }
+    else{
+      w[k] = v.tuplas[j]; j++;
+    }
+    k++;
+  }
+  while(i < q){
+    w[k] = v.tuplas[i]; i++; k++;
+    }
+  while(j < r){
+    w[k] = v.tuplas[j]; j++; k++;  
+  }
+  for(i = p; i < r; i++) {
+    v.tuplas[i] = w[i - p];
+  }
+  free(w);
+}
+
+void mergesortVaga(int p, int r, tipoCurso v){
+  int q;
+  if(p < r - 1){
+    q = (p + r) / 2;
+    mergesortVaga(p, q, v);
+    mergesortVaga(q, r, v);
+    intercalaVaga(p, q, r, v);
+  }
 }
 
 
