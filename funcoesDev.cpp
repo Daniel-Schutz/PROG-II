@@ -285,6 +285,20 @@ void mergesortVaga(int p, int r, tipoCurso v){
   }
 }
 
+void naoAprovados(int quant, tipoCurso *curso){
+  arqsaida = fopen("saidaNaoAprovados.txt", "a");
+  for(int i=0;i<quant;i++){
+    fprintf(arqsaida, "%d %s\n",curso[i].codCurso,curso[i].nomeCurso);
+    //percorrer os candidatos e ver quem não passou
+       
+           
+           
+      
+
+  }
+   fclose(arqsaida);
+}
+
 
 
 /*void troca(tipoCurso curso[], int indiceTroca, int indiceA_Trocar){ //utilizar em verifica empate entre outras ocasiões
