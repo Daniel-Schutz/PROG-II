@@ -341,7 +341,7 @@ void intercalaNota(int p, int q, int r, tipoCurso v, acertos_notas *contagem){
   free(w);
 }
 
-void mergesortNota(int p, int r, tipoCurso v){
+void mergesortNota(int p, int r, tipoCurso v)/*ao inves de passar qtdalunos tem q passar a quantidade que ta concorrendo no msm tipo de vaga*/{
   int q;
   if(p < r - 1){
     q = (p + r) / 2;
@@ -366,6 +366,23 @@ void naoAprovados(int quant, tipoCurso *curso){
    fclose(arqsaida);
 }
 
+void listaGeral(int quant, tipoCurso *curso,acertos_notas *contagem){
+  arqsaida = fopen("listaGeral.txt", "a");
+  int x;
+  for(int i=0;i<quant;i++){
+    fprintf(arqsaida,"%d %s\n",curso[i].codCurso,curso[i].nomeCurso);
+     fprintf(arqsaida,"INSC	V_LIN	V_MAT	V_NAT	V_HUM	RED	COTA	NOTA FINAL	CLASSIFICAÇÃO\n");
+     for(int j=0;j<curso[i].qtd;i++){
+      //ao inves de passar qtdalunos tem q passar a quantidade que ta concorrendo no msm tipo de vaga
+      x = busca_binariaAcertos(qtdAlunos, contagem, curso.tuplas[j].codinscricao);
+      fprintf(arqsaida,"%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",contagem[x].insc,contagem[x].EP[0],contagem[x].EP[1],contagem[x].EP[2],contagem[x].EP[3],contagem[x].red,curso[i].tuplas[j].tipovaga,contagem[x].notaFinal,j);
+
+     }
+
+
+  }
+}
+
 
 
 
@@ -386,3 +403,4 @@ void naoAprovados(int quant, tipoCurso *curso){
 }
 
 */
+
