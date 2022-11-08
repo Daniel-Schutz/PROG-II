@@ -274,6 +274,8 @@ scanf("%s",nomeArq);
     }
     
     for(int i=0;i<quant;i++){
+        //tem que fazer um cont pro tipo da vaga no struct tipo curso
+        //ao inves de passar curso[i].qtd tem q passar a quantidade que ta concorrendo no msm tipo de vaga
         mergesortNota(0,curso[i].qtd,curso[i]);//ordena os candidatos dentro do curso pela nota
    
    
@@ -292,6 +294,10 @@ while(true){
        scanf("%d", &opcao);
 
         if (opcao==1){
+             FILE*  arqsaida;    variavel para manip arquivo de saida
+            arqsaida = fopen("listaGeral.txt", "a");
+            fprintf(arqsaida, "/*LISTA GERAL CLASSIFICADO POR NOTA*/\n");
+            void listaGeral(quant,curso,contagem);
             
 
         }
@@ -314,13 +320,13 @@ while(true){
 
         }
 
-        /*else if (opcao == 3){
+        else if (opcao == 3){
             FILE*  arqsaida;    variavel para manip arquivo de saida
             arqsaida = fopen("saidaNaoAprovados.txt", "a");
             fprintf(arqsaida, "Não Aprovados\n");
             naoAprovados(quant,curso);
             
-    } */
+    } 
 
             
         
@@ -373,6 +379,6 @@ while(true){
 
     
 return 0;
-} 
+}  
  
     
