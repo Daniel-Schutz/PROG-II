@@ -74,6 +74,8 @@ void intercalaNota(int p, int q, int r, tipoCurso v, acertos_notas *contagem);
 
 void naoAprovados(int quant, tipoCurso *curso);
 
+void listaGeral(int quant, tipoCurso *curso,acertos_notas *contagem);
+
 dadoEmLinhas verificaEmpate(dadoEmLinhas aluno1, acertos_notas notasAluno1,dadoEmLinhas aluno2, acertos_notas notasAluno2);
 
 
