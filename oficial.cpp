@@ -251,7 +251,18 @@ scanf("%s",nomeArq);
     printf("A media de linguagens e %.2f e o desvio padrao e %.2f\n",media[0],desvio[0]);
     
     // calculo EP / NF
-    eP_NotaFinal(contagem, curso, qtdAlunos, quant, media, desvio); //estarão guardados em acertos_Notas
+    eP_NotaFinal(contagem, curso, qtdAlunos, quant, media, desvio); //função que calcula EP e Nota Final
+    
+ /*TESTE
+    for(int i=0;i<qtdAlunos;i++){
+        if (contagem[i].insc == 554840){
+            printf("ep de ling: %f  ep de mat: %f  ep de nat: %f  ep de hum: %f\n",contagem[i].EP[0],contagem[i].EP[1],contagem[i].EP[2],contagem[i].EP[3]);
+            printf("Acertos dele em ling %d  em mat %d  em nat %d em hum %d\n",contagem[i].v_ling,contagem[i].v_mat,contagem[i].v_nat,contagem[i].v_hum);
+            printf("%f",contagem[i].notaFinal);
+
+        }
+    }
+    FIM DO TESTE*/
 
     mergesortAlfabetica(0,quant,curso);//para ordenar os cursos por ordem alfabetica
     printf("\nnome do segundo curso %s\n",curso[1].nomeCurso);
@@ -261,17 +272,17 @@ scanf("%s",nomeArq);
     for(int i=0;i<quant;i++){
         mergesortVaga(0,curso[i].qtd,curso[i]);//ordena os candidatos dentro do curso pelo tipo da vaga
     }
-    printf("\napos ordenar por tipo de vaga\n");
-    printf("\nnome do segundo curso %s\n",curso[1].nomeCurso);
-     for(int i=0;i<curso[1].qtd;i++){
-        printf("nome do aluno %s e tipo de vaga e %s\n",curso[1].tuplas[i].nomecandidato,curso[1].tuplas[i].tipovaga);
-    }
+    
+    for(int i=0;i<quant;i++){
+        mergesortNota(0,curso[i].qtd,curso[i]);//ordena os candidatos dentro do curso pela nota
+   
+   
     /*TESTE
     printf("\nnome do primeiro curso %s\n",curso[0].nomeCurso);
     for(int i=0;i<curso[0].qtd;i++){
         printf("nome do aluno %s e tipo de vaga e %s\n",curso[0].tuplas[i].nomecandidato,curso[0].tuplas[i].tipovaga);
     }
-    /*FIM DO TESTE*/
+    FIM DO TESTE*/
 
 
 while(true){
@@ -303,13 +314,13 @@ while(true){
 
         }
 
-        else if (opcao == 3){
-            FILE*  arqsaida;    /* variavel para manip arquivo de saida*/ 
+        /*else if (opcao == 3){
+            FILE*  arqsaida;    variavel para manip arquivo de saida
             arqsaida = fopen("saidaNaoAprovados.txt", "a");
             fprintf(arqsaida, "Não Aprovados\n");
-            naoAprovados(quant,curso);       
+            naoAprovados(quant,curso);
             
-    }
+    } */
 
             
         
@@ -363,4 +374,5 @@ while(true){
     
 return 0;
 } 
+ 
     
