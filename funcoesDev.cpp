@@ -285,6 +285,72 @@ void mergesortVaga(int p, int r, tipoCurso v){
   }
 }
 
+dadoEmLinhas verificaEmpate(dadoEmLinhas aluno1, acertos_notas notasAluno1,dadoEmLinhas aluno2, acertos_notas notasAluno2){ 
+  dadoEmLinhas maior;
+  /*a) ver idade igual ou superior a sessenta anos, dentre estes o de maior idade;
+  b) ver maior escore na Prova de Redação;
+  c) ver maior escore padronizado (VL) na competência Linguagem, Códigos e suas
+  Tecnologias na Prova Objetiva;
+  d) ver maior escore padronizado (VM) na competência Matemática e suas
+  Tecnologias na Prova Objetiva;
+  e) ver maior escore padronizado (VH) na competência Ciências Humanas e suas
+  Tecnologias na Prova Objetiva; e
+  f) ver maior escore padronizado (VN) na competência Ciências da Natureza e suas
+  Tecnologias na Prova Objetiva;*/
+  return maior;
+}
+
+
+void intercalaNota(int p, int q, int r, tipoCurso v, acertos_notas *contagem){
+  int i, j, k,x,y;
+  dadoEmLinhas *w;
+  w = (dadoEmLinhas *) malloc(r * sizeof(dadoEmLinhas));
+
+  i = p; j = q; k = 0; 
+  while(i < q && j < r) {
+
+        x = busca_binariaAcertos(qtdAlunos, contagem, v.tuplas[i].codinscricao);
+        y =  busca_binariaAcertos(qtdAlunos, contagem, v.tuplas[j].codinscricao);
+    if(contagem[x].notaFinal>contagem[y].notaFinal){  
+      w[k] = v.tuplas[i]; i++;
+    }
+    else if(contagem[x].notaFinal=contagem[y].notaFinal){
+      dadoEmLinhas maior;
+      maior =  verificaEmpate(v.tuplas[i], contagem[x], v.tuplas[j], contagem[y]);
+      if(maior==v.tuplas[i]){
+         w[k] = v.tuplas[i]; i++;
+      } else{
+        w[k] = v.tuplas[j]; j++;;
+      }
+      
+    }
+    else{
+      w[k] = v.tuplas[j]; j++;
+    }
+    k++;
+  }
+  while(i < q){
+    w[k] = v.tuplas[i]; i++; k++;
+    }
+  while(j < r){
+    w[k] = v.tuplas[j]; j++; k++;  
+  }
+  for(i = p; i < r; i++) {
+    v.tuplas[i] = w[i - p];
+  }
+  free(w);
+}
+
+void mergesortNota(int p, int r, tipoCurso v){
+  int q;
+  if(p < r - 1){
+    q = (p + r) / 2;
+    mergesortNota(p, q, v);
+    mergesortNota(q, r, v);
+    intercalaNota(p, q, r, v, contagem);
+  }
+}
+
 void naoAprovados(int quant, tipoCurso *curso){
   FILE*  arqsaida;    /* variavel para manip arquivo de saida*/ 
   arqsaida = fopen("saidaNaoAprovados.txt", "a");
@@ -299,6 +365,8 @@ void naoAprovados(int quant, tipoCurso *curso){
   }
    fclose(arqsaida);
 }
+
+
 
 
 
@@ -317,6 +385,4 @@ void naoAprovados(int quant, tipoCurso *curso){
   }
 }
 
-void verificaEmpate(){ //verificar casos de empate e realizar a troca ordenando a lista dos candidatos em cada (Curso[j].tuplas[Curso.qtd])
-
-}*/
+*/
