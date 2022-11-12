@@ -1,38 +1,34 @@
 #define MAX 80
 
-//-----------------------------STRUCTS AUXILIARES-------------------------------//
-struct data{
+//-----------------------------STRUCTS
+//AUXILIARES-------------------------------//
+struct data {
 
-    int dia, mes, ano;
-
+  int dia, mes, ano;
 };
 
-struct dadoEmLinhas{ 
-
-    int codinscricao; // referente ao participante;
-    char nomecandidato[MAX]; 
-    data datanasc; // será utilizado para calcular o caso de empate;
-    char tipovaga[5]; // no arquivo em questão aparece com letras e números, como no exemplo dado na DescriçãoTrabalho;
-
+struct tipoAluno {
+  char nomecandidato[MAX];
+  data datanasc;    // será utilizado para calcular o caso de empate;
+  char tipovaga[5]; // no arquivo em questão aparece com letras e números, como
+                    // no exemplo dado na DescriçãoTrabalho;
+  int codinscricao, v_ling, v_mat, v_nat, v_hum;
+  float red;
+  float EP[4]; // 0=ling; 1=mat; 2=nat; 3=hum;
+  float notaFinal;
+  bool presente;
 };
 
+//-----------------------------STRUCTS
+//PRINCIPAIS-------------------------------//
 
-//-----------------------------STRUCTS PRINCIPAIS-------------------------------//
-
-struct tipoCurso{ 
-    char nomeCurso[MAX];    /* nome do curso + bacharel/licenciatura */
-    int codCurso, pesoRed, pesoMat, pesoLing, pesoHum, pesoNat;
-    int AC, L1, L3, L4, L5, L7, L8, L9, L11, L13, L15;//quantidade de vagas para cada tipo  
-    int qtd; // quantidade de inscritos por curso;
-    dadoEmLinhas *tuplas;//dados dos inscritos
-};
-
-struct acertos_notas{
-
-    int insc,v_ling, v_mat, v_nat, v_hum;
-    float red;
-    float EP[4];// 0=ling; 1=mat; 2=nat; 3=hum;
-    float notaFinal;
+struct tipoCurso {
+  char nomeCurso[MAX]; /* nome do curso + bacharel/licenciatura */
+  int codCurso, pesoRed, pesoMat, pesoLing, pesoHum, pesoNat;
+  int AC, L1, L3, L4, L5, L7, L8, L9, L11, L13,
+      L15; // quantidade de vagas para cada tipo
+  int qtd; // quantidade de inscritos por curso;
+  tipoAluno *aluno;
 };
 
 //-----------------------------FUNÇÕES-------------------------------//
@@ -44,17 +40,21 @@ void mergesortTipoCurso(int p, int r, tipoCurso *v);
 
 int busca_binariaTipoCurso(int n, tipoCurso *v, int x);
 
-void intercalaAcertos(int p, int q, int r, acertos_notas *v);
+void intercalaAcertos(int p, int q, int r, tipoAluno *v);
 
-void mergesortAcertos(int p, int r, acertos_notas *v);
+void mergesortAcertos(int p, int r, tipoAluno *v);
 
-int busca_binariaAcertos(int n, acertos_notas *v, int x);
+void mergesortTipoAluno(int p, int r, tipoAluno *v);
+
+void intercalaTipoAluno(int p, int q, int r, tipoAluno *v);
+
+int busca_binariaAcertos(int n, tipoAluno *v, int x);
 
 float mediaDaArea(float quant, float soma);
 
-float desvioPadrao(float media, int quant, acertos_notas *contagem, int num);
+float desvioPadrao(float media, int quant, tipoCurso *curso, int num, int qtdAlunos);
 
-void eP_NotaFinal(acertos_notas contagem[], tipoCurso curso[], int quant, int qtdCursos, float media[], float desvio[]);
+void eP_NotaFinal(tipoCurso curso[], int quant, float media[], float desvio[]);
 
 void buscaImprimeCandidato(int numerodecursos, tipoCurso curso[], int codinscr);
 
@@ -68,14 +68,16 @@ void mergesortVaga(int p, int r, tipoCurso v);
 
 void intercalaVaga(int p, int q, int r, tipoCurso v);
 
-void mergesortNota(int p, int r, tipoCurso v)
+void mergesortNota(int p, int r, tipoCurso v);
 
-void intercalaNota(int p, int q, int r, tipoCurso v, acertos_notas *contagem);
+void intercalaNota(int p, int q, int r, tipoCurso v);
 
 void naoAprovados(int quant, tipoCurso *curso);
 
-void listaGeral(int quant, tipoCurso *curso,acertos_notas *contagem);
+void listaParticipantes(int quant, tipoCurso *curso);
 
-dadoEmLinhas verificaEmpate(dadoEmLinhas aluno1, acertos_notas notasAluno1,dadoEmLinhas aluno2, acertos_notas notasAluno2);
+// dadoEmLinhas verificaEmpate(dadoEmLinhas aluno1, tipoAluno
+// notasAluno1,dadoEmLinhas aluno2, tipoAluno notasAluno2);
+
 
 
