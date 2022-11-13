@@ -667,7 +667,7 @@ void naoAprovados(int quant, tipoCurso *curso){
                 auxiliar[cont]=curso[i].aluno[j];
                 cont+=1;
                 auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));        
-              } else if(curso[i].aluno[j]==false){
+              } else if(curso[i].aluno[j].presente==false){
                 reprovados[contReprovados]=curso[i].aluno[j];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -694,7 +694,7 @@ void naoAprovados(int quant, tipoCurso *curso){
                 cont+=1;
                 auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
-              } else if(curso[i].aluno[j]==false){
+              } else if(curso[i].aluno[j].presente==false){
                 reprovados[contReprovados]=curso[i].aluno[j];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -721,7 +721,7 @@ void naoAprovados(int quant, tipoCurso *curso){
                 cont+=1;
                 auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
-              } else if(curso[i].aluno[j]==false){
+              } else if(curso[i].aluno[j].presente==false){
                 reprovados[contReprovados]=curso[i].aluno[j];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -748,7 +748,7 @@ void naoAprovados(int quant, tipoCurso *curso){
                 cont+=1;
                 auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
-              } else if(curso[i].aluno[j]==false){
+              } else if(curso[i].aluno[j].presente==false){
                 reprovados[contReprovados]=curso[i].aluno[j];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -775,7 +775,7 @@ void naoAprovados(int quant, tipoCurso *curso){
                 cont+=1;
                 auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
-              } else if(curso[i].aluno[j]==false){
+              } else if(curso[i].aluno[j].presente==false){
                 reprovados[contReprovados]=curso[i].aluno[j];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -802,7 +802,7 @@ void naoAprovados(int quant, tipoCurso *curso){
                 cont+=1;
                 auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
-              } else if(curso[i].aluno[j]==false){
+              } else if(curso[i].aluno[j].presente==false){
                 reprovados[contReprovados]=curso[i].aluno[j];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -829,7 +829,7 @@ void naoAprovados(int quant, tipoCurso *curso){
                 cont+=1;
                 auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
-              } else if(curso[i].aluno[j]==false){
+              } else if(curso[i].aluno[j].presente==false){
                 reprovados[contReprovados]=curso[i].aluno[j];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -856,7 +856,7 @@ void naoAprovados(int quant, tipoCurso *curso){
                 cont+=1;
                 auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
-              } else if(curso[i].aluno[j]==false){
+              } else if(curso[i].aluno[j].presente==false){
                 reprovados[contReprovados]=curso[i].aluno[j];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -883,7 +883,7 @@ void naoAprovados(int quant, tipoCurso *curso){
                 cont+=1;
                 auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
-              } else if(curso[i].aluno[j]==false){
+              } else if(curso[i].aluno[j].presente==false){
                 reprovados[contReprovados]=curso[i].aluno[j];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -910,7 +910,7 @@ void naoAprovados(int quant, tipoCurso *curso){
                 cont+=1;
                 auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
-              } else if(curso[i].aluno[j]==false){
+              } else if(curso[i].aluno[j].presente==false){
                 reprovados[contReprovados]=curso[i].aluno[j];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -937,7 +937,7 @@ void naoAprovados(int quant, tipoCurso *curso){
                 cont+=1;
                 auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
-              } else if(curso[i].aluno[j]==false){
+              } else if(curso[i].aluno[j].presente==false){
                 reprovados[contReprovados]=curso[i].aluno[j];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
