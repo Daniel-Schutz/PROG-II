@@ -368,72 +368,62 @@ int main() {
 
 
           }
- /*
+ 
           else if (opcao == 3){
-              FILE*  arqsaida;    variavel para manip arquivo de saida
-              arqsaida = fopen("saidaNaoAprovados.txt", "a");
-              fprintf(arqsaida, "Não Aprovados\n");
               naoAprovados(quant,curso);
 
       }
 
-*/
 
 
-          /*else if (opcao == 4){ //troquei o else por 4 para minimizar chances de
-  erro caso ponha qualquer outro numero, seria estranho apertar 6 e alterar as
-  notas de red mergesortAcertos(0, qtdAlunos, aluno); //ordena o struct
-  Acerto_notas para ficar mais facil a busca pelo insc
 
-              printf("\nDigite o nome do arquivo que contém as novas notas:
-  \n"); scanf("%s", nomeArq); FILE *file; int numalteracoes; //para ler o
-  arquivo float novanota; float notaantiga; int inscricaoalterar; int
-  indicecodinsc; //indice do vetor de registro struct pra alterar file =
-  fopen(nomeArq, "r"); if (file == NULL){ printf("\n Não foi possível abrir o
-  arquivo das notas de Redação, tente novamente.\n");
-              }
-              else{
-                  fscanf(file,"%d", &numalteracoes);
-                  int i = 0;
-                  while (i < numalteracoes){ //ler todo o arquivo e alterar
-  enquanto lê fscanf(file, "%d %f %f", &inscricaoalterar, &notaantiga, &novanota
-  ); //leitura indicecodinsc = busca_binariaAcertos(qtdAlunos, aluno,
-  inscricaoalterar); //busca
-                      // poderia se fazer uma checagem if (notaantiga ==
-  aluno[indicecodinsc].red) para dps realizar a troca
-                      // porém, não achei necessário, uma vez que ja temos o
-  indice aluno[indicecodinsc].red = novanota; //alteração
+          else if (opcao == 4){
+           printf("\nEscreva o nome do arquivo dos acertos dos inscritos:");
+    scanf("%s", nomeArq);
 
-                      //checar
-                      printf("\n O aluno de %d que tinha a nota %0.f agr tem a
-  nota %0.f", aluno[indicecodinsc].insc, notaantiga, aluno[indicecodinsc].red);
-  //insc referente ao struct pra comparar com o arquivo se está tudo certo,
-  notaantiga pois a alteração ja foi feita então não teria como chamar o struct
-  ponto nota, e por fim o ultimo referente a nota atualizada.
-                      //checado
-                      i++;
-                  }
-              }
-              fclose(file);
-              eP_NotaFinal(aluno, curso, qtdAlunos, quant, media, desvio);
-  //FAZER SO NOTA FINAL
-          }
+    arq = fopen(nomeArq, "r"); // abrindo arquivo;
+
+    if (arq == NULL) {
+      printf("\n\nO arquivo %s não pode ser aberto\n\n", nomeArq);
+    }
+
+    else {
+          int numAlteracoes, codInsc,y;
+          float notaAntiga, notaNova;
+                  fscanf(arq,"%d", &numAlteracoes);
+          for(int i=0;i<numAlteracoes;i++){
+            fscanf(arq, "%d %f %f", &codInsc, &notaAntiga, &notaNova);
+            for(int x=0;x<quant;x++){
+                y = busca_binariaAcertos(curso[x].qtd,curso[x].aluno,codInsc);
+                if(curso[x].aluno[y].codinscricao==codInsc){
+                  curso[x].aluno[y].red = notaNova;
+                   curso[x].aluno[y].notaFinal = (curso[x].aluno[y].red * curso[x].pesoRed + curso[x].aluno[y].EP[3] * curso[x].pesoHum + curso[x].aluno[y].EP[0] * curso[x].pesoLing +
+            curso[x].aluno[y].EP[1] * curso[x].pesoMat + curso[x].aluno[y].EP[2] * curso[x].pesoNat)/(curso[x].pesoRed + curso[x].pesoHum + curso[x].pesoLing +
+            curso[x].pesoMat + curso[x].pesoNat);
+                  break;
+                }
+              
+            }
+            fclose(arq);
+          }          
+        }
+      }
 
           else if (opcao == 5){
               break;
           }
 
-          else{ //Adicionei para caso digite qualquer outro número e ter pelo
-  menos uma explicação do erro printf("\n você digitou uma opção inexistente,
-  por favor, tente novamente!\n");
+          else{ 
+            printf("\n você digitou uma opção inexistente, por favor, tente novamente!\n");
           }
 
 
 
- */
+ 
  } 
   return 0;
 }
+
 
 
  
