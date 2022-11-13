@@ -131,9 +131,42 @@ int main() {
           else {
             // executar a leitura dos dados de forma correta para cada bloco;
             for (int x = 0; x < curso[index].qtd; x++) {
-              fscanf(arq, "%d %[^0-9] %d/%d/%d %[^\n] ", &curso[index].aluno[x].codinscricao, curso[index].aluno[x].nomecandidato, &curso[index].aluno[x].datanasc.dia, &curso[index].aluno[x].datanasc.mes,
+              fscanf(arq, "%d %[^0-9] %d/%d/%d %s", &curso[index].aluno[x].codinscricao, curso[index].aluno[x].nomecandidato, &curso[index].aluno[x].datanasc.dia, &curso[index].aluno[x].datanasc.mes,
                      &curso[index].aluno[x].datanasc.ano, curso[index].aluno[x].tipovaga);
               curso[index].aluno[x].presente = false;
+               if(strcmp(curso[index].aluno[x].tipovaga,"AC")==0){
+                            curso[index].quantAC+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L1")==0){
+                            curso[index].quantL1+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L3")==0){
+                            curso[index].quantL3+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L4")==0){
+                            curso[index].quantL4+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L5")==0){
+                            curso[index].quantL5+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L7")==0){
+                            curso[index].quantL7+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L8")==0){
+                            curso[index].quantL8+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L9")==0){
+                            curso[index].quantL9+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L11")==0){
+                            curso[index].quantL11+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L13")==0){
+                            curso[index].quantL13+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L15")==0){
+                            curso[index].quantL15+=1;
+                        }
             }
           }
         }
@@ -157,7 +190,7 @@ int main() {
           free(alunoAuxiliar);
           for (int x = curso[index].qtd - qtdTemporaria; x < curso[index].qtd;
                x++) {
-            fscanf(arq, "%d %[^0-9] %d/%d/%d %[^\n] ",
+            fscanf(arq, "%d %[^0-9] %d/%d/%d %s",
                    &curso[index].aluno[x].codinscricao,
                    curso[index].aluno[x].nomecandidato,
                    &curso[index].aluno[x].datanasc.dia,
@@ -165,6 +198,39 @@ int main() {
                    &curso[index].aluno[x].datanasc.ano,
                    curso[index].aluno[x].tipovaga);
             curso[index].aluno[x].presente = false;
+             if(strcmp(curso[index].aluno[x].tipovaga,"AC")==0){
+                            curso[index].quantAC+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L1")==0){
+                            curso[index].quantL1+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L3")==0){
+                            curso[index].quantL3+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L4")==0){
+                            curso[index].quantL4+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L5")==0){
+                            curso[index].quantL5+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L7")==0){
+                            curso[index].quantL7+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L8")==0){
+                            curso[index].quantL8+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L9")==0){
+                            curso[index].quantL9+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L11")==0){
+                            curso[index].quantL11+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L13")==0){
+                            curso[index].quantL13+=1;
+                        }
+                        else if(strcmp(curso[index].aluno[x].tipovaga,"L15")==0){
+                            curso[index].quantL15+=1;
+                        }
           }
         }
       }
@@ -278,19 +344,18 @@ int main() {
    while(true){
 
          menu();
-         printf("Digite a opção desejada:");
+         printf("\nDigite a opção desejada:");
          scanf("%d", &opcao);
 
           if (opcao==1){
-              void listaParticipantes(quant,curso);
+            listaParticipantes(quant,curso);
 
 
           }
 
-          else if (opcao == 2){
+          /*else if (opcao == 2){
               int codinscr;
-              printf("\nInforme o número de inscrição do candidato ou digite 0
-  para retornar ao menu: \n"); scanf("%d", &codinscr); if (codinscr == 0)
+              printf("\nInforme o número de inscrição do candidato ou digite 0 para retornar ao menu: \n"); scanf("%d", &codinscr); if (codinscr == 0)
               {
                   continue;
                   //para sair e consultar o menu novamente
@@ -313,10 +378,10 @@ int main() {
 
       }
 
+*/
 
 
-
-          else if (opcao == 4){ //troquei o else por 4 para minimizar chances de
+          /*else if (opcao == 4){ //troquei o else por 4 para minimizar chances de
   erro caso ponha qualquer outro numero, seria estranho apertar 6 e alterar as
   notas de red mergesortAcertos(0, qtdAlunos, aluno); //ordena o struct
   Acerto_notas para ficar mais facil a busca pelo insc
@@ -366,8 +431,8 @@ int main() {
 
 
 
-  } 
-
+ */
+ } 
   return 0;
 }
 
