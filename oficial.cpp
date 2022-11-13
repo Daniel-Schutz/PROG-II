@@ -378,6 +378,8 @@ int main() {
 
 
           else if (opcao == 4){
+            FILE *arq; /* variavel para acessar um arquivo */
+             char nomeArq[MAX];
            printf("\nEscreva o nome do arquivo dos acertos dos inscritos:");
     scanf("%s", nomeArq);
 
@@ -423,6 +425,7 @@ int main() {
  } 
   return 0;
 }
+
 
 
 
