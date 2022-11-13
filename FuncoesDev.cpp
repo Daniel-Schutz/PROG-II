@@ -290,50 +290,59 @@ void mergesortVaga(int p, int r, tipoCurso v){
   }
 }
 
-void intercalaNota(int p, int q, int r, tipoCurso v){ 
-  int i, j, k,x,y; tipoAluno *w; 
-  w = (tipoAluno *) malloc(r * sizeof(tipoAluno));
+void intercalaNota(int p, int q, int r, tipoAluno *v) {
+  int i, j, k;
+  tipoAluno *w;
+  w = (tipoAluno *)malloc(r * sizeof(tipoAluno));
 
-  i = p; j = q; k = 0;
-  while(i < q && j < r) {
+  i = p;
+  j = q;
+  k = 0;
+  while (i < q && j < r) {
+    if (v[i].notaFinal > v[j].notaFinal) {
+      w[k] = v[i];
+      i++;} 
 
-   if(v.aluno[i].notaFinal < v.aluno[y].notaFinal){ 
-  w[k] = v.aluno[i]; i++;
-    }
-    /*else if(v.aluno[i].notaFinal==v.aluno[y].notaFinal){
+    else if(v[i].notaFinal == v[j].notaFinal) {
       tipoAluno maior;
-      maior =  verificaEmpate(v.aluno[i], aluno[x], v.aluno[j], aluno[y]);
-      if(maior.codcodinscricaoricao=v.aluno[i].codcodinscricaoricao){
-         w[k] = v.aluno[i]; i++;
+      maior = verificaEmpate(v[i],v[j]);
+      if(maior.codinscricao==v[i].codinscricao){
+        w[k] = v[i];
+      i++;
       } else{
-        w[k] = v.aluno[j]; j++;;
+        w[k] = v[j];
+      j++;
       }
-
-    }*/
-    else{
-      w[k] = v.aluno[j]; j++;
+    } 
+    else {
+      w[k] = v[j];
+      j++;
     }
     k++;
   }
-  while(i < q){
-    w[k] = v.aluno[i]; i++; k++;
-    }
-  while(j < r){
-    w[k] = v.aluno[j]; j++; k++;
+  while (i < q) {
+    w[k] = v[i];
+    i++;
+    k++;
   }
-  for(i = p; i < r; i++) {
-    v.aluno[i] = w[i - p];
+  while (j < r) {
+    w[k] = v[j];
+    j++;
+    k++;
+  }
+  for (i = p; i < r; i++) {
+    v[i] = w[i - p];
   }
   free(w);
 }
 
-void mergesortNota(int p, int r, tipoCurso v){
+void mergesortNota(int p, int r, tipoAluno *v) {
   int q;
-  if(p < r - 1){
+  if (p < r - 1) {
     q = (p + r) / 2;
     mergesortNota(p, q, v);
     mergesortNota(q, r, v);
-    intercalaNota(p, q, r,v);
+    intercalaNota(p, q, r, v);
   }
 }
 
@@ -342,175 +351,281 @@ void listaParticipantes(int quant, tipoCurso *curso){
           arqsaida = fopen("listaParticipantes.txt", "a");
           fprintf(arqsaida, "/*LISTA GERAL CLASSIFICADO POR NOTA*/\n");
           for(int i=0;i<quant;i++){
+            fprintf(arqsaida, "%d %s\n",curso[i].codCurso,curso[i].nomeCurso);
              fprintf(arqsaida, "INSC	V_LIN	V_MAT	V_NAT	V_HUM	RED	COTA	NOTA FINAL	CLASSIFICAÇÃO\n");
-            int j=0,cont=0;
-            tipoAluno *auxiliar;
+             tipoAluno *auxiliar;
+             int cont=0;
+             int acumulo=curso[i].quantAC;
+             int primeiro=0;
             auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
-            while(strcmp(curso[i].aluno[j].tipovaga,"AC")==0){
+             for(int j=primeiro; j<acumulo;j++){
               if(curso[i].aluno[j].presente==true){
-                  auxiliar[cont]=curso[i].aluno[j];
-                  cont++;
-                  auxiliar = (tipoAluno*) realloc(auxiliar, cont * sizeof(tipoAluno));
-              }
-              j++;
-            }//termina o while aq
-            //ordena auxiliar
-              for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].v_ling,auxiliar[x].v_mat,auxiliar[x].v_nat,auxiliar[x].v_hum,auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
               }
-              free(auxiliar);
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
-               auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
-            while(strcmp(curso[i].aluno[j].tipovaga,"L1")==0){
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL1;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
               if(curso[i].aluno[j].presente==true){
-                  auxiliar[cont]=curso[i].aluno[j];
-                  cont++;
-                  auxiliar = (tipoAluno*) realloc(auxiliar, cont * sizeof(tipoAluno));
-              }
-              j++;
-            }//termina o while aq
-            //ordena auxiliar
-               for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].v_ling,auxiliar[x].v_mat,auxiliar[x].v_nat,auxiliar[x].v_hum,auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
               }
-              free(auxiliar);
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
-               auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
-            while(strcmp(curso[i].aluno[j].tipovaga,"L3")==0){
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL3;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
               if(curso[i].aluno[j].presente==true){
-                  auxiliar[cont]=curso[i].aluno[j];
-                  cont++;
-                  auxiliar = (tipoAluno*) realloc(auxiliar, cont * sizeof(tipoAluno));
-              }
-              j++;
-            }//termina o while aq
-            //ordena auxiliar
-               for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].v_ling,auxiliar[x].v_mat,auxiliar[x].v_nat,auxiliar[x].v_hum,auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
               }
-              free(auxiliar);
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
-               auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
-            while(strcmp(curso[i].aluno[j].tipovaga,"L4")==0){
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL4;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
               if(curso[i].aluno[j].presente==true){
-                  auxiliar[cont]=curso[i].aluno[j];
-                  cont++;
-                  auxiliar = (tipoAluno*) realloc(auxiliar, cont * sizeof(tipoAluno));
-              }
-              j++;
-            }//termina o while aq
-            //ordena auxiliar
-               for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].v_ling,auxiliar[x].v_mat,auxiliar[x].v_nat,auxiliar[x].v_hum,auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
               }
-              free(auxiliar);
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
-               auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
-            while(strcmp(curso[i].aluno[j].tipovaga,"L5")==0){
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL5;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
               if(curso[i].aluno[j].presente==true){
-                  auxiliar[cont]=curso[i].aluno[j];
-                  cont++;
-                  auxiliar = (tipoAluno*) realloc(auxiliar, cont * sizeof(tipoAluno));
-              }
-              j++;
-            }//termina o while aq
-            //ordena auxiliar
-               for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].v_ling,auxiliar[x].v_mat,auxiliar[x].v_nat,auxiliar[x].v_hum,auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
               }
-              free(auxiliar);
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
-               auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
-            while(strcmp(curso[i].aluno[j].tipovaga,"L7")==0){
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL7;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
               if(curso[i].aluno[j].presente==true){
-                  auxiliar[cont]=curso[i].aluno[j];
-                  cont++;
-                  auxiliar = (tipoAluno*) realloc(auxiliar, cont * sizeof(tipoAluno));
-              }
-              j++;
-            }//termina o while aq
-            //ordena auxiliar
-               for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].v_ling,auxiliar[x].v_mat,auxiliar[x].v_nat,auxiliar[x].v_hum,auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
               }
-              free(auxiliar);
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
-               auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
-            while(strcmp(curso[i].aluno[j].tipovaga,"L9")==0){
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL8;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
               if(curso[i].aluno[j].presente==true){
-                  auxiliar[cont]=curso[i].aluno[j];
-                  cont++;
-                  auxiliar = (tipoAluno*) realloc(auxiliar, cont * sizeof(tipoAluno));
-              }
-              j++;
-            }//termina o while aq
-            //ordena auxiliar
-               for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].v_ling,auxiliar[x].v_mat,auxiliar[x].v_nat,auxiliar[x].v_hum,auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
               }
-              free(auxiliar);
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
-               auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
-            while(strcmp(curso[i].aluno[j].tipovaga,"L11")==0){
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL9;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
               if(curso[i].aluno[j].presente==true){
-                  auxiliar[cont]=curso[i].aluno[j];
-                  cont++;
-                  auxiliar = (tipoAluno*) realloc(auxiliar, cont * sizeof(tipoAluno));
-              }
-              j++;
-            }//termina o while aq
-            //ordena auxiliar
-               for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].v_ling,auxiliar[x].v_mat,auxiliar[x].v_nat,auxiliar[x].v_hum,auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
               }
-              free(auxiliar);
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
-               auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
-            while(strcmp(curso[i].aluno[j].tipovaga,"L13")==0){
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL11;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
               if(curso[i].aluno[j].presente==true){
-                  auxiliar[cont]=curso[i].aluno[j];
-                  cont++;
-                  auxiliar = (tipoAluno*) realloc(auxiliar, cont * sizeof(tipoAluno));
-              }
-              j++;
-            }//termina o while aq
-            //ordena auxiliar
-               for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].v_ling,auxiliar[x].v_mat,auxiliar[x].v_nat,auxiliar[x].v_hum,auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
               }
-              free(auxiliar);
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
-               auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
-            while(strcmp(curso[i].aluno[j].tipovaga,"L15")==0){
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL13;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
               if(curso[i].aluno[j].presente==true){
-                  auxiliar[cont]=curso[i].aluno[j];
-                  cont++;
-                  auxiliar = (tipoAluno*) realloc(auxiliar, cont * sizeof(tipoAluno));
-              }
-              j++;
-            }//termina o while aq
-            //ordena auxiliar
-               for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].v_ling,auxiliar[x].v_mat,auxiliar[x].v_nat,auxiliar[x].v_hum,auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
 
               }
-              free(auxiliar);
-                
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL15;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
+              if(curso[i].aluno[j].presente==true){
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
+
+              }
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+
+              }
+              free(auxiliar);//TERMINOU
+       
+            
+
+
+
+
             }
            
           }
  
 
-     
+  tipoAluno verificaEmpate(tipoAluno aluno1, tipoAluno aluno2){
+    int idade1 = 738375 - (365 *aluno1.datanasc.ano - 30 * aluno1.datanasc.mes - aluno1.datanasc.dia);
+    int idade2 =  738375 - (365 *aluno2.datanasc.ano - 30 * aluno2.datanasc.mes - aluno2.datanasc.dia);
+    if(idade1>=21900 && idade1>idade2){
+      return aluno1;
+    }
+    else if(idade2>21900 && idade2>idade1){
+      return aluno2;
+    } else{
+      if(aluno1.red>aluno2.red){
+        return aluno1;
+      }
+      else if(aluno2.red>aluno1.red){
+        return aluno2;
+      } else{
+        if(aluno1.EP[0]>aluno2.EP[0]){
+        return aluno1;
+      }
+      else if(aluno2.EP[0]>aluno1.EP[0]){
+        return aluno2;
+      } else{
+        if(aluno1.EP[1]>aluno2.EP[1]){
+        return aluno1;
+      }
+      else if(aluno2.EP[1]>aluno1.EP[1]){
+        return aluno2;
+      } else{
+        if(aluno1.EP[3]>aluno2.EP[3]){
+        return aluno1;
+      }
+      else if(aluno2.EP[3]>aluno1.EP[3]){
+        return aluno2;
+      } else{
+        if(aluno1.EP[2]>aluno2.EP[2]){
+        return aluno1;
+      }
+      else if(aluno2.EP[2]>aluno1.EP[2]){
+        return aluno2;
+      }
+      else{
+        return aluno1;//se nao teve desempate
+      }
+      }
+        
+
+      }
+
+      }
+
+
+    }
+  }   
+  }
 
 
  
@@ -629,5 +744,3 @@ função troca.\n");
   }
 }
 */
-
-    
