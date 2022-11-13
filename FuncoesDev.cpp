@@ -569,7 +569,7 @@ void listaParticipantes(int quant, tipoCurso *curso){
 
 
             }
-           
+           fclose(arqsaida);
           }
  
 
@@ -649,6 +649,330 @@ curso[i].aluno[j].datanasc.mes, curso[i].aluno[j].datanasc.ano,curso[i].codCurso
 
 
 
+void naoAprovados(int quant, tipoCurso *curso){
+  FILE*  arqsaida;
+  arqsaida = fopen("NaoAprovados.txt", "w");
+  fprintf(arqsaida, ".+*******+.NAO APROVADOS.+*******+.");
+  for(int i=0;i<quant;i++){
+    fprintf(arqsaida, "%d %s\n",curso[i].codCurso,curso[i].nomeCurso);
+
+    tipoAluno *auxiliar, *reprovados;
+             int cont=0,contReprovados=0;
+             int acumulo=curso[i].quantAC;
+             int primeiro=0;
+            auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+            reprovados=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
+              if(curso[i].aluno[j].presente==true){
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));        
+              } else if(curso[i].aluno[j]==false){
+                reprovados[contReprovados]=curso[i].aluno[j];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+              } 
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                if(x>curso[i].AC){
+                reprovados[contReprovados]=auxiliar[x];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+
+                }
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL1;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
+              if(curso[i].aluno[j].presente==true){
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
+
+              } else if(curso[i].aluno[j]==false){
+                reprovados[contReprovados]=curso[i].aluno[j];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+              } 
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                if(x>curso[i].L1){
+                reprovados[contReprovados]=auxiliar[x];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+
+                }
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL3;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
+              if(curso[i].aluno[j].presente==true){
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
+
+              } else if(curso[i].aluno[j]==false){
+                reprovados[contReprovados]=curso[i].aluno[j];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+              } 
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                if(x>curso[i].L3){
+                reprovados[contReprovados]=auxiliar[x];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+
+                }
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL4;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
+              if(curso[i].aluno[j].presente==true){
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
+
+              } else if(curso[i].aluno[j]==false){
+                reprovados[contReprovados]=curso[i].aluno[j];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+              } 
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                if(x>curso[i].L4){
+                reprovados[contReprovados]=auxiliar[x];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+
+                }
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL5;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
+              if(curso[i].aluno[j].presente==true){
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
+
+              } else if(curso[i].aluno[j]==false){
+                reprovados[contReprovados]=curso[i].aluno[j];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+              } 
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                if(x>curso[i].L5){
+                reprovados[contReprovados]=auxiliar[x];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+
+                }
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL7;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
+              if(curso[i].aluno[j].presente==true){
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
+
+              } else if(curso[i].aluno[j]==false){
+                reprovados[contReprovados]=curso[i].aluno[j];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+              } 
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                if(x>curso[i].L7){
+                reprovados[contReprovados]=auxiliar[x];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+
+                }
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL8;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
+              if(curso[i].aluno[j].presente==true){
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
+
+              } else if(curso[i].aluno[j]==false){
+                reprovados[contReprovados]=curso[i].aluno[j];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+              } 
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                if(x>curso[i].L8){
+                reprovados[contReprovados]=auxiliar[x];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+
+                }
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL9;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
+              if(curso[i].aluno[j].presente==true){
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
+
+              } else if(curso[i].aluno[j]==false){
+                reprovados[contReprovados]=curso[i].aluno[j];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+              } 
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                if(x>curso[i].L9){
+                reprovados[contReprovados]=auxiliar[x];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+
+                }
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL11;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
+              if(curso[i].aluno[j].presente==true){
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
+
+              } else if(curso[i].aluno[j]==false){
+                reprovados[contReprovados]=curso[i].aluno[j];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+              } 
+             }
+             mergesortNota(0,cont,auxiliar);
+            for(int x=0;x<cont;x++){
+                if(x>curso[i].L11){
+                reprovados[contReprovados]=auxiliar[x];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+
+                }
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL13;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
+              if(curso[i].aluno[j].presente==true){
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
+
+              } else if(curso[i].aluno[j]==false){
+                reprovados[contReprovados]=curso[i].aluno[j];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+              } 
+             }
+             mergesortNota(0,cont,auxiliar);
+             for(int x=0;x<cont;x++){
+                if(x>curso[i].L13){
+                reprovados[contReprovados]=auxiliar[x];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+
+                }
+              }
+              free(auxiliar);//TERMINOU
+
+              primeiro=acumulo;
+              acumulo+=curso[i].quantL15;
+              cont=0;
+              auxiliar=(tipoAluno *)malloc(sizeof(tipoAluno));
+             for(int j=primeiro; j<acumulo;j++){
+              if(curso[i].aluno[j].presente==true){
+                auxiliar[cont]=curso[i].aluno[j];
+                cont+=1;
+                auxiliar = (tipoAluno*) realloc(auxiliar, (cont+1) * sizeof(tipoAluno));         
+
+              } else if(curso[i].aluno[j]==false){
+                reprovados[contReprovados]=curso[i].aluno[j];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+              } 
+             }
+             mergesortNota(0,cont,auxiliar);
+             for(int x=0;x<cont;x++){
+                if(x>curso[i].L15){
+                reprovados[contReprovados]=auxiliar[x];
+                contReprovados+=1;
+                reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
+
+                }
+              }
+              free(auxiliar);//TERMINOU
+
+              //ORDENAR REPROVADOS
+              //PRINTAR REPROVADOS
+              free(reprovados);
+       
+            
+
+
+    
+
+
+
+
+
+  }
+   fclose(arqsaida);
+}
+
+
+
 /*
 
 
@@ -709,20 +1033,6 @@ Humanas e suas Tecnologias na Prova Objetiva; e f) ver maior escore padronizado
 
 
 
-void naoAprovados(int quant, tipoCurso *curso){
-  FILE*  arqsaida;
-  arqsaida = fopen("saidaNaoAprovados.txt", "a");
-  for(int i=0;i<quant;i++){
-    fprintf(arqsaida, "%d %s\n",curso[i].codCurso,curso[i].nomeCurso);
-    //percorrer os candidatos e ver quem não passou
-
-
-
-
-
-  }
-   fclose(arqsaida);
-}
 
 
 
@@ -747,4 +1057,3 @@ função troca.\n");
   }
 }
 */
-
