@@ -380,7 +380,7 @@ int main() {
           else if (opcao == 4){
             FILE *arq; /* variavel para acessar um arquivo */
              char nomeArq[MAX];
-           printf("\nEscreva o nome do arquivo dos acertos dos inscritos:");
+           printf("\nEscreva o nome do arquivo das alterações de notas de redação:");
     scanf("%s", nomeArq);
 
     arq = fopen(nomeArq, "r"); // abrindo arquivo;
@@ -406,9 +406,10 @@ int main() {
                 }
               
             }
-            fclose(arq);
+            
           }          
         }
+        fclose(arq);
       }
 
           else if (opcao == 5){
@@ -425,7 +426,6 @@ int main() {
  } 
   return 0;
 }
-
 
 
 
