@@ -348,7 +348,7 @@ void mergesortNota(int p, int r, tipoAluno *v) {
 
 void listaParticipantes(int quant, tipoCurso *curso){
           FILE*  arqsaida;   
-          arqsaida = fopen("listaParticipantes.txt", "a");
+          arqsaida = fopen("listaParticipantes.txt", "w");
           fprintf(arqsaida, "/*LISTA GERAL CLASSIFICADO POR NOTA*/\n");
           for(int i=0;i<quant;i++){
             fprintf(arqsaida, "%d %s\n",curso[i].codCurso,curso[i].nomeCurso);
@@ -627,27 +627,30 @@ void listaParticipantes(int quant, tipoCurso *curso){
   }   
   }
 
+void buscaImprimeCandidato(int quant, tipoCurso curso[], int codinscr)
+{ 
+for(int i=0;i<quant;i++){
+  for (int j=0;j<curso[i].qtd;j++){
+    if(curso[i].aluno[j].codinscricao==codinscr){
+      printf("%d %s %d/%d/%d %d %s\n", curso[i].aluno[j].codinscricao,curso[i].aluno[j].nomecandidato, curso[i].aluno[j].datanasc.dia,
+curso[i].aluno[j].datanasc.mes, curso[i].aluno[j].datanasc.ano,curso[i].codCurso, curso[i].nomeCurso);
+ break;
+  }
 
- 
+  }
+  
 
+  
+}
+  
+
+
+}
 
 
 
 /*
-void buscaImprimeCandidato(int numerodecursos, tipoCurso curso[], int
-codcodinscricaor){ int i, aux; i = 0; while (i < numerodecursos){ aux = 0; while
-(aux < curso[i].qtd){ //refere-se a quantidade de aluno no vetor if
-(codcodinscricaor == curso[i].aluno[aux].codcodinscricaoricao){ printf("%d %s
-%d/%d/%d %d %s", curso[i].aluno[aux].codcodinscricaoricao,
-curso[i].aluno[aux].nomecandidato, curso[i].aluno[aux].datanasc.dia,
-curso[i].aluno[aux].datanasc.mes, curso[i].aluno[aux].datanasc.ano,
-curso[i].codCurso, curso[i].nomeCurso); break;
-        }
-        aux++;
-      }
-      i++;
-    }
-}
+
 
 void intercalaAcertos(int p, int q, int r, tipoAluno *v){
   int i, j, k;
@@ -744,3 +747,4 @@ função troca.\n");
   }
 }
 */
+
