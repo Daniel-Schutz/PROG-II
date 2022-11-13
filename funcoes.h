@@ -77,3 +77,7 @@ void naoAprovados(int quant, tipoCurso *curso);
 void listaParticipantes(int quant, tipoCurso *curso);
 
 tipoAluno verificaEmpate(tipoAluno aluno1, tipoAluno aluno2);
+
+void mergesortReprovados(int p, int r, tipoAluno v);
+
+void intercalaReprovados(int p, int q, int r, tipoAluno v);
