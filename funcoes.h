@@ -78,4 +78,3 @@ void listaParticipantes(int quant, tipoCurso *curso);
 
 tipoAluno verificaEmpate(tipoAluno aluno1, tipoAluno aluno2);
 
-
