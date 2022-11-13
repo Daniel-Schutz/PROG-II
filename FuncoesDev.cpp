@@ -954,7 +954,7 @@ void naoAprovados(int quant, tipoCurso *curso){
               }
               free(auxiliar);//TERMINOU
 
-              //ORDENAR REPROVADOS
+              mergesortReprovados(0,contReprovados,reprovados);
               for(int x=0;x<contReprovados;x++){
                 fprintf(arqsaida,"%d %s\n",reprovados[x].codinscricao,reprovados[x].nomecandidato);
               }
@@ -972,6 +972,58 @@ void naoAprovados(int quant, tipoCurso *curso){
   }
    fclose(arqsaida);
 }
+
+void intercalaReprovados(int p, int q, int r, tipoAluno *v){
+   int i, j, k;
+  tipoAluno *w;
+  w = (tipoAluno *) malloc(r * sizeof(tipoAluno));
+
+  i = p; j = q; k = 0;
+  while(i < q && j < r) {
+    v[i].nomecandidato  = toupper(v[i].nomecandidato);
+    v[j].nomecandidato = toupper(v[j].nomecandidato);
+
+    if(strcmp(v[i].nomecandidato, v[j].nomecandidato) < 0){
+      w[k] = v[i]; i++;
+    }
+    else{
+      w[k] = v[j]; j++;
+    }
+    k++;
+  }
+  while(i < q){
+    w[k] = v[i]; i++; k++;
+    }
+  while(j < r){
+    w[k] = v[j]; j++; k++;
+  }
+  for(i = p; i < r; i++) {
+    v[i] = w[i - p];
+  }
+  free(w);
+
+}
+
+void mergesortReprovados(int p, int r, tipoAluno v){
+  int q;
+  if(p < r - 1){
+    q = (p + r) / 2;
+    mergesortAlfabetica(p, q, v);
+    mergesortAlfabetica(q, r, v);
+    intercalaAlfabetica(p, q, r, v);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
