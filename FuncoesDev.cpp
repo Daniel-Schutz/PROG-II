@@ -955,7 +955,9 @@ void naoAprovados(int quant, tipoCurso *curso){
               free(auxiliar);//TERMINOU
 
               //ORDENAR REPROVADOS
-              //PRINTAR REPROVADOS
+              for(int x=0;x<contReprovados;x++){
+                fprintf(arqsaida,"%d %s\n",reprovados[x].codinscricao,reprovados[x].nomecandidato);
+              }
               free(reprovados);
        
             
