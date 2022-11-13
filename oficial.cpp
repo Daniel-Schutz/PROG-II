@@ -353,9 +353,10 @@ int main() {
 
           }
 
-          /*else if (opcao == 2){
+         else if (opcao == 2){
               int codinscr;
-              printf("\nInforme o número de inscrição do candidato ou digite 0 para retornar ao menu: \n"); scanf("%d", &codinscr); if (codinscr == 0)
+              printf("\nInforme o número de inscrição do candidato ou digite 0 para retornar ao menu: \n"); scanf("%d", &codinscr); 
+              if (codinscr == 0)
               {
                   continue;
                   //para sair e consultar o menu novamente
@@ -363,13 +364,11 @@ int main() {
               else
               {
                   buscaImprimeCandidato( quant, curso, codinscr);
-                  // A função do tipo void deve buscar e ja imprimir diretamente
-  as informações requeridas
               }
 
 
           }
-
+ /*
           else if (opcao == 3){
               FILE*  arqsaida;    variavel para manip arquivo de saida
               arqsaida = fopen("saidaNaoAprovados.txt", "a");
@@ -435,6 +434,7 @@ int main() {
  } 
   return 0;
 }
+
 
  
     
