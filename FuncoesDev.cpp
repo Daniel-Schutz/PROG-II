@@ -648,6 +648,46 @@ curso[i].aluno[j].datanasc.mes, curso[i].aluno[j].datanasc.ano,curso[i].codCurso
 }
 
 
+void intercalaReprovados(int p, int q, int r, tipoAluno *v){
+   int i, j, k;
+  tipoAluno *w;
+  w = (tipoAluno *) malloc(r * sizeof(tipoAluno));
+
+  i = p; j = q; k = 0;
+  while(i < q && j < r) {
+    if(strcmp(v[i].nomecandidato, v[j].nomecandidato) < 0){
+      w[k] = v[i]; i++;
+    }
+    else{
+      w[k] = v[j]; j++;
+    }
+    k++;
+  }
+  while(i < q){
+    w[k] = v[i]; i++; k++;
+    }
+  while(j < r){
+    w[k] = v[j]; j++; k++;
+  }
+  for(i = p; i < r; i++) {
+    v[i] = w[i - p];
+  }
+  free(w);
+
+}
+
+void mergesortReprovados(int p, int r, tipoAluno *v){
+  int q;
+  if(p < r - 1){
+    q = (p + r) / 2;
+    mergesortReprovados(p, q, v);
+    mergesortReprovados(q, r, v);
+    intercalaReprovados(p, q, r, v);
+  }
+}
+
+
+
 
 void naoAprovados(int quant, tipoCurso *curso){
   FILE*  arqsaida;
@@ -973,46 +1013,6 @@ void naoAprovados(int quant, tipoCurso *curso){
    fclose(arqsaida);
 }
 
-void intercalaReprovados(int p, int q, int r, tipoAluno *v){
-   int i, j, k;
-  tipoAluno *w;
-  w = (tipoAluno *) malloc(r * sizeof(tipoAluno));
-
-  i = p; j = q; k = 0;
-  while(i < q && j < r) {
-    v[i].nomecandidato  = toupper(v[i].nomecandidato);
-    v[j].nomecandidato = toupper(v[j].nomecandidato);
-
-    if(strcmp(v[i].nomecandidato, v[j].nomecandidato) < 0){
-      w[k] = v[i]; i++;
-    }
-    else{
-      w[k] = v[j]; j++;
-    }
-    k++;
-  }
-  while(i < q){
-    w[k] = v[i]; i++; k++;
-    }
-  while(j < r){
-    w[k] = v[j]; j++; k++;
-  }
-  for(i = p; i < r; i++) {
-    v[i] = w[i - p];
-  }
-  free(w);
-
-}
-
-void mergesortReprovados(int p, int r, tipoAluno v){
-  int q;
-  if(p < r - 1){
-    q = (p + r) / 2;
-    mergesortAlfabetica(p, q, v);
-    mergesortAlfabetica(q, r, v);
-    intercalaAlfabetica(p, q, r, v);
-  }
-}
 
 
 
