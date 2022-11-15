@@ -5,18 +5,18 @@
 #include <string.h>
 
 int main() {
-  tipoCurso *curso;    // tipocurso
+  tipoCurso *curso;    // lista dos cursos
   int opcao;           // opção que a pessoa irá digitar no menu
   int quant;           // quantidade total de cursos
   int qtdAlunos;       // quantidade total de candidatos que fizeram a prova
-  float media[4];      // ling / mat / nat / hum
-  float desvio[4];     // ling / mat / nat / hum
-  int soma[4];         // ling / mat / nat / hum
+  float media[4];      // 0=ling / 1=mat / 2=nat / 3=hum
+  float desvio[4];     // 0=ling / 1=mat / 2=nat / 3=hum
+  int soma[4];         // 0=ling / 1=mat / 2=nat / 3=hum
   char nomeArq[MAX];   // nome do arquivo que será lido
-  int indiceTipoCurso; // variavel para achar a posição que o codigo está no
+  int indiceTipoCurso; // variavel para achar a posição que o curso esta no vetor curso
   int codTemporario;   // variavel para salvar temporariamente o codigo do curso
-  int qtdTemporaria;   // variavel para salvar temporariamente a quantidade de
-  int totalParticipantes = 0; // numero de candidatos inscritos
+  int qtdTemporaria;   // variavel para salvar temporariamente a quantidade de inscritos do curso
+  int totalParticipantes = 0; // numero total de candidatos inscritos
 
   while (opcao != 0) {
     printf("\n0 - Carregar os arquivos de entrada\n");
@@ -25,6 +25,7 @@ int main() {
   }
 
   if (opcao == 0) {
+    // ler e armazenar cursos e pesos
     printf("\nEscreva o nome do arquivo dos cursos e pesos:");
     scanf("%s", nomeArq);
     FILE *arq; /* variavel para acessar um arquivo */
@@ -55,15 +56,8 @@ int main() {
       fclose(arq);
     }
 
-    mergesortTipoCurso(0, quant, curso); // ordena por codigo
+    mergesortTipoCurso(0, quant, curso); // ordena os cursos por codigo
 
-    /*TESTE
-    for(int i=0;i<quant;i++){
-             printf("%d %s %d %d %d %d %d\n", curso[i].codCurso,
-    curso[i].nomeCurso, curso[i].pesoRed, curso[i].pesoMat, curso[i].pesoLing,
-    curso[i].pesoHum, curso[i].pesoNat);
-                }
-    FIM DO TESTE*/
 
     // ler e armazenar cursos e vagas
     printf("\nEscreva o nome do arquivo dos cursos e vagas:");
@@ -88,15 +82,6 @@ int main() {
       fclose(arq);
     }
 
-    /*TESTE
-    for(int indiceTipoCurso=0;indiceTipoCurso<quant;indiceTipoCurso++){
-      printf("%d %d %d %d %d %d %d %d %d %d %d
-    %d\n",curso[indiceTipoCurso].codCurso, curso[indiceTipoCurso].AC,
-    curso[indiceTipoCurso].L1, curso[indiceTipoCurso].L3,
-    curso[indiceTipoCurso].L4, curso[indiceTipoCurso].L5,
-    curso[indiceTipoCurso].L7, curso[indiceTipoCurso].L8,
-    curso[indiceTipoCurso].L9, curso[indiceTipoCurso].L11,
-    curso[indiceTipoCurso].L13, curso[indiceTipoCurso].L15);  } FIM DO TESTE*/
 
     // ler e armazenar os dados dos inscritos
     printf("\nEscreva o nome do arquivo dos dados dos inscritos:");
@@ -119,7 +104,7 @@ int main() {
 
         int index = busca_binariaTipoCurso(quant, curso, codTemporario);
 
-        if (curso[index].qtd == 0) {
+        if (curso[index].qtd == 0 /*se não tem inscritos ainda no curso*/) {
           curso[index].qtd = qtdTemporaria;
           curso[index].aluno = (tipoAluno *)malloc(curso[index].qtd * sizeof(tipoAluno));
           // verificar se alocou
@@ -171,7 +156,7 @@ int main() {
           }
         }
 
-        else {
+        else /*se tem inscritos no curso*/ {
 
           tipoAluno *alunoAuxiliar;
 
@@ -241,9 +226,10 @@ int main() {
     for (int i = 0; i < quant; i++) {
       mergesortTipoAluno(
           0, curso[i].qtd,
-          curso[i].aluno); // ordena dentro de cada curso por codInscrição
+          curso[i].aluno); /*ordena dentro de cada curso por codInscrição*/
     }
 
+    //ler e armazenar os acertos dos inscritos
     printf("\nEscreva o nome do arquivo dos acertos dos inscritos:");
     scanf("%s", nomeArq);
 
@@ -275,10 +261,7 @@ int main() {
         fscanf(arq, "%d %d %d %d %f", &curso[j].aluno[i].v_ling, &curso[j].aluno[i].v_mat, &curso[j].aluno[i].v_nat,&curso[j].aluno[i].v_hum,&curso[j].aluno[i].red); // leitura dos dados
         curso[j].aluno[i].presente = true;
 
-        // printf("%d %d %d %d %d %f\n",curso[j].aluno[i].codinscricao,
-        // curso[j].aluno[i].v_ling, curso[j].aluno[i].v_mat,
-        // curso[j].aluno[i].v_nat, curso[j].aluno[i].v_hum,
-        // curso[j].aluno[i].red);
+    
         if (x == 0) {
           soma[0] = curso[j].aluno[i].v_ling;
           soma[1] = curso[j].aluno[i].v_mat;
@@ -296,7 +279,6 @@ int main() {
     }
   }
 
-  // printf("A soma de linguagens e %d",soma[0]);
 
   // calculo da media multiplicando por 2 para dar o EP correto
   media[0] = 2 * mediaDaArea(qtdAlunos, soma[0]); // media da area Linguagens
@@ -306,18 +288,12 @@ int main() {
 
   // calculo desvio padrao, divide a media por 2 para passar a media correta e
   // multiplca o DP para dar o EP correto
-  desvio[0] = 2 * desvioPadrao(media[0] / 2, quant, curso, 0, qtdAlunos);
-  desvio[1] = 2 * desvioPadrao(media[1] / 2, quant, curso, 1, qtdAlunos);
-  desvio[2] = 2 * desvioPadrao(media[2] / 2, quant, curso, 2, qtdAlunos);
-  desvio[3] = 2 * desvioPadrao(media[3] / 2, quant, curso, 3, qtdAlunos);
+  desvio[0] = 2 * desvioPadrao(media[0] / 2, quant, curso, 0, qtdAlunos); // desvio da area Linguagens
+  desvio[1] = 2 * desvioPadrao(media[1] / 2, quant, curso, 1, qtdAlunos); // desvio da area matemática
+  desvio[2] = 2 * desvioPadrao(media[2] / 2, quant, curso, 2, qtdAlunos); // desvio da area naturezas
+  desvio[3] = 2 * desvioPadrao(media[3] / 2, quant, curso, 3, qtdAlunos); // desvio da area humanas
 
-  printf("a soma das notas de linguagens e %d e qtd de alunos e %d\n", soma[0],
-         qtdAlunos);
-  printf("A media de linguagens e %.2f e o desvio padrao e %.2f\n", media[0],
-         desvio[0]);
-
-  /*-------------------------------------------ATE AQUI TA
-   * CERTO-------------------------------------------------------------------------------------------------------------------*/
+ 
 
   // calculo EP / NF
   eP_NotaFinal(curso, quant, media, desvio); // função que calcula EP e Nota Final
@@ -333,11 +309,6 @@ int main() {
      
 
    
-      /*
-     printf("\nnome do segundo curso %s\n",curso[1].nomeCurso); for(int
-  i=0;i<curso[1].qtd;i++){ printf("nome do aluno %s e tipo de vaga e
-  %s\n",curso[1].aluno[i].nomecandidato,curso[1].aluno[i].tipovaga);
-     } */
      
  
 
@@ -349,13 +320,14 @@ int main() {
 
           if (opcao==1){
             listaParticipantes(quant,curso);
-
+            printf("\nLista de participantes gerada.\n");
 
           }
 
          else if (opcao == 2){
               int codinscr;
-              printf("\nInforme o número de inscrição do candidato ou digite 0 para retornar ao menu: \n"); scanf("%d", &codinscr); 
+              printf("\nInforme o número de inscrição do candidato ou digite 0 para retornar ao menu: \n"); 
+              scanf("%d", &codinscr); 
               if (codinscr == 0)
               {
                   continue;
@@ -371,6 +343,7 @@ int main() {
  
           else if (opcao == 3){
               naoAprovados(quant,curso);
+              printf("\nLista de não aprovados gerada.\n");
 
       }
 
@@ -395,15 +368,18 @@ int main() {
                   fscanf(arq,"%d", &numAlteracoes);
           for(int i=0;i<numAlteracoes;i++){
             fscanf(arq, "%d %f %f", &codInsc, &notaAntiga, &notaNova);
-            for(int x=0;x<quant;x++){
-                y = busca_binariaAcertos(curso[x].qtd,curso[x].aluno,codInsc);
-                if(curso[x].aluno[y].codinscricao==codInsc){
-                  curso[x].aluno[y].red = notaNova;
+            for(int x=0;x<quant;x++){              
+                for(int y=0;y<curso[x].qtd;y++){
+                  if(curso[x].aluno[y].codinscricao==codInsc){
+                  curso[x].aluno[y].red = notaNova;   
                    curso[x].aluno[y].notaFinal = (curso[x].aluno[y].red * curso[x].pesoRed + curso[x].aluno[y].EP[3] * curso[x].pesoHum + curso[x].aluno[y].EP[0] * curso[x].pesoLing +
             curso[x].aluno[y].EP[1] * curso[x].pesoMat + curso[x].aluno[y].EP[2] * curso[x].pesoNat)/(curso[x].pesoRed + curso[x].pesoHum + curso[x].pesoLing +
             curso[x].pesoMat + curso[x].pesoNat);
                   break;
                 }
+
+                }
+                
               
             }
             
