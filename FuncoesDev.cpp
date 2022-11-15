@@ -192,8 +192,6 @@ int busca_binariaAcertos(int n, tipoAluno *v, int x) {
 }
 
 void eP_NotaFinal(tipoCurso curso[], int quant, float media[], float desvio[]){//quant = quantidade de candidatos int i = 0; int indicecurso;
-    int aux;
-    int j;
     for(int j=0;j<quant;j++){
       for (int i=0; i < curso[j].qtd; i++){
         if(curso[j].aluno[i].presente==true){
