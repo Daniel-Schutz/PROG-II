@@ -16,7 +16,6 @@ int main() {
   int indiceTipoCurso; // variavel para achar a posição que o curso esta no vetor curso
   int codTemporario;   // variavel para salvar temporariamente o codigo do curso
   int qtdTemporaria;   // variavel para salvar temporariamente a quantidade de inscritos do curso
-  int totalParticipantes = 0; // numero total de candidatos inscritos
 
   while (opcao != 0) {
     printf("\n0 - Carregar os arquivos de entrada\n");
@@ -363,7 +362,7 @@ int main() {
     }
 
     else {
-          int numAlteracoes, codInsc,y;
+          int numAlteracoes, codInsc;
           float notaAntiga, notaNova;
                   fscanf(arq,"%d", &numAlteracoes);
           for(int i=0;i<numAlteracoes;i++){
@@ -402,7 +401,6 @@ int main() {
  } 
   return 0;
 }
-
 
 
  
