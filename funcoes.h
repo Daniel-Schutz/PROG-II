@@ -40,10 +40,6 @@ void mergesortTipoCurso(int p, int r, tipoCurso *v);
 
 int busca_binariaTipoCurso(int n, tipoCurso *v, int x);
 
-void intercalaAcertos(int p, int q, int r, tipoAluno *v);
-
-void mergesortAcertos(int p, int r, tipoAluno *v);
-
 void mergesortTipoAluno(int p, int r, tipoAluno *v);
 
 void intercalaTipoAluno(int p, int q, int r, tipoAluno *v);
@@ -57,8 +53,6 @@ float desvioPadrao(float media, int quant, tipoCurso *curso, int num, int qtdAlu
 void eP_NotaFinal(tipoCurso curso[], int quant, float media[], float desvio[]);
 
 void buscaImprimeCandidato(int numerodecursos, tipoCurso curso[], int codinscr);
-
-void troca(tipoCurso curso[], int indiceTroca, int indiceA_Trocar);
 
 void intercalaAlfabetica(int p, int q, int r, tipoCurso *v);
 
