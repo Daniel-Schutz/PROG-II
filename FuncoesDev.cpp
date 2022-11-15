@@ -713,7 +713,7 @@ void naoAprovados(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                if(x>curso[i].AC){
+                if(x>=curso[i].AC){
                 reprovados[contReprovados]=auxiliar[x];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -740,7 +740,7 @@ void naoAprovados(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                if(x>curso[i].L1){
+                if(x>=curso[i].L1){
                 reprovados[contReprovados]=auxiliar[x];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -767,7 +767,7 @@ void naoAprovados(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                if(x>curso[i].L3){
+                if(x>=curso[i].L3){
                 reprovados[contReprovados]=auxiliar[x];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -794,7 +794,7 @@ void naoAprovados(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                if(x>curso[i].L4){
+                if(x>=curso[i].L4){
                 reprovados[contReprovados]=auxiliar[x];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -821,7 +821,7 @@ void naoAprovados(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                if(x>curso[i].L5){
+                if(x>=curso[i].L5){
                 reprovados[contReprovados]=auxiliar[x];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -848,7 +848,7 @@ void naoAprovados(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                if(x>curso[i].L7){
+                if(x>=curso[i].L7){
                 reprovados[contReprovados]=auxiliar[x];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -875,7 +875,7 @@ void naoAprovados(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                if(x>curso[i].L8){
+                if(x>=curso[i].L8){
                 reprovados[contReprovados]=auxiliar[x];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -902,7 +902,7 @@ void naoAprovados(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                if(x>curso[i].L9){
+                if(x>=curso[i].L9){
                 reprovados[contReprovados]=auxiliar[x];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -929,7 +929,7 @@ void naoAprovados(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                if(x>curso[i].L11){
+                if(x>=curso[i].L11){
                 reprovados[contReprovados]=auxiliar[x];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -956,7 +956,7 @@ void naoAprovados(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
              for(int x=0;x<cont;x++){
-                if(x>curso[i].L13){
+                if(x>=curso[i].L13){
                 reprovados[contReprovados]=auxiliar[x];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
@@ -983,7 +983,7 @@ void naoAprovados(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
              for(int x=0;x<cont;x++){
-                if(x>curso[i].L15){
+                if(x>=curso[i].L15){
                 reprovados[contReprovados]=auxiliar[x];
                 contReprovados+=1;
                 reprovados = (tipoAluno*) realloc(reprovados, (contReprovados+1) * sizeof(tipoAluno));
