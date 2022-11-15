@@ -351,7 +351,7 @@ void listaParticipantes(int quant, tipoCurso *curso){
           arqsaida = fopen("listaParticipantes.txt", "w");
           fprintf(arqsaida, "/*LISTA GERAL CLASSIFICADO POR NOTA*/\n");
           for(int i=0;i<quant;i++){
-            fprintf(arqsaida, "%d %s\n",curso[i].codCurso,curso[i].nomeCurso);
+            fprintf(arqsaida, "\n%d %s\n",curso[i].codCurso,curso[i].nomeCurso);
              fprintf(arqsaida, "INSC	V_LIN	V_MAT	V_NAT	V_HUM	RED	COTA	NOTA FINAL	CLASSIFICAÇÃO\n");
              tipoAluno *auxiliar;
              int cont=0;
@@ -692,9 +692,9 @@ void mergesortReprovados(int p, int r, tipoAluno *v){
 void naoAprovados(int quant, tipoCurso *curso){
   FILE*  arqsaida;
   arqsaida = fopen("NaoAprovados.txt", "w");
-  fprintf(arqsaida, ".+*******+.NAO APROVADOS.+*******+.");
+  fprintf(arqsaida, ".+*******+.NAO APROVADOS.+*******+.\n");
   for(int i=0;i<quant;i++){
-    fprintf(arqsaida, "%d %s\n",curso[i].codCurso,curso[i].nomeCurso);
+    fprintf(arqsaida, "\n%d %s\n",curso[i].codCurso,curso[i].nomeCurso);
 
     tipoAluno *auxiliar, *reprovados;
              int cont=0,contReprovados=0;
@@ -1012,102 +1012,3 @@ void naoAprovados(int quant, tipoCurso *curso){
   }
    fclose(arqsaida);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-
-void intercalaAcertos(int p, int q, int r, tipoAluno *v){
-  int i, j, k;
-  tipoAluno *w;
-  w = (tipoAluno *) malloc(r * sizeof(tipoAluno));
-
-  i = p; j = q; k = 0;
-  while(i < q && j < r) {
-    if(v[i].codinscricao < v[j].codinscricao){
-      w[k] = v[i]; i++;
-    }
-    else{
-      w[k] = v[j]; j++;
-    }
-    k++;
-  }
-  while(i < q){
-    w[k] = v[i]; i++; k++;
-    }
-  while(j < r){
-    w[k] = v[j]; j++; k++;
-  }
-  for(i = p; i < r; i++) {
-    v[i] = w[i - p];
-  }
-  free(w);
-}
-
-void mergesortAcertos(int p, int r, tipoAluno *v){
-  int q;
-  if(p < r - 1){
-    q = (p + r) / 2;
-    mergesortAcertos(p, q, v);
-    mergesortAcertos(q, r, v);
-    intercalaAcertos(p, q, r, v);
-  }
-}
-
-
-
-
-tipoAluno verificaEmpate(tipoAluno aluno1, tipoAluno
-notasAluno1,tipoAluno aluno2, tipoAluno notasAluno2){ tipoAluno maior; a)
-ver idade igual ou superior a sessenta anos, dentre estes o de maior idade; b)
-ver maior escore na Prova de Redação; c) ver maior escore padronizado (VL) na
-competência Linguagem, Códigos e suas Tecnologias na Prova Objetiva; d) ver
-maior escore padronizado (VM) na competência Matemática e suas Tecnologias na
-Prova Objetiva; e) ver maior escore padronizado (VH) na competência Ciências
-Humanas e suas Tecnologias na Prova Objetiva; e f) ver maior escore padronizado
-(VN) na competência Ciências da Natureza e suas Tecnologias na Prova Objetiva;
-  return maior;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-void troca(tipoCurso curso[], int indiceTroca, int indiceA_Trocar){ //utilizar
-em verifica empate entre outras ocasiões
-                                  //i               //j
-  tipoCurso *aux; //criar struct tipoCurso auxiliar pra realizar troca
-  aux = (tipocurso*) malloc(1 * sizeof(tipoCurso)); //alocou na memória
-  if (aux == NULL){
-    printf("\nImpossível realizar alocação de memória para registro auxiliar na
-função troca.\n");
-  }
-  else{
-    //Realizar troca
-    aux = curso[indiceTroca];
-    curso[indiceTroca] = curso[indiceA_Trocar];
-    curso[indiceA_Trocar] = aux;
-  }
-}
-*/
