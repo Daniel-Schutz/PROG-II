@@ -302,14 +302,6 @@ int main() {
  
      mergesortAlfabetica(0,quant,curso);//para ordenar os cursos por ordem  alfabetica 
 
-     for(int i=0;i<quant;i++){
-         mergesortVaga(0,curso[i].qtd,curso[i]);//ordena os candidatos dentro do curso pelo tipo da vaga
-         if(curso[i].codCurso==1904){
-          for(int j=0;j<curso[i].qtd;j++){
-            printf("%s\n",curso[i].aluno[j].tipovaga);
-          }
-         }
-     }
      
 
    
