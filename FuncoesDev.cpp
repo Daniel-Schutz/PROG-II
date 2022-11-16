@@ -7,16 +7,16 @@
 
 // Desenvolver funcoes
 void menu() {
-  printf("\n1 - Gerar arquivo de saída .txt");
+  printf("\n.+*****+.MENU.+*****+.\n");
+  printf("1 - Gerar arquivo de saída .txt\n");
 
-  printf("\n2 - Pesquisar candidatos .txt");
+  printf("2 - Pesquisar candidatos .txt\n");
 
-  printf("\n3 - Gerar arquivo dos candidatos não aprovados");
+  printf("3 - Gerar arquivo dos candidatos não aprovados\n");
 
-  printf(
-      "\n4 - Alterar nota de redação dos candidatos que entraram com recurso");
+  printf("4- Alterar nota de redação dos candidatos que entraram com recurso\n");
 
-  printf("\n5 - Encerrar programa");
+  printf("5 - Encerrar programa\n");
 }
 
 void intercalaTipoCurso(int p, int q, int r, tipoCurso *v) {
@@ -350,7 +350,7 @@ void listaParticipantes(int quant, tipoCurso *curso){
           fprintf(arqsaida, "/*LISTA GERAL CLASSIFICADO POR NOTA*/\n");
           for(int i=0;i<quant;i++){
             fprintf(arqsaida, "\n%d %s\n",curso[i].codCurso,curso[i].nomeCurso);
-             fprintf(arqsaida, "INSC	V_LIN	V_MAT	V_NAT	V_HUM	RED	COTA	NOTA FINAL	CLASSIFICAÇÃO\n");
+             fprintf(arqsaida, "INSC	  V_LIN	  V_MAT	  V_NAT	  V_HUM	  RED	 COTA	 NOTA FINAL	 CLASSIFICAÇÃO\n");
              tipoAluno *auxiliar;
              int cont=0;
              int acumulo=curso[i].quantAC;
@@ -366,7 +366,7 @@ void listaParticipantes(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                 fprintf(arqsaida, "%d  %.2f  %.2f  %.2f  %.2f  %.2f  %s  %.2f  %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
               }
               free(auxiliar);//TERMINOU
@@ -385,7 +385,7 @@ void listaParticipantes(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                 fprintf(arqsaida, "%d  %.2f  %.2f  %.2f  %.2f  %.2f  %s  %.2f  %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
               }
               free(auxiliar);//TERMINOU
@@ -404,7 +404,7 @@ void listaParticipantes(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                 fprintf(arqsaida, "%d  %.2f  %.2f  %.2f  %.2f  %.2f  %s  %.2f  %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
               }
               free(auxiliar);//TERMINOU
@@ -423,7 +423,7 @@ void listaParticipantes(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                 fprintf(arqsaida, "%d  %.2f  %.2f  %.2f  %.2f  %.2f  %s  %.2f  %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
               }
               free(auxiliar);//TERMINOU
@@ -442,7 +442,7 @@ void listaParticipantes(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                 fprintf(arqsaida, "%d  %.2f  %.2f  %.2f  %.2f  %.2f  %s  %.2f  %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
               }
               free(auxiliar);//TERMINOU
@@ -461,7 +461,7 @@ void listaParticipantes(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                 fprintf(arqsaida, "%d  %.2f  %.2f  %.2f  %.2f  %.2f  %s  %.2f  %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
               }
               free(auxiliar);//TERMINOU
@@ -480,7 +480,7 @@ void listaParticipantes(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                 fprintf(arqsaida, "%d  %.2f  %.2f  %.2f  %.2f  %.2f  %s  %.2f  %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
               }
               free(auxiliar);//TERMINOU
@@ -499,7 +499,7 @@ void listaParticipantes(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                 fprintf(arqsaida, "%d  %.2f  %.2f  %.2f  %.2f  %.2f  %s  %.2f  %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
               }
               free(auxiliar);//TERMINOU
@@ -518,7 +518,7 @@ void listaParticipantes(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                 fprintf(arqsaida, "%d  %.2f  %.2f  %.2f  %.2f  %.2f  %s  %.2f  %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
               }
               free(auxiliar);//TERMINOU
@@ -537,7 +537,7 @@ void listaParticipantes(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                 fprintf(arqsaida, "%d  %.2f  %.2f  %.2f  %.2f  %.2f  %s  %.2f  %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
               }
               free(auxiliar);//TERMINOU
@@ -556,7 +556,7 @@ void listaParticipantes(int quant, tipoCurso *curso){
              }
              mergesortNota(0,cont,auxiliar);
             for(int x=0;x<cont;x++){
-                 fprintf(arqsaida, "%d %.2f %.2f %.2f %.2f %.2f %s %.2f %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
+                 fprintf(arqsaida, "%d  %.2f  %.2f  %.2f  %.2f  %.2f  %s  %.2f  %d\n",auxiliar[x].codinscricao,auxiliar[x].EP[0],auxiliar[x].EP[1],auxiliar[x].EP[2],auxiliar[x].EP[3],auxiliar[x].red,auxiliar[x].tipovaga,auxiliar[x].notaFinal,x+1);
 
               }
               free(auxiliar);//TERMINOU
@@ -627,11 +627,13 @@ void listaParticipantes(int quant, tipoCurso *curso){
 
 void buscaImprimeCandidato(int quant, tipoCurso curso[], int codinscr)
 { 
-for(int i=0;i<quant;i++){
+int achou=0;
+for(int i=0;i<quant;i++){  
   for (int j=0;j<curso[i].qtd;j++){
     if(curso[i].aluno[j].codinscricao==codinscr){
-      printf("%d %s %d/%d/%d %d %s\n", curso[i].aluno[j].codinscricao,curso[i].aluno[j].nomecandidato, curso[i].aluno[j].datanasc.dia,
+      printf("\n%d %s %d/%d/%d %d %s\n", curso[i].aluno[j].codinscricao,curso[i].aluno[j].nomecandidato, curso[i].aluno[j].datanasc.dia,
 curso[i].aluno[j].datanasc.mes, curso[i].aluno[j].datanasc.ano,curso[i].codCurso, curso[i].nomeCurso);
+achou=1;
  break;
   }
 
@@ -640,6 +642,9 @@ curso[i].aluno[j].datanasc.mes, curso[i].aluno[j].datanasc.ano,curso[i].codCurso
 
   
 }
+if(achou==0){
+    printf("\nCandidato não encontrado.\n");
+  }
   
 
 
