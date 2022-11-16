@@ -256,14 +256,26 @@ void intercalaVaga(int p, int q, int r, tipoCurso v){
 
   i = p; j = q; k = 0;
   while(i < q && j < r) {
-
-
-    if(strcmp(v.aluno[i].tipovaga, v.aluno[j].tipovaga) < 0){
+    if(v.aluno[i].tipovaga[2]==NULL && v.aluno[j].tipovaga[2]==NULL){
+       if(strcasecmp(v.aluno[i].tipovaga, v.aluno[j].tipovaga) < 0){
       w[k] = v.aluno[i]; i++;
     }
     else{
       w[k] = v.aluno[j]; j++;
     }
+    } else if (v.aluno[i].tipovaga[2]!=NULL && v.aluno[j].tipovaga[2]==NULL){
+      w[k] = v.aluno[j]; j++;
+    } else if(v.aluno[i].tipovaga[2]==NULL && v.aluno[j].tipovaga[2]!=NULL){
+      w[k] = v.aluno[i]; i++;
+    } else if(v.aluno[i].tipovaga[2]!=NULL && v.aluno[j].tipovaga[2]!=NULL){
+      if(strcasecmp(v.aluno[i].tipovaga, v.aluno[j].tipovaga) < 0){
+      w[k] = v.aluno[i]; i++;
+    }
+    else{
+      w[k] = v.aluno[j]; j++;
+    }
+    }
+   
     k++;
   }
   while(i < q){
@@ -628,7 +640,8 @@ void listaParticipantes(int quant, tipoCurso *curso){
 void buscaImprimeCandidato(int quant, tipoCurso curso[], int codinscr)
 { 
 int achou=0;
-for(int i=0;i<quant;i++){  
+for(int i=0;i<quant;i++){
+  
   for (int j=0;j<curso[i].qtd;j++){
     if(curso[i].aluno[j].codinscricao==codinscr){
       printf("\n%d %s %d/%d/%d %d %s\n", curso[i].aluno[j].codinscricao,curso[i].aluno[j].nomecandidato, curso[i].aluno[j].datanasc.dia,
