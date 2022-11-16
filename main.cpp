@@ -325,7 +325,7 @@ int main() {
 
          else if (opcao == 2){
               int codinscr;
-              printf("\nInforme o número de inscrição do candidato ou digite 0 para retornar ao menu: \n"); 
+              printf("\nInforme o número de inscrição do candidato ou digite 0 para retornar ao menu: "); 
               scanf("%d", &codinscr); 
               if (codinscr == 0)
               {
@@ -400,8 +400,7 @@ int main() {
  
  } 
   return 0;
+
 }
-
-
  
     
