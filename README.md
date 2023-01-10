@@ -1,1 +1,1 @@
-Integrantes da dupla: Daniel Jordão Schutz e Roberto Fortes, sistema do ingresso no vestibular UFMS
+Criação de um sistema de seleção dos aprovados no vestibular utilizando C/C++
